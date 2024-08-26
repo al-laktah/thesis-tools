@@ -5,7 +5,7 @@ from src.compute import generate_from
 from src.db import Ris
 
 
-engine = create_engine('sqlite:///DB.db')
+engine = create_engine('sqlite:///data/DB.db')
 Session = sessionmaker(bind=engine)
 session = Session()
 
