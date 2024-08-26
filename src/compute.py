@@ -1,9 +1,11 @@
-from ollama import generate, ResponseError
-from pandas import DataFrame
 from uuid import uuid4
 from typing import Dict, List, Tuple, Optional
-from db import Models, Prompts, Ris
+from ollama import generate, ResponseError
+from pandas import DataFrame
 from sqlalchemy.orm import Session
+
+from src.db import Models, Prompts, Ris
+
 
 def generate_from(
     model_id: int,
