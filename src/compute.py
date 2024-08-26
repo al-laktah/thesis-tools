@@ -1,0 +1,52 @@
+from ollama import generate, ResponseError
+from pandas import DataFrame
+from uuid import uuid4
+from typing import Dict, List, Tuple, Optional
+from db import Models, Prompts, Ris
+from sqlalchemy.orm import Session
+
+def generate_from(
+    model_id: int,
+    prompt_id: int,
+    # system_id: Optional[int]=None,
+    session: Optional[Session]=None,
+    data: Optional[DataFrame]=None
+    ) -> Tuple[str, List[Dict], Dict[int, Exception]]:
+
+    unique_id = str(uuid4())
+    responses = []
+    log = dict()
+    
+    model = Models.get_by_id(session, model_id)
+    prompt = Prompts.get_by_id(session, prompt_id)
+    
+    if not data:
+        data = Ris.get_rev_reports(session)
+
+    for index, row in data.iterrows():
+        ris_id = row['id']
+        text = row['report']
+        
+        response = {
+            'ris_id' : ris_id,
+            'prompt_id' : prompt.id,
+            'model_id' : model.id,
+        }
+
+        try:
+            response['raw'] = generate(
+                model=model.name+':'+model.size,
+                options=model.options,
+                prompt=prompt.prompt+'\n'+text,
+                stream=False,
+                context=None,
+            )
+        except ResponseError as e:
+            response['raw'] = {'error': str(e)}
+        except Exception as e:
+            response['raw'] = {'error': 'An unknown error occurred, consult the log for more information'}
+            log[ris_id] = e
+        finally:
+            responses.append(response)
+    
+    return unique_id, responses, log
