@@ -18,17 +18,17 @@ def generate_from(
     unique_id = str(uuid4())
     responses = []
     log = dict()
-    
+
     model = Models.get_by_id(session, model_id)
     prompt = Prompts.get_by_id(session, prompt_id)
-    
+
     if data is None:
         data = Ris.get_rev_reports(session)
 
     for index, row in data.iterrows():
         ris_id = row['id']
         text = row['report']
-        
+
         response = {
             'ris_id' : ris_id,
             'prompt_id' : prompt.id,
@@ -44,14 +44,12 @@ def generate_from(
                 context=None,
             )
         except ResponseError as e:
-            response['raw'] = {'error': str(e)}
-        except Exception as e:
-            response['raw'] = {'error': 'An unknown error occurred, consult the log for more information'}
+            response['raw'] = {'error': 'An error occurred, consult the log for more information'}
             log[ris_id] = e
         finally:
             responses.append(response)
-        
+
         if index % 25 == 0 and index != 0:
             print(f"Generated {index + 1} Outputs")
-    
+
     return unique_id, responses, log
