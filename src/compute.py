@@ -17,7 +17,7 @@ def generate_from(
 
     unique_id = str(uuid4())
     responses = []
-    log = dict()
+    log = {}
 
     model = Models.get_by_id(session, model_id)
     prompt = Prompts.get_by_id(session, prompt_id)

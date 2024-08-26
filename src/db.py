@@ -18,8 +18,7 @@ class Models(Base):
     def __repr__(self) -> str:
         if self.options:
             return f"{self.name}:{self.size}_o:{self.options}"
-        else:
-            return f"{self.name}:{self.size}_Default"
+        return f"{self.name}:{self.size}_Default"
 
     @classmethod
     def get_by_id(cls, session: Session, model_id: int):
