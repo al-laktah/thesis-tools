@@ -22,7 +22,7 @@ def generate_from(
     model = Models.get_by_id(session, model_id)
     prompt = Prompts.get_by_id(session, prompt_id)
     
-    if not data:
+    if data is None:
         data = Ris.get_rev_reports(session)
 
     for index, row in data.iterrows():
