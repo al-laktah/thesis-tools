@@ -11,7 +11,7 @@ session = Session()
 
 data = Ris.get_rev_reports(session)
 
-unique_id, responses, log = generate_from(5, 4, session, data)
+unique_id, responses, log = generate_from(7, 4, session, data)
 
 # Write responses to a JSON file
 with open(f'{unique_id}_responses.json', 'w', encoding='utf-8') as responses_file:
