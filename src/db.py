@@ -1,13 +1,17 @@
+"""Database models for the application."""
+
 from typing import Dict, List
 import pandas as pd
-# from sqlalchemy import ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session
+from sqlalchemy.orm import DeclarativeBase as Base
+from sqlalchemy.orm import Mapped, Session, mapped_column
 from sqlalchemy.dialects.sqlite import INTEGER, JSON, TEXT
 
-class Base(DeclarativeBase):
-    pass
+# from sqlalchemy import ForeignKey
+
 
 class Models(Base):
+    """Model class for the models table."""
+
     __tablename__ = "models"
 
     id: Mapped[int] = mapped_column(INTEGER, primary_key=True, nullable=False)
@@ -22,10 +26,13 @@ class Models(Base):
 
     @classmethod
     def get_by_id(cls, session: Session, model_id: int):
+        """Function to get a model by its id."""
         return session.query(cls).filter_by(id=model_id).first()
 
 
 class Prompts(Base):
+    """Model class for the prompts table."""
+
     __tablename__ = "prompts"
 
     id: Mapped[int] = mapped_column(INTEGER, primary_key=True, nullable=False)
@@ -39,9 +46,13 @@ class Prompts(Base):
 
     @classmethod
     def get_by_id(cls, session: Session, prompt_id: int):
+        """Function to get a prompt by its id."""
         return session.query(cls).filter_by(id=prompt_id).first()
 
+
 class Ris(Base):
+    """Model class for the ris table."""
+
     __tablename__ = "ris"
 
     id: Mapped[int] = mapped_column(INTEGER, primary_key=True, nullable=False)
@@ -51,20 +62,20 @@ class Ris(Base):
     final: Mapped[str] = mapped_column(TEXT)
     examination: Mapped[str] = mapped_column(TEXT)
 
-
     def __repr__(self) -> str:
         return f"Ris Report: {self.id}"
 
     @classmethod
     def get_by_id(cls, session: Session, ris_id: int):
+        """Function to get a ris report by its id."""
         return session.query(cls).filter_by(id=ris_id).first()
 
     @classmethod
     def get_rev_reports(cls, session: Session):
-        # Step 1: Query the database to get the columns id, revision_1, and revision_2
+        """Function to get the revision reports as a DataFrame."""
+
         results = session.query(cls.id, cls.revision_1, cls.revision_2).all()
 
-        # Step 2: Prepare data for the DataFrame
         data = []
         for result in results:
             if result.revision_1 is not None:
@@ -73,26 +84,23 @@ class Ris(Base):
                 rev = result.revision_2
             else:
                 rev = None
-            data.append({'id': result.id, 'report': rev})
+            data.append({"id": result.id, "report": rev})
 
-        # Step 3: Create a pandas DataFrame
         df = pd.DataFrame(data)
-
-        # Step 4: Drop rows where the 'report' column is null
-        df.dropna(subset=['report'], inplace=True)
+        df.dropna(subset=["report"], inplace=True)
 
         return df
 
     @classmethod
     def get_final_reports(cls, session: Session, df: pd.DataFrame):
-        # Step 1: Query the database to get the columns id, revision_1, and revision_2
+        """Function to get the final reports as a DataFrame."""
+
         results = session.query(cls.id, cls.final).all()
 
-        # Step 2: Prepare data for the DataFrame
         data = []
         for result in results:
-            data.append({'id': result.id, 'report': result.final})
+            data.append({"id": result.id, "report": result.final})
 
-        # Step 3: Create a pandas DataFrame
         df = pd.DataFrame(data)
+
         return df

@@ -1,3 +1,5 @@
+"""Module containing functions to generate and evaluate model outputs."""
+
 from uuid import uuid4
 from typing import Dict, List, Tuple, Optional
 from ollama import generate, ResponseError
@@ -10,10 +12,10 @@ from src.db import Models, Prompts, Ris
 def generate_from(
     model_id: int,
     prompt_id: int,
-    # system_id: Optional[int]=None,
-    session: Optional[Session]=None,
-    data: Optional[DataFrame]=None
-    ) -> Tuple[str, List[Dict], Dict[int, Exception]]:
+    session: Optional[Session] = None,
+    data: Optional[DataFrame] = None,
+) -> Tuple[str, List[Dict], Dict[int, Exception]]:
+    """Generate outputs from given model, prompt, and data."""
 
     unique_id = str(uuid4())
     responses = []
@@ -26,25 +28,27 @@ def generate_from(
         data = Ris.get_rev_reports(session)
 
     for index, row in data.iterrows():
-        ris_id = row['id']
-        text = row['report']
+        ris_id = row["id"]
+        text = row["report"]
 
         response = {
-            'ris_id' : ris_id,
-            'prompt_id' : prompt.id,
-            'model_id' : model.id,
+            "ris_id": ris_id,
+            "prompt_id": prompt.id,
+            "model_id": model.id,
         }
 
         try:
-            response['raw'] = generate(
-                model=model.name+':'+model.size,
+            response["raw"] = generate(
+                model=model.name + ":" + model.size,
                 options=model.options,
-                prompt=prompt.prompt+'\n'+text,
+                prompt=prompt.prompt + "\n" + text,
                 stream=False,
                 context=None,
             )
         except ResponseError as e:
-            response['raw'] = {'error': 'An error occurred, consult the log for more information'}
+            response["raw"] = {
+                "error": "An error occurred, consult the log for more information"
+            }
             log[ris_id] = e
         finally:
             responses.append(response)
