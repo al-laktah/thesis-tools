@@ -50,5 +50,8 @@ def generate_from(
             log[ris_id] = e
         finally:
             responses.append(response)
+        
+        if index % 25 == 0 and index != 0:
+            print(f"Generated {index + 1} Outputs")
     
     return unique_id, responses, log
