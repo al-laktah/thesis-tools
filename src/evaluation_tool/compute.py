@@ -2,9 +2,8 @@
 
 import os
 from uuid import uuid4
-from typing import Optional, List
+from typing import List
 from ollama import ResponseError, generate
-from pandas import DataFrame
 from sqlalchemy.orm import Session
 
 from .db import Models, Prompts, Ris
@@ -53,14 +52,12 @@ def generate_from(
     responses_dir: str,
     log_dir: str,
     session: Session,
-    data: Optional[DataFrame] = None,
 ):
-    """Generate outputs from given models, prompts, and data."""
+    """Generate outputs from given models and prompts"""
 
     error = False
 
-    if data is None:
-        data = Ris.get_rev_reports(session)
+    data = Ris.get_rev_reports(session)
 
     for model_id in model_ids:
         model = Models.get_by_id(session, model_id)
