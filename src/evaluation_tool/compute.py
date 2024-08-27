@@ -16,7 +16,7 @@ def _generate_from(model, prompt, data):
     responses = []
     log = {}
 
-    for _, row in data.iterrows():
+    for index, row in data.iterrows():
         ris_id = row["id"]
         text = row["report"]
 
@@ -35,8 +35,12 @@ def _generate_from(model, prompt, data):
                 "error": "An error occurred, consult the log for more information"
             }
             log[ris_id] = e
+            print(f"Error: {index}")
         finally:
             responses.append(response)
+
+        if index % 25 == 0 and index != 0:
+            print(f"Generated {index} outputs...")
 
     if log:
         return unique_id, responses, log
@@ -50,7 +54,10 @@ def generate_from(
     data: Optional[DataFrame] = None,
 ):
     """Generate outputs from given models, prompts, and data."""
-    results = {}
+
+    run_id = str(uuid4())
+    generated = {}
+    error = False
 
     if data is None:
         data = Ris.get_rev_reports(session)
@@ -61,13 +68,16 @@ def generate_from(
         for prompt_id in prompt_ids:
             prompt = Prompts.get_by_id(session, prompt_id)
 
+            print(f"Generating from model {model} using prompt {prompt.id}...")
             unique_id, responses, log = _generate_from(model, prompt, data)
 
-            results[unique_id] = {
+            error = error or bool(log)
+
+            generated[unique_id] = {
                 "model": str(model),
                 "prompt": str(prompt),
                 "responses": responses,
                 "log": log,
             }
 
-    return results
+    return run_id, generated, error

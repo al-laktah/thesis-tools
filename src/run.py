@@ -2,7 +2,6 @@
 
 import sys
 import os
-from uuid import uuid4
 from argparse import ArgumentParser
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -41,11 +40,13 @@ def main():
 
     match args.command:
         case "generate":
-            (unique_id,) = str(uuid4())
-            generated = generate_from(args.models, args.prompts, session)
+            run_id, generated, error = generate_from(args.models, args.prompts, session)
             save_to_json(
-                generated, os.path.join(data_dir, "generated", f"{unique_id}.json")
+                generated, os.path.join(data_dir, "generated", f"{run_id}.json")
             )
+            print(f"Finished generating outputs for run and saved to {run_id}.json")
+            if error:
+                print("at least one error occurred, consult the logs for more information")
         case _:
             print("Unknown command")
 
