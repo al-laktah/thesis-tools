@@ -7,8 +7,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from evaluation_tool.compute import generate_from
-from evaluation_tool.util import save_to_json
-
 
 def parse_arguments():
     """Parse command-line arguments."""
@@ -33,6 +31,7 @@ def main():
 
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     data_dir = os.path.join(project_root, "data")
+    log_path = os.path.join(data_dir, "logs")
 
     engine = create_engine("sqlite:///data/DB.db")
     session_factory = sessionmaker(bind=engine)
@@ -40,13 +39,14 @@ def main():
 
     match args.command:
         case "generate":
-            run_id, generated, error = generate_from(args.models, args.prompts, session)
-            save_to_json(
-                generated, os.path.join(data_dir, "generated", f"{run_id}.json")
+            generated_path = os.path.join(data_dir, "generated")
+            error = generate_from(
+                args.models, args.prompts, generated_path, log_path, session
             )
-            print(f"Finished generating outputs for run and saved to {run_id}.json")
             if error:
-                print("at least one error occurred, consult the logs for more information")
+                print(
+                    "at least one error occurred, consult the logs for more information"
+                )
         case _:
             print("Unknown command")
 

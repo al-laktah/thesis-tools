@@ -1,5 +1,6 @@
 """Module containing functions to generate and evaluate model outputs."""
 
+import os
 from uuid import uuid4
 from typing import Optional, List
 from ollama import ResponseError, generate
@@ -7,6 +8,7 @@ from pandas import DataFrame
 from sqlalchemy.orm import Session
 
 from .db import Models, Prompts, Ris
+from .util import save_to_json
 
 
 def _generate_from(model, prompt, data):
@@ -42,21 +44,19 @@ def _generate_from(model, prompt, data):
         if index % 25 == 0 and index != 0:
             print(f"Generated {index} outputs...")
 
-    if log:
-        return unique_id, responses, log
-    return unique_id, responses, None
+    return unique_id, responses, log
 
 
 def generate_from(
     model_ids: List[int],
     prompt_ids: List[int],
-    session: Optional[Session] = None,
+    responses_dir: str,
+    log_dir: str,
+    session: Session,
     data: Optional[DataFrame] = None,
 ):
     """Generate outputs from given models, prompts, and data."""
 
-    run_id = str(uuid4())
-    generated = {}
     error = False
 
     if data is None:
@@ -73,11 +73,24 @@ def generate_from(
 
             error = error or bool(log)
 
-            generated[unique_id] = {
+            generated_responses = {
                 "model": str(model),
                 "prompt": str(prompt),
+                "unique_id": unique_id,
                 "responses": responses,
-                "log": log,
             }
+            save_to_json(
+                generated_responses, os.path.join(responses_dir, f"{unique_id}.json")
+            )
+            print(f"Finished, uid: {unique_id}")
 
-    return run_id, generated, error
+            if log:
+                generated_log = {
+                    "model": str(model),
+                    "prompt": str(prompt),
+                    "unique_id": unique_id,
+                    "log": log,
+                }
+                save_to_json(generated_log, os.path.join(log_dir, f"{unique_id}.json"))
+
+    return error
