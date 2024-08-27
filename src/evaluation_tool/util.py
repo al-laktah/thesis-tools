@@ -4,10 +4,10 @@ import json
 
 def save_to_json(output, path):
     """
-    Save the outputs to specified log and generated paths as JSON files.
+    Save the outputs to specified path as JSON files.
 
     :param output: The data to be saved.
-    :param path: path to save the data.
+    :param path: path to save the data to.
     """
     with open(
         path, "w", encoding="utf-8"

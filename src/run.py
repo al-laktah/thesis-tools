@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 
 from evaluation_tool.compute import generate_from
 
+
 def parse_arguments():
     """Parse command-line arguments."""
 
@@ -31,15 +32,22 @@ def main():
 
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     data_dir = os.path.join(project_root, "data")
+    db_path = os.path.join(data_dir, "DB.db")
     log_path = os.path.join(data_dir, "logs")
 
-    engine = create_engine("sqlite:///data/DB.db")
+    # Ensure the data and logs directories exist
+    os.makedirs(data_dir, exist_ok=True)
+    os.makedirs(log_path, exist_ok=True)
+
+    engine = create_engine(f"sqlite:///{db_path}")
     session_factory = sessionmaker(bind=engine)
     session = session_factory()
 
     match args.command:
         case "generate":
             generated_path = os.path.join(data_dir, "generated")
+            # Ensure the generated directory exists
+            os.makedirs(generated_path, exist_ok=True)
             error = generate_from(
                 args.models, args.prompts, generated_path, log_path, session
             )
