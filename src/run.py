@@ -1,11 +1,14 @@
 """Entry point for the project."""
 
 import sys
+import os
+from uuid import uuid4
 from argparse import ArgumentParser
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from evaluation_tool.compute import generate_from
+from evaluation_tool.util import save_to_json
 
 
 def parse_arguments():
@@ -29,13 +32,20 @@ def main():
 
     args = parse_arguments()
 
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(project_root, "data")
+
     engine = create_engine("sqlite:///data/DB.db")
     session_factory = sessionmaker(bind=engine)
     session = session_factory()
 
     match args.command:
         case "generate":
-            generate_from(args.models, args.prompts, session)
+            (unique_id,) = str(uuid4())
+            generated = generate_from(args.models, args.prompts, session)
+            save_to_json(
+                generated, os.path.join(data_dir, "generated", f"{unique_id}.json")
+            )
         case _:
             print("Unknown command")
 
