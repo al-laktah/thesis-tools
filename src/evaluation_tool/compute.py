@@ -52,10 +52,8 @@ def generate_from(
     responses_dir: str,
     log_dir: str,
     session: Session,
-):
+) -> None:
     """Generate outputs from given models and prompts"""
-
-    error = False
 
     data = Ris.get_rev_reports(session)
 
@@ -67,8 +65,6 @@ def generate_from(
 
             print(f"Generating from model {model} using prompt {prompt.id}...")
             unique_id, responses, log = _generate_from(model, prompt, data)
-
-            error = error or bool(log)
 
             generated_responses = {
                 "model": str(model),
@@ -89,5 +85,3 @@ def generate_from(
                     "log": log,
                 }
                 save_to_json(generated_log, os.path.join(log_dir, f"{unique_id}.json"))
-
-    return error
