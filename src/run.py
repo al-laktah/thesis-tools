@@ -46,15 +46,8 @@ def main():
     match args.command:
         case "generate":
             generated_path = os.path.join(data_dir, "generated")
-            # Ensure the generated directory exists
             os.makedirs(generated_path, exist_ok=True)
-            error = generate_from(
-                args.models, args.prompts, generated_path, log_path, session
-            )
-            if error:
-                print(
-                    "at least one error occurred, consult the logs for more information"
-                )
+            generate_from(args.models, args.prompts, generated_path, log_path, session)
         case _:
             print("Unknown command")
 
