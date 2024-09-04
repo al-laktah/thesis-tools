@@ -167,6 +167,7 @@ def evaluate_from_unique_id(
     evaluations_dir: str,
     session: Session,
     lang_tool: ltp.LanguageTool,
+    whitelist: List = None,
     save_json: bool = False,
 ):
     """function to evaluate the performance of the models"""
@@ -175,8 +176,12 @@ def evaluate_from_unique_id(
     with open(file_path, "r", encoding="utf-8") as file:
         responses = json.load(file)
 
-    if save_json:
-        return True
     return _evaluate(
-        responses, unique_id, evaluations_dir, session, lang_tool, save_json
+        responses,
+        unique_id,
+        evaluations_dir,
+        session,
+        lang_tool,
+        whitelist=whitelist,
+        save_json=save_json,
     )

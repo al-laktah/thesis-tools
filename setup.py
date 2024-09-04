@@ -4,12 +4,15 @@ from setuptools import setup, find_packages
 
 setup(
     name="thesis-tools",
-    version="0.1.0",
+    version="0.3.0",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
         "pandas>=2.2.2",
         "ollama>=0.3.1",
         "SQLAlchemy>=2.0.32",
+        "language_tool_python>=2.8.1",
+        "diff_match_patch>=20230430"
+        "matplotlib>=3.9.2"
     ],
 )
