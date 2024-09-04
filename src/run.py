@@ -26,6 +26,7 @@ def parse_arguments():
     parser_generate.add_argument("--prompts", nargs="+", type=int, required=True)
 
     parser_evaluate = subparsers.add_parser("evaluate", help="evaluate outputs.")
+    parser_evaluate.add_argument("--server", type=str, required=True)
     parser_evaluate.add_argument("--uid", type=str, required=True)
 
     return parser.parse_args()
@@ -81,8 +82,8 @@ def main():
                 directories["generated"],
                 directories["evaluations"],
                 session,
-                ltp.LanguageTool("de-De"),
-                whitelist = get_whitelist(directories["vocab"]),
+                ltp.LanguageTool("de-De", remote_server=args.server),
+                whitelist=get_whitelist(directories["vocab"]),
                 save_json=True,
             )
         case _:
