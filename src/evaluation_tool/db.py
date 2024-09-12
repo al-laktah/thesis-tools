@@ -102,7 +102,7 @@ class Ris(Base):
         return df
 
     @classmethod
-    def get_final_reports(cls, session: Session, df: pd.DataFrame):
+    def get_final_reports(cls, session: Session):
         """Function to get the final reports as a DataFrame."""
 
         results = session.query(cls.id, cls.final).all()
