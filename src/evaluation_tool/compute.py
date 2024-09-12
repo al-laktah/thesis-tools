@@ -31,6 +31,7 @@ def _generate_from(model, prompt, data):
                 stream=False,
                 context=None,
             )
+            del response["raw"]["context"]
         except ResponseError as e:
             response["raw"] = {
                 "error": "An error occurred, consult the log for more information"
