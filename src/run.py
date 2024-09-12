@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 import language_tool_python as ltp
 
 from evaluation_tool.compute import generate_from
-from evaluation_tool.evaluate import evaluate_from_unique_id
+from evaluation_tool.evaluate import evaluate_from_unique_ids
 
 
 def parse_arguments():
@@ -27,7 +27,7 @@ def parse_arguments():
 
     parser_evaluate = subparsers.add_parser("evaluate", help="evaluate outputs.")
     parser_evaluate.add_argument("--server", type=str)
-    parser_evaluate.add_argument("--uid", type=str, required=True)
+    parser_evaluate.add_argument("--uids", nargs="+", type=str, required=True)
 
     return parser.parse_args()
 
@@ -86,8 +86,8 @@ def main():
             else:
                 server = "http://localhost:8010"
 
-            evaluate_from_unique_id(
-                args.uid,
+            evaluate_from_unique_ids(
+                args.uids,
                 directories["generated"],
                 directories["evaluations"],
                 session,

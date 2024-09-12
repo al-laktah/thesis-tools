@@ -223,3 +223,29 @@ def evaluate_from_unique_id(
         whitelist=whitelist,
         save_json=save_json,
     )
+
+
+def evaluate_from_unique_ids(
+    unique_ids: str,
+    responses_dir: str,
+    evaluations_dir: str,
+    session: Session,
+    lang_tool: ltp.LanguageTool,
+    whitelist: List = None,
+    save_json: bool = False,
+):
+    """function to evaluate the performance of the models"""
+    for unique_id in unique_ids:
+        file_path = os.path.join(responses_dir, f"{unique_id}.json")
+        with open(file_path, "r", encoding="utf-8") as file:
+            responses = json.load(file)
+
+        evaluate_from_unique_id(
+            responses,
+            unique_id,
+            evaluations_dir,
+            session,
+            lang_tool,
+            whitelist=whitelist,
+            save_json=save_json,
+        )
