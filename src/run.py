@@ -93,7 +93,6 @@ def main():
                 session,
                 ltp.LanguageTool("de-De", remote_server=server),
                 whitelist=get_whitelist(directories["vocab"]),
-                save_json=True,
             )
         case _:
             print("Unknown command")
