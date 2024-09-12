@@ -67,7 +67,7 @@ def main():
 
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     directories = create_directories(project_root)
-    session = create_db_session(os.path.join(directories["data"], "db.sqlite"))
+    session = create_db_session(os.path.join(directories["data"], "DB.db"))
 
     args = parse_arguments()
 
