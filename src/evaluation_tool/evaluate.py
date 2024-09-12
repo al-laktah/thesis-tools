@@ -170,7 +170,7 @@ def _evaluate(
             dump_raw(res, os.path.join(evaluations_dir, f"failed_{unique_id}.txt"))
             print(e)
             print(
-                f"Error saving evaluation for {responses['model']} and {responses['prompt']} as json."
+                f"Error saving evaluation for {responses['model']} & {responses['prompt']} as json."
             )
         finally:
             print(f"Finished Evaluation, uid: {unique_id}")
