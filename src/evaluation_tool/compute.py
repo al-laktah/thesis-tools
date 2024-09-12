@@ -85,10 +85,10 @@ def generate_from(
                 )
                 print(e)
                 print(
-                    f"Error saving responses for model {model} and prompt {prompt} as json: dumped raw responses instead."
+                    f"Error saving responses for {model} and {prompt} as json."
                 )
             finally:
-                print(f"Finished, uid: {unique_id}")
+                print(f"Finished Generation, uid: {unique_id}")
 
             if log:
                 generated_log = {

@@ -64,7 +64,7 @@ class Prompts(Base):
     tags: Mapped[List[str]] = mapped_column(JSON)
 
     def __repr__(self) -> str:
-        return f"prompt {self.id}: {self.prompt}"
+        return f"prompt ({self.id}): {self.prompt}"
 
 
 class Ris(Base):
