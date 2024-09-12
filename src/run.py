@@ -26,7 +26,7 @@ def parse_arguments():
     parser_generate.add_argument("--prompts", nargs="+", type=int, required=True)
 
     parser_evaluate = subparsers.add_parser("evaluate", help="evaluate outputs.")
-    parser_evaluate.add_argument("--server", type=str, required=True)
+    parser_evaluate.add_argument("--server", type=str)
     parser_evaluate.add_argument("--uid", type=str, required=True)
 
     return parser.parse_args()
@@ -81,12 +81,17 @@ def main():
                 session,
             )
         case "evaluate":
+            if args.server:
+                server = args.server
+            else:
+                server = "http://localhost:8081"
+
             evaluate_from_unique_id(
                 args.uid,
                 directories["generated"],
                 directories["evaluations"],
                 session,
-                ltp.LanguageTool("de-De", remote_server=args.server),
+                ltp.LanguageTool("de-De", remote_server=server),
                 whitelist=get_whitelist(directories["vocab"]),
                 save_json=True,
             )
