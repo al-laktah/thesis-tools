@@ -84,7 +84,7 @@ def main():
             if args.server:
                 server = args.server
             else:
-                server = "http://localhost:8081"
+                server = "http://localhost:8010"
 
             evaluate_from_unique_id(
                 args.uid,
