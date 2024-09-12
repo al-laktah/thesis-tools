@@ -1,6 +1,0 @@
-{
-    "model": "qwen2:0.5b_Default",
-    "prompt": "prompt 4: You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
-    "unique_id": "ba8d1594-3b10-4194-8595-4a30d304be55",
-    "log": {
-        "184": 

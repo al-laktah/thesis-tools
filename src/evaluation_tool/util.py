@@ -2,6 +2,7 @@
 
 import json
 
+
 def save_to_json(output, path):
     """
     Save the outputs to specified path as JSON files.
@@ -9,7 +10,16 @@ def save_to_json(output, path):
     :param output: The data to be saved.
     :param path: path to save the data to.
     """
-    with open(
-        path, "w", encoding="utf-8"
-    ) as file:
+    with open(path, "w", encoding="utf-8") as file:
         json.dump(output, file, indent=4, ensure_ascii=False)
+
+
+def dump_raw(output, path):
+    """
+    Dump the raw outputs to specified path.
+
+    :param output: The data to be saved.
+    :param path: path to save the data to.
+    """
+    with open(path, "w", encoding="utf-8") as file:
+        file.write(output)

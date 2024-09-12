@@ -47,6 +47,14 @@ def create_directories(project_root):
     return directories
 
 
+def create_db_session(db_path: str):
+    """Create a database session."""
+    engine = create_engine(f"sqlite:///{db_path}")
+    session_factory = sessionmaker(bind=engine)
+    session = session_factory()
+    return session
+
+
 def get_whitelist(vocab_dir: str):
     """Get the whitelist from the vocab directory."""
     with open(os.path.join(vocab_dir, "fp.json"), "r", encoding="utf-8") as file:
@@ -57,15 +65,11 @@ def get_whitelist(vocab_dir: str):
 def main():
     """Main entry point of the project."""
 
-    args = parse_arguments()
-
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     directories = create_directories(project_root)
+    session = create_db_session(os.path.join(directories["data"], "db.sqlite"))
 
-    db_path = os.path.join(directories["data"], "DB.db")
-    engine = create_engine(f"sqlite:///{db_path}")
-    session_factory = sessionmaker(bind=engine)
-    session = session_factory()
+    args = parse_arguments()
 
     match args.command:
         case "generate":
@@ -89,6 +93,7 @@ def main():
         case _:
             print("Unknown command")
 
+    session.close()
     sys.exit(0)
 
 

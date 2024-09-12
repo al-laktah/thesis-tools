@@ -7,7 +7,7 @@ from ollama import ResponseError, generate
 from sqlalchemy.orm import Session
 
 from .db import Models, Prompts, Ris
-from .util import save_to_json
+from .util import save_to_json, dump_raw
 
 
 def _generate_from(model, prompt, data):
@@ -35,7 +35,7 @@ def _generate_from(model, prompt, data):
             response["raw"] = {
                 "error": "An error occurred, consult the log for more information"
             }
-            log[ris_id] = e
+            log[ris_id] = str(e)
             print(f"Error: {index}")
         finally:
             responses.append(response)
@@ -72,10 +72,23 @@ def generate_from(
                 "unique_id": unique_id,
                 "responses": responses,
             }
-            save_to_json(
-                generated_responses, os.path.join(responses_dir, f"{unique_id}.json")
-            )
-            print(f"Finished, uid: {unique_id}")
+
+            try:
+                save_to_json(
+                    generated_responses,
+                    os.path.join(responses_dir, f"{unique_id}.json"),
+                )
+            except TypeError as e:
+                dump_raw(
+                    generated_responses,
+                    os.path.join(responses_dir, f"failed_{unique_id}.txt"),
+                )
+                print(e)
+                print(
+                    f"Error saving responses for model {model} and prompt {prompt} as json: dumped raw responses instead."
+                )
+            finally:
+                print(f"Finished, uid: {unique_id}")
 
             if log:
                 generated_log = {
@@ -84,4 +97,16 @@ def generate_from(
                     "unique_id": unique_id,
                     "log": log,
                 }
-                save_to_json(generated_log, os.path.join(log_dir, f"{unique_id}.json"))
+                try:
+                    save_to_json(
+                        generated_log, os.path.join(log_dir, f"{unique_id}.json")
+                    )
+                except TypeError as e:
+                    dump_raw(
+                        generated_log,
+                        os.path.join(log_dir, f"failed_{unique_id}.txt"),
+                    )
+                    print(e)
+                    print(
+                        f"Error saving log for model {model} and prompt {prompt} as json: dumped raw log instead."
+                    )
