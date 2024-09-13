@@ -181,12 +181,12 @@ def _evaluate(
     if options["save_json"]:
         try:
             save_to_json(
-                res, os.path.join(directories["evaluations_dir"], f"{unique_id}.json")
+                res, os.path.join(directories["evaluations"], f"{unique_id}.json")
             )
         except TypeError as e:
             dump_raw(
                 res,
-                os.path.join(directories["evaluations_dir"], f"failed_{unique_id}.txt"),
+                os.path.join(directories["evaluations"], f"failed_{unique_id}.txt"),
             )
             print(e)
             print(
