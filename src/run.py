@@ -85,15 +85,16 @@ def main():
                 server = args.server
             else:
                 server = "http://localhost:8010"
-
+            lang_tool = ltp.LanguageTool("de-De", remote_server=server)
             evaluate_from_unique_ids(
                 args.uids,
                 directories["generated"],
                 directories["evaluations"],
                 session,
-                ltp.LanguageTool("de-De", remote_server=server),
+                lang_tool,
                 whitelist=get_whitelist(directories["vocab"]),
             )
+            lang_tool.close()
         case _:
             print("Unknown command")
 
