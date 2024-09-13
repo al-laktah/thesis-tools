@@ -97,18 +97,19 @@ def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, voc
     lang_tool.enabled_rules_only = True
     lang_tool.enabled_categories = {"TYPOS"}
 
-    matches = lang_tool.check(output_report)
+    misspelled = []
     whitelist = get_whitelist(vocab_dir)
 
-    misspelled = []
-
-    for match in matches:
-        word = match.context[
-            match.offsetInContext : match.offsetInContext + match.errorLength
-        ]
-
-        if word not in whitelist:
-            misspelled.append(word)
+    try:
+        matches = lang_tool.check(output_report)
+        for match in matches:
+            word = match.context[
+                match.offsetInContext : match.offsetInContext + match.errorLength
+            ]
+            if word not in whitelist:
+                misspelled.append(word)
+    except ltp.utils.LanguageToolError:
+        misspelled.append("LT Error")
 
     return misspelled
 
@@ -118,12 +119,14 @@ def language_tool_grammer_check(lang_tool: ltp.LanguageTool, output_report):
     lang_tool.enabled_rules_only = True
     lang_tool.enabled_categories = {"GRAMMAR"}
 
-    matches = lang_tool.check(output_report)
-
     grammer = []
 
-    for match in matches:
-        grammer.append(match)
+    try:
+        matches = lang_tool.check(output_report)
+        for match in matches:
+            grammer.append(match.ruleId)
+    except ltp.utils.LanguageToolError:
+        grammer.append("LT Error")
 
     return grammer
 
