@@ -2,14 +2,12 @@
 
 import sys
 import os
-import json
 from argparse import ArgumentParser
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 import language_tool_python as ltp
 
 from evaluation_tool.compute import generate_from
 from evaluation_tool.evaluate import evaluate_from_unique_ids
+from evaluation_tool.util import create_directories, create_db_session
 
 
 def parse_arguments():
@@ -30,36 +28,6 @@ def parse_arguments():
     parser_evaluate.add_argument("--uids", nargs="+", type=str, required=True)
 
     return parser.parse_args()
-
-
-def create_directories(project_root):
-    """Create directories if they do not exist."""
-    data_dir = os.path.join(project_root, "data")
-    directories = {
-        "data": data_dir,
-        "generated": os.path.join(data_dir, "generated"),
-        "evaluations": os.path.join(data_dir, "evaluations"),
-        "vocab": os.path.join(data_dir, "vocab"),
-        "logs": os.path.join(data_dir, "logs"),
-    }
-    for directory in directories.values():
-        os.makedirs(directory, exist_ok=True)
-    return directories
-
-
-def create_db_session(db_path: str):
-    """Create a database session."""
-    engine = create_engine(f"sqlite:///{db_path}")
-    session_factory = sessionmaker(bind=engine)
-    session = session_factory()
-    return session
-
-
-def get_whitelist(vocab_dir: str):
-    """Get the whitelist from the vocab directory."""
-    with open(os.path.join(vocab_dir, "fp.json"), "r", encoding="utf-8") as file:
-        whitelist = json.load(file)
-    return whitelist
 
 
 def main():
@@ -88,11 +56,9 @@ def main():
             lang_tool = ltp.LanguageTool("de-De", remote_server=server)
             evaluate_from_unique_ids(
                 args.uids,
-                directories["generated"],
-                directories["evaluations"],
+                directories,
                 session,
                 lang_tool,
-                whitelist=get_whitelist(directories["vocab"]),
             )
             lang_tool.close()
         case _:

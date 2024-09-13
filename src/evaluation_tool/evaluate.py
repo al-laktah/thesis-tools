@@ -2,14 +2,13 @@
 
 import os
 import json
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Union
 from difflib import SequenceMatcher
 import diff_match_patch as dmp_module
 import language_tool_python as ltp
 from sqlalchemy.orm import Session
-from .compute import _generate_from
 from .db import Ris
-from .util import save_to_json, dump_raw
+from .util import save_to_json, dump_raw, get_whitelist
 
 
 # Difference Metrics
@@ -93,14 +92,13 @@ def get_duration_metrics(responses: Dict[str, Any]) -> Dict[str, Any]:
 
 
 # Language Tool Metrics
-def language_tool_spelling_check(
-    lang_tool: ltp.LanguageTool, output_report, whitelist=None
-):
+def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, vocab_dir):
     """function to check the output report using language tool"""
     lang_tool.enabled_rules_only = True
-    lang_tool.enable_spellchecking()
+    lang_tool.enabled_categories = {"TYPOS"}
 
     matches = lang_tool.check(output_report)
+    whitelist = get_whitelist(vocab_dir)
 
     misspelled = []
 
@@ -131,7 +129,7 @@ def language_tool_grammer_check(lang_tool: ltp.LanguageTool, output_report):
 
 
 def get_language_tool_metrics(
-    responses: Dict[str, Any], lang_tool: ltp.LanguageTool, whitelist: List = None
+    responses: Dict[str, Any], lang_tool: ltp.LanguageTool, directories: List[str]
 ) -> Dict[str, Any]:
     """function to get the language tool metrics"""
     language_tool_metrics = {
@@ -141,10 +139,14 @@ def get_language_tool_metrics(
     }
 
     for response in responses["responses"]:
-        language_tool_metrics["misspelled"].append(language_tool_spelling_check(
-            lang_tool, response["raw"]["response"], whitelist
-        ))
-        language_tool_metrics["grammer"].append(language_tool_grammer_check(lang_tool, response["raw"]["response"]))
+        language_tool_metrics["misspelled"].append(
+            language_tool_spelling_check(
+                lang_tool, response["raw"]["response"], directories["vocab"]
+            )
+        )
+        language_tool_metrics["grammer"].append(
+            language_tool_grammer_check(lang_tool, response["raw"]["response"])
+        )
 
     return language_tool_metrics
 
@@ -152,21 +154,22 @@ def get_language_tool_metrics(
 def _evaluate(
     responses: Dict[str, Any],
     unique_id: str,
-    evaluations_dir: str,
+    directories: List[str],
     session: Session,
     lang_tool: ltp.LanguageTool,
-    whitelist: List = None,
-    save_json: bool = False,
+    options: Dict[str, bool],
 ):
     """function to evaluate the performance of the models"""
 
     metrics = {}
-
-    metrics["difference_metrics"] = get_difference_metrics(responses, session)
-    metrics["language_tool_metrics"] = get_language_tool_metrics(
-        responses, lang_tool, whitelist
-    )
-    metrics["duration_metrics"] = get_duration_metrics(responses)
+    if options["difference_metrics"]:
+        metrics["difference_metrics"] = get_difference_metrics(responses, session)
+    if options["language_tool_metrics"]:
+        metrics["language_tool_metrics"] = get_language_tool_metrics(
+            responses, lang_tool, directories
+        )
+    if options["duration_metrics"]:
+        metrics["duration_metrics"] = get_duration_metrics(responses)
 
     res = {
         "model": responses["model"],
@@ -175,11 +178,16 @@ def _evaluate(
         "metrics": metrics,
     }
 
-    if save_json:
+    if options["save_json"]:
         try:
-            save_to_json(res, os.path.join(evaluations_dir, f"{unique_id}.json"))
+            save_to_json(
+                res, os.path.join(directories["evaluations_dir"], f"{unique_id}.json")
+            )
         except TypeError as e:
-            dump_raw(res, os.path.join(evaluations_dir, f"failed_{unique_id}.txt"))
+            dump_raw(
+                res,
+                os.path.join(directories["evaluations_dir"], f"failed_{unique_id}.txt"),
+            )
             print(e)
             print(
                 f"Error saving evaluation for {responses['model']} & {responses['prompt']} as json."
@@ -190,73 +198,34 @@ def _evaluate(
     return res
 
 
-def evaluate_from_model(
-    model_id: int,
-    prompt_id: int,
-    evaluations_dir: str,
-    session: Session,
-    lang_tool: ltp.LanguageTool,
-    save_json: bool = False,
-) -> None:
-    """function to evaluate the performance of the models"""
-
-    unique_id, responses, log = _generate_from(model_id, prompt_id, session)
-
-    if log:
-        print("error occurred during generation")
-        return log
-
-    return _evaluate(
-        responses, unique_id, evaluations_dir, session, lang_tool, save_json
-    )
-
-
-def evaluate_from_unique_id(
-    unique_id: str,
-    responses_dir: str,
-    evaluations_dir: str,
-    session: Session,
-    lang_tool: ltp.LanguageTool,
-    whitelist: List = None,
-    save_json: bool = False,
-):
-    """function to evaluate the performance of the models"""
-
-    file_path = os.path.join(responses_dir, f"{unique_id}.json")
-    with open(file_path, "r", encoding="utf-8") as file:
-        responses = json.load(file)
-
-    return _evaluate(
-        responses,
-        unique_id,
-        evaluations_dir,
-        session,
-        lang_tool,
-        whitelist=whitelist,
-        save_json=save_json,
-    )
-
-
 def evaluate_from_unique_ids(
-    unique_ids: List[str],
-    responses_dir: str,
-    evaluations_dir: str,
+    unique_ids: Union[str, List[str]],
+    directories: List[str],
     session: Session,
     lang_tool: ltp.LanguageTool,
-    whitelist: List = None,
+    options: Dict[str, bool] = None,
 ):
     """function to evaluate the performance of the models"""
+    if isinstance(unique_ids, str):
+        unique_ids = [unique_ids]
+
+    if options is None:
+        options = {
+            "save_json": True,
+            "difference_metrics": True,
+            "duration_metrics": True,
+            "language_tool_metrics": True,
+        }
     for unique_id in unique_ids:
-        file_path = os.path.join(responses_dir, f"{unique_id}.json")
+        file_path = os.path.join(directories["generated"], f"{unique_id}.json")
         with open(file_path, "r", encoding="utf-8") as file:
             responses = json.load(file)
 
         _evaluate(
             responses,
             unique_id,
-            evaluations_dir,
+            directories,
             session,
             lang_tool,
-            whitelist=whitelist,
-            save_json=True,
+            options,
         )
