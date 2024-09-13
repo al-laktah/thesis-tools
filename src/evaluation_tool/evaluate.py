@@ -93,25 +93,41 @@ def get_duration_metrics(responses: Dict[str, Any]) -> Dict[str, Any]:
 
 
 # Language Tool Metrics
-def language_tool_check(lang_tool, output_report, whitelist=None):
+def language_tool_spelling_check(
+    lang_tool: ltp.LanguageTool, output_report, whitelist=None
+):
     """function to check the output report using language tool"""
+    lang_tool.enabled_rules_only = True
+    lang_tool.enable_spellchecking()
+
     matches = lang_tool.check(output_report)
 
     misspelled = []
-    grammer = []
-    other = []
 
     for match in matches:
-        if match.ruleId == "GERMAN_SPELLER_RULE":
-            word = match.context[
-                match.offsetInContext : match.offsetInContext + match.errorLength
-            ]
-            if whitelist and word in whitelist:
-                continue
-            else:
-                misspelled.append(word)
+        word = match.context[
+            match.offsetInContext : match.offsetInContext + match.errorLength
+        ]
 
-    return misspelled, grammer, other
+        if word not in whitelist:
+            misspelled.append(word)
+
+    return misspelled
+
+
+def language_tool_grammer_check(lang_tool: ltp.LanguageTool, output_report):
+    """function to check the output report using language tool"""
+    lang_tool.enabled_rules_only = True
+    lang_tool.enabled_categories = {"GRAMMAR"}
+
+    matches = lang_tool.check(output_report)
+
+    grammer = []
+
+    for match in matches:
+        grammer.append(match)
+
+    return grammer
 
 
 def get_language_tool_metrics(
@@ -125,14 +141,10 @@ def get_language_tool_metrics(
     }
 
     for response in responses["responses"]:
-
-        misspelled, grammer, other = language_tool_check(
+        language_tool_metrics["misspelled"].append(language_tool_spelling_check(
             lang_tool, response["raw"]["response"], whitelist
-        )
-
-        language_tool_metrics["misspelled"].append(misspelled)
-        language_tool_metrics["grammer"].append(grammer)
-        language_tool_metrics["other"].append(other)
+        ))
+        language_tool_metrics["grammer"].append(language_tool_grammer_check(lang_tool, response["raw"]["response"]))
 
     return language_tool_metrics
 
