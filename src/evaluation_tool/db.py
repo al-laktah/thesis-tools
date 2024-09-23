@@ -48,6 +48,8 @@ class Models(Base):
     name: Mapped[str] = mapped_column(TEXT, nullable=False)
     size: Mapped[str] = mapped_column(TEXT, nullable=False)
     options: Mapped[Dict] = mapped_column(JSON)
+    family: Mapped[str] = mapped_column(TEXT)
+    short_name: Mapped[str] = mapped_column(TEXT)
 
     def __repr__(self) -> str:
         if self.options:
@@ -60,11 +62,11 @@ class Prompts(Base):
 
     __tablename__ = "prompts"
 
-    prompt: Mapped[str] = mapped_column(TEXT, nullable=False)
+    text: Mapped[str] = mapped_column(TEXT, nullable=False)
     tags: Mapped[List[str]] = mapped_column(JSON)
 
     def __repr__(self) -> str:
-        return f"prompt ({self.id}): {self.prompt}"
+        return f"prompt ({self.id}): {self.text}"
 
 
 class Ris(Base):

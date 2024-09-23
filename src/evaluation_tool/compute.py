@@ -1,5 +1,6 @@
 """Module containing functions to generate and evaluate model outputs."""
 
+from ast import mod
 import os
 from uuid import uuid4
 from typing import List
@@ -71,9 +72,20 @@ def generate_from(
             unique_id, responses, log = _generate_from(model, prompt, data)
 
             generated_responses = {
-                "model": str(model),
-                "prompt": str(prompt),
-                "unique_id": unique_id,
+                "model": {
+                    "id": model_id,
+                    "name": model.name,
+                    "size": model.size,
+                    "options": model.options,
+                    "family": model.family,
+                    "short_name": model.short_name,
+                },
+                "prompt": {
+                    "id": prompt_id,
+                    "text": prompt.text,
+                    "tags": prompt.tags,
+                },
+                "unique_id": f"{model.short_name}-{model_id}-{prompt.id}.{unique_id}",
                 "responses": responses,
             }
 
@@ -88,9 +100,7 @@ def generate_from(
                     os.path.join(responses_dir, f"failed_{unique_id}.txt"),
                 )
                 print(e)
-                print(
-                    f"Error saving responses for {model} and {prompt} as json."
-                )
+                print(f"Error saving responses for {model} and {prompt} as json.")
             finally:
                 print(f"Finished Generation, uid: {unique_id}")
 
@@ -114,3 +124,7 @@ def generate_from(
                     print(
                         f"Error saving log for model {model} and prompt {prompt} as json: dumped raw log instead."
                     )
+
+
+def eval_generate():
+    pass
