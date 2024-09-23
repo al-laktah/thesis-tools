@@ -1,7 +1,18 @@
 {
-	"model": "GT",
-	"prompt": "NA",
-	"unique_id": "45af4a46-d238-4251-b734-d407602299bd",
+    "model": {
+        "id": 0,
+        "name": "GT",
+        "size": "NA",
+        "options": null,
+        "family": "gt",
+        "short_name": "gt"
+    },
+    "prompt": {
+        "id": 0,
+        "text": null,
+        "tags": null
+    },
+    "unique_id": "gt.45af4a46-d238-4251-b734-d407602299bd",
 	"responses": [
 		{
 			"ris_id": 1,
