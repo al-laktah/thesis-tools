@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": 7,
+        "name": "gemma2",
+        "size": "9b",
+        "options": null,
+        "family": "gemma",
+        "short_name": "g2m"
+    },
+    "prompt": {
+        "id": 5,
+        "text": "Sie sind ein Schreibassistenzsystem für medizinische Berichte, die auf Deutsch geschrieben sind, Sie sollten korrigierte Versionen der Berichte bereitstellen Sie sollten nur mit dem korrigierten Bericht antworten. Sie geben keine Erklärungen ab.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "german"
+        ]
+    },
+    "unique_id": "g2m-7-5.3c7c95ad-e892-4221-8b1b-096b29cd52ab",
+    "log": {}
+}

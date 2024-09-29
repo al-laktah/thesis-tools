@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": 9,
+        "name": "mistral-nemo",
+        "size": "12b",
+        "options": null,
+        "family": "mistral",
+        "short_name": "mm"
+    },
+    "prompt": {
+        "id": 5,
+        "text": "Sie sind ein Schreibassistenzsystem für medizinische Berichte, die auf Deutsch geschrieben sind, Sie sollten korrigierte Versionen der Berichte bereitstellen Sie sollten nur mit dem korrigierten Bericht antworten. Sie geben keine Erklärungen ab.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "german"
+        ]
+    },
+    "unique_id": "mm-9-5.53b26655-009b-425f-8c5d-d4d134221d02",
+    "log": {}
+}

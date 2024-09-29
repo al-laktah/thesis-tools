@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": 3,
+        "name": "llama3.1",
+        "size": "8b",
+        "options": null,
+        "family": "llama",
+        "short_name": "l31m"
+    },
+    "prompt": {
+        "id": 5,
+        "text": "Sie sind ein Schreibassistenzsystem für medizinische Berichte, die auf Deutsch geschrieben sind, Sie sollten korrigierte Versionen der Berichte bereitstellen Sie sollten nur mit dem korrigierten Bericht antworten. Sie geben keine Erklärungen ab.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "german"
+        ]
+    },
+    "unique_id": "l31m-3-5.f2bde98a-75f3-4989-ae7c-f82010ea5553",
+    "log": {}
+}
