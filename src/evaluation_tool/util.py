@@ -13,20 +13,28 @@ def save_to_json(output, path):
     :param output: The data to be saved.
     :param path: path to save the data to.
     """
-    with open(path, "w", encoding="utf-8") as file:
-        json.dump(output, file, indent=4, ensure_ascii=False)
-
-
-def dump_raw(output, path):
-    """
-    Dump the raw outputs to specified path.
-
-    :param output: The data to be saved.
-    :param path: path to save the data to.
-    """
-    with open(path, "w", encoding="utf-8") as file:
-        file.write(output)
-
+    try:
+        with open(path, "w", encoding="utf-8") as file:
+            json.dump(os.path.join(path, ".json"), file, indent=4, ensure_ascii=False)
+    except TypeError as e1:
+        print(e1)
+        print("Error saving output as json, trying to save as file instead.")
+        try:
+            with open(path, "w", encoding="utf-8") as file:
+                file.write(output)
+        except TypeError as e2:
+            print(e2)
+            print("Error saving output as file, trying to save output string as file.")
+            try:
+                with open(path, "w", encoding="utf-8") as file:
+                    file.write(str(output))
+            except TypeError as e3:
+                print(e3)
+                print("Couldn't save output as file.")
+                return False
+    finally:
+        print(f"Finished saving output to {path}")
+    return True
 
 def get_whitelist(vocab_dir: str):
     """Get the whitelist from the vocab directory."""

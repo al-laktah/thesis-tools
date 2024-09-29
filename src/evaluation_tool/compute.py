@@ -1,6 +1,5 @@
 """Module containing functions to generate and evaluate model outputs."""
 
-from ast import mod
 import os
 from uuid import uuid4
 from typing import List
@@ -8,7 +7,7 @@ from ollama import ResponseError, generate
 from sqlalchemy.orm import Session
 
 from .db import Models, Prompts, Ris
-from .util import save_to_json, dump_raw
+from .util import save_to_json
 
 
 def _generate_from(model, prompt, data):
@@ -71,6 +70,7 @@ def generate_from(
             print(f"Generating from model {model} using prompt {prompt.id}...")
             unique_id, responses, log = _generate_from(model, prompt, data)
 
+            unique_id = f"{model.short_name}-{model_id}-{prompt.id}.{unique_id}"
             generated_responses = {
                 "model": {
                     "id": model_id,
@@ -85,45 +85,40 @@ def generate_from(
                     "text": prompt.text,
                     "tags": prompt.tags,
                 },
-                "unique_id": f"{model.short_name}-{model_id}-{prompt.id}.{unique_id}",
+                "unique_id": unique_id,
                 "responses": responses,
             }
+            generated_log = {
+                "model": {
+                    "id": model_id,
+                    "name": model.name,
+                    "size": model.size,
+                    "options": model.options,
+                    "family": model.family,
+                    "short_name": model.short_name,
+                },
+                "prompt": {
+                    "id": prompt_id,
+                    "text": prompt.text,
+                    "tags": prompt.tags,
+                },
+                "unique_id": unique_id,
+                "log": log,
+            }
 
-            try:
-                save_to_json(
-                    generated_responses,
-                    os.path.join(responses_dir, f"{unique_id}.json"),
+            if not save_to_json(
+                generated_responses, os.path.join(responses_dir, f"{unique_id}")
+            ):
+                print(
+                    f"Error saving responses for {model} and {prompt}, printing instead:"
                 )
-            except TypeError as e:
-                dump_raw(
-                    generated_responses,
-                    os.path.join(responses_dir, f"failed_{unique_id}.txt"),
-                )
-                print(e)
-                print(f"Error saving responses for {model} and {prompt} as json.")
-            finally:
-                print(f"Finished Generation, uid: {unique_id}")
+                print(generated_responses)
 
-            if log:
-                generated_log = {
-                    "model": str(model),
-                    "prompt": str(prompt),
-                    "unique_id": unique_id,
-                    "log": log,
-                }
-                try:
-                    save_to_json(
-                        generated_log, os.path.join(log_dir, f"{unique_id}.json")
-                    )
-                except TypeError as e:
-                    dump_raw(
-                        generated_log,
-                        os.path.join(log_dir, f"failed_{unique_id}.txt"),
-                    )
-                    print(e)
-                    print(
-                        f"Error saving log for model {model} and prompt {prompt} as json: dumped raw log instead."
-                    )
+            if not save_to_json(generated_log, os.path.join(log_dir, f"{unique_id}")):
+                print(
+                    f"Error saving log for {model} and {prompt}, printing instead:"
+                )
+                print(generated_log)
 
 
 def eval_generate():
