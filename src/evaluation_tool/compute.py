@@ -44,8 +44,7 @@ def _generate_from(model, prompt, data):
         finally:
             responses.append(response)
 
-        if index % 25 == 0 and index != 0:
-            print(f"Generated {index} outputs...")
+        print(f"Generated {index} / 207 Reports...")
 
     return unique_id, responses, log
 
@@ -119,4 +118,3 @@ def generate_from(
                     f"Error saving log for {model} and {prompt}, printing instead:"
                 )
                 print(generated_log)
-
