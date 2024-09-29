@@ -1,7 +1,22 @@
 {
-    "model": "mistral-large:123b_Default",
-    "prompt": "prompt 4: You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
-    "unique_id": "b713aeeb-c613-4d58-a2ac-4a62997db744",
+    "model": {
+        "id": 11,
+        "name": "mistral-large",
+        "size": "123b",
+        "options": null,
+        "family": "mistral",
+        "short_name": "mxl"
+    },
+    "prompt": {
+        "id": 4,
+        "text": "You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "english"
+        ]
+    },
+    "unique_id": "mxl-11-4.b713aeeb-c613-4d58-a2ac-4a62997db744",
     "metrics": {
         "difference_metrics": {
             "sm_similarity_ratios": [

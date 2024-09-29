@@ -1,7 +1,22 @@
 {
-    "model": "gemma2:2b_Default",
-    "prompt": "prompt 4: You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
-    "unique_id": "f17a95c0-47e5-4beb-a074-17db3b9755a7",
+    "model": {
+        "id": 6,
+        "name": "gemma2",
+        "size": "2b",
+        "options": null,
+        "family": "gemma",
+        "short_name": "g2s"
+    },
+    "prompt": {
+        "id": 4,
+        "text": "You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "english"
+        ]
+    },
+    "unique_id": "g2s-6-4.f17a95c0-47e5-4beb-a074-17db3b9755a7",
     "metrics": {
         "difference_metrics": {
             "sm_similarity_ratios": [

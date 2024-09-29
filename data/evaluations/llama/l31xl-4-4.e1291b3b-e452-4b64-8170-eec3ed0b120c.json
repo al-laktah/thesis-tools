@@ -1,7 +1,22 @@
 {
-    "model": "llama3.1:70b_Default",
-    "prompt": "prompt 4: You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
-    "unique_id": "e1291b3b-e452-4b64-8170-eec3ed0b120c",
+    "model": {
+        "id": 4,
+        "name": "llama3.1",
+        "size": "70b",
+        "options": null,
+        "family": "llama",
+        "short_name": "l31xl"
+    },
+    "prompt": {
+        "id": 4,
+        "text": "You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "english"
+        ]
+    },
+    "unique_id": "l31xl-4-4.e1291b3b-e452-4b64-8170-eec3ed0b120c",
     "metrics": {
         "difference_metrics": {
             "sm_similarity_ratios": [
