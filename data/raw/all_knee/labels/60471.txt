@@ -1,0 +1,71 @@
+{
+    "bone edema": {
+        "finding": true
+    },
+    "patella alta": {
+        "finding": false
+    },
+    "patellar lateralization": {
+        "finding": true
+    },
+    "anterior cruciate ligament pathology": {
+        "finding": false
+    },
+    "anterior cruciate ligament (partial) tear": {
+        "finding": false
+    },
+    "anterior cruciate ligament reconstruction": {
+        "finding": false
+    },
+    "posterior cruciate ligament pathology": {
+        "finding": false
+    },
+    "medial collateral ligament sprain": {
+        "finding": false
+    },
+    "medial collateral ligament (partial) tear": {
+        "finding": false
+    },
+    "lateral collateral ligament sprain": {
+        "finding": false
+    },
+    "lateral collateral ligament (partial) tear": {
+        "finding": false
+    },
+    "femur cartilage pathology": {
+        "finding": false
+    },
+    "tibia cartilage pathology": {
+        "finding": false
+    },
+    "patella cartilage pathology": {
+        "finding": false
+    },
+    "medial meniscus degeneration": {
+        "finding": false
+    },
+    "medial meniscus tear": {
+        "finding": false
+    },
+    "lateral meniscus degeneration": {
+        "finding": false
+    },
+    "lateral meniscus tear": {
+        "finding": false
+    },
+    "medial meniscus extrusion / subluxation": {
+        "finding": false
+    },
+    "lateral meniscus extrusion / subluxation": {
+        "finding": false
+    },
+    "bakers cyst": {
+        "finding": true
+    },
+    "patellar bursitis": {
+        "finding": false
+    },
+    "joint effusion": {
+        "finding": "moderate"
+    }
+}

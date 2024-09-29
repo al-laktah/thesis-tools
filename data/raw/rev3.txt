@@ -1,0 +1,14 @@
+Klinische Angaben
+Patient mit chondroblastischem Osteosarkom des linken proximalen Humerus (ED 04/2016). Z.n Chemotherapie, Tumorresektion und Amputation des Armes. Im Röntgen vom 13.06.2024 auffällige Knochenstruktur der linken Schulter.
+Fragestellung
+MR-tomografische Beurteilung erbeten.
+Methodik
+MRT-Untersuchung bei 1,5 Tesla-Feldstärke unter Verwendung einer Mehrkanal-Körperoberflächenspule.
+Anfertigung folgender Sequenzen: Axiale, parakoronare und parasagittale T2-gewichtete TSE-Sequenzen in DIXON-Technik. Axiale diffusionsgewichtete Sequenz. Axiale T1-gewichtete TSE-Sequenzen in dynamischer Akquisition vor und nach körpergewichtsadaptierter intravenöser Kontrastmittelgabe (Gadobutrol 7,5 ml, Chargen-Nr. KT04PSB)) mit Anfertigung entsprechender Subtraktionsaufnahmen. Sagittale und coronare T1-gewichtete TSE-Sequenz in DIXON-Technik nach Kontrastmittelgabe.
+Befund
+Es liegen mehrere Voruntersuchungen zum Vergleich vor, zuletzt eine MRT-Untersuchung vom 18.02.2020.
+
+Z.n. Oberarmamputation links. Im 4-Jahres-Verlauf sowohl morphologisch als auch in Bezug auf die Größenausdehnung weitgehend konstante Darstellung der überwiegend nodulär-keloidartig, in Anteilen strangförmig konfigurierten hypertrophen narbigen Veränderungen im Weichgewebe angrenzend an die Margo lateralis scapulae, bis unmittelbar an das Subkutangewebe heranreichend mit einer Größenausdehnung von ca. 4,6 x 2,0 x 3 ,4cm (kraniokaudal, mediolateral, ventrodorsal).  T1-hypointenses- und T2-intermediär-hypointenses Signalverhalten sowie flaue Kontrastmittelmehranreicherung und Signalsteigerungen in den diffusionsgewichteten Sequenzen. Regelrechte Signalgebung der miterfassten ossären Strukturen.
+Narbige Retraktion der angrenzenden Cutis. Atrophie der Rotatorenmanschettenmuskulatur. Der laterale Schulter-Aspekt ist rein weichteilig gedeckt. Keine malignomsuspekten Lymphknoten lokoregionär und links axillär.
+Beurteilung
+Weiterhin seit 01/2018 Größen- und Befundkonstanz der ausgeprägten, in erster Linie atypisch hypertrophen, narbig-posttherapeutischen Veränderungen an der linken Thoraxwand lateral angrenzend an die linke Scapula; ein Tumorrezidiv ist rein bildmorphologisch weiterhin (bei o.g. Bildstigmata) nicht sicher auszuschließen, aufgrund der Befundkonstanz über den langen Nachsorgezeitraum allerdings deutlich unwahrscheinlicher.

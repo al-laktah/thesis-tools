@@ -1,0 +1,23 @@
+bone edema
+patella alta
+patellar lateralization
+anterior cruciate ligament pathology
+anterior cruciate ligament reconstruction
+anterior cruciate ligament (partial) tear
+posterior cruciate ligament pathology
+medial collateral ligament sprain
+medial collateral ligament (partial) tear
+lateral collateral ligament sprain
+lateral collateral ligament (partial) tear
+femur cartilage pathology
+tibia cartilage pathology
+patella cartilage pathology
+medial meniscus degeneration
+medial meniscus tear
+medial meniscus extrusion / subluxation
+lateral meniscus degeneration
+lateral meniscus tear
+lateral meniscus extrusion / subluxation
+joint effusion
+bakers cyst
+patellar bursitis
