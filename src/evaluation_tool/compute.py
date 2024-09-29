@@ -27,7 +27,7 @@ def _generate_from(model, prompt, data):
             response["raw"] = generate(
                 model=model.name + ":" + model.size,
                 options=model.options,
-                prompt=prompt.prompt + "\n" + text,
+                prompt=prompt.text + "\n" + text,
                 stream=False,
                 context=None,
             )
