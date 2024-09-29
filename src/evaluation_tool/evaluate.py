@@ -7,7 +7,8 @@ from difflib import SequenceMatcher
 import diff_match_patch as dmp_module
 import language_tool_python as ltp
 from sqlalchemy.orm import Session
-from .db import Ris
+from ollama import ResponseError, generate
+from .db import Ris, Models, Prompts
 from .util import save_to_json, get_whitelist
 
 
@@ -107,7 +108,7 @@ def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, voc
                 match.offsetInContext : match.offsetInContext + match.errorLength
             ]
             if word not in whitelist:
-                misspelled.append(word)
+                misspelled.append((word, match.context))
     except ltp.utils.LanguageToolError:
         misspelled.append("LT Error")
 
@@ -153,6 +154,78 @@ def get_language_tool_metrics(
 
     return language_tool_metrics
 
+
+# Semantic Metrics
+def get_semantic_similarity_llm(model, prompt):
+    """function to get the semantic similarity using LLM"""
+    response = {}
+    try:
+        response["raw"] = generate(
+            model=model.name + ":" + model.size,
+            options=model.options,
+            prompt=prompt,
+            stream=False,
+            context=None,
+        )
+    except ResponseError as e:
+        print(e)
+        return -1
+
+    try:
+        response_value = response["raw"]["response"]
+        float_value = float(response_value)
+        return float_value
+    except (KeyError, ValueError, TypeError):
+        print(f"Bad response: {response['raw']}")
+        return -1
+
+
+def get_semantic_similarity_embedding(input_report, output_report):
+    """function to get the semantic similarity using embeddings"""
+    return 0
+
+
+def get_semantic_metrics(responses, session, prompt_id=6, model_id=7) -> Dict[str, Any]:
+    """function to get the semantic metrics"""
+    semantic_metrics = {
+        "llm_scores": [],
+        "embedding_scores": [],
+    }
+
+    model = Models.get_by_id(session, model_id)
+    prompt = Prompts.get_by_id(session, prompt_id)
+
+    for response in responses:
+        ris = Ris.get_by_id(session, response["ris_id"])
+        if ris.revision_1 is not None:
+            input_report = ris.revision_1
+        elif ris.revision_2 is not None:
+            input_report = ris.revision_2
+        else:
+            continue
+
+        output_report = response["raw"]["response"]
+
+        eval_prompt = (
+            prompt.text
+            + "\n"
+            + "report 1:\n"
+            + input_report
+            + "\n"
+            + "report 2:\n"
+            + output_report
+        )
+
+        semantic_metrics["llm_scores"].append(
+            get_semantic_similarity_llm(model, eval_prompt)
+        )
+        semantic_metrics["embedding_scores"].append(
+            get_semantic_similarity_embedding(input_report, output_report)
+        )
+
+    return semantic_metrics
+
+
 # Eval Functions
 def _evaluate(
     generated: Dict[str, Any],
@@ -185,13 +258,17 @@ def _evaluate(
     if options["duration_metrics"]:
         metrics["duration_metrics"] = get_duration_metrics(generated["responses"])
     if options["difference_metrics"]:
-        metrics["difference_metrics"] = get_difference_metrics(generated["responses"], session)
+        metrics["difference_metrics"] = get_difference_metrics(
+            generated["responses"], session
+        )
     if options["language_tool_metrics"]:
         metrics["language_tool_metrics"] = get_language_tool_metrics(
             generated["responses"], lang_tool, directories
         )
     if options["semantic_metrics"]:
-        metrics["semantic_metrics"] = None
+        metrics["semantic_metrics"] = get_semantic_metrics(
+            generated["responses"], session
+        )
 
     # Save the results
     res = {}
@@ -204,9 +281,7 @@ def _evaluate(
     if options["save_json"]:
         save_to_json(
             res,
-            os.path.join(
-                directories["evaluations"], f"{generated['unique_id']}.json"
-            ),
+            os.path.join(directories["evaluations"], f"{generated['unique_id']}.json"),
         )
     # Return the results
     return res
