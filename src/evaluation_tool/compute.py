@@ -120,6 +120,3 @@ def generate_from(
                 )
                 print(generated_log)
 
-
-def eval_generate():
-    pass
