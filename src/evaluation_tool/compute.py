@@ -106,14 +106,14 @@ def generate_from(
             }
 
             if not save_to_json(
-                generated_responses, os.path.join(responses_dir, f"{unique_id}")
+                generated_responses, os.path.join(responses_dir, f"{unique_id}.json")
             ):
                 print(
                     f"Error saving responses for {model} and {prompt}, printing instead:"
                 )
                 print(generated_responses)
 
-            if not save_to_json(generated_log, os.path.join(log_dir, f"{unique_id}")):
+            if not save_to_json(generated_log, os.path.join(log_dir, f"{unique_id}.json")):
                 print(
                     f"Error saving log for {model} and {prompt}, printing instead:"
                 )

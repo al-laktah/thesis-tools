@@ -14,7 +14,7 @@ def save_to_json(output, path):
     :param path: path to save the data to.
     """
     try:
-        with open(os.path.join(path, ".json"), "w", encoding="utf-8") as file:
+        with open(path, "w", encoding="utf-8") as file:
             json.dump(output, file, indent=4, ensure_ascii=False)
     except TypeError as e1:
         print(e1)
