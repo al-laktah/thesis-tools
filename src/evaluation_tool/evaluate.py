@@ -8,7 +8,7 @@ import diff_match_patch as dmp_module
 import language_tool_python as ltp
 from sqlalchemy.orm import Session
 from .db import Ris
-from .util import save_to_json, dump_raw, get_whitelist
+from .util import save_to_json, get_whitelist
 
 
 # duration metrics
@@ -202,24 +202,12 @@ def _evaluate(
 
     # Save the results
     if options["save_json"]:
-        try:
-            save_to_json(
-                res,
-                os.path.join(
-                    directories["evaluations"], f"{generated['unique_id']}.json"
-                ),
-            )
-        except TypeError as e:
-            dump_raw(
-                res,
-                os.path.join(
-                    directories["evaluations"], f"failed_{generated['unique_id']}.txt"
-                ),
-            )
-            print(e)
-        finally:
-            print(f"Finished Evaluation, uid: {generated['unique_id']}")
-
+        save_to_json(
+            res,
+            os.path.join(
+                directories["evaluations"], f"{generated['unique_id']}.json"
+            ),
+        )
     # Return the results
     return res
 
