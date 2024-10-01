@@ -175,6 +175,7 @@ def generate_all_special(
             prompt = prompt_switcher(prompt_id, report)
 
             response = {"ris_id": ris_id}
+            response["prompt"] = prompt
             try:
                 response["raw"] = generat_one(model, prompt)
                 try:
