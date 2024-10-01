@@ -5,7 +5,7 @@ import os
 from argparse import ArgumentParser
 import language_tool_python as ltp
 
-from evaluation_tool.compute import generate_from
+from evaluation_tool.compute import generate_all_from
 from evaluation_tool.evaluate import evaluate_from_unique_ids
 from evaluation_tool.util import create_directories, create_db_session
 
@@ -41,7 +41,7 @@ def main():
 
     match args.command:
         case "generate":
-            generate_from(
+            generate_all_from(
                 args.models,
                 args.prompts,
                 directories["generated"],

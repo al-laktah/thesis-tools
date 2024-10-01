@@ -167,6 +167,10 @@ def get_semantic_similarity_llm(model, prompt):
             stream=False,
             context=None,
         )
+        try:
+            del response["raw"]["context"]
+        except KeyError:
+            pass
     except ResponseError as e:
         print(e)
         return -1

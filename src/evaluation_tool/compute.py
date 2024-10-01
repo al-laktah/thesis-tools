@@ -10,7 +10,7 @@ from .db import Models, Prompts, Ris
 from .util import save_to_json
 
 
-def _generate_from(model, prompt, data):
+def _generate_all(model, prompt, data):
     """Generate outputs from given model, prompt, and data."""
 
     unique_id = str(uuid4())
@@ -49,7 +49,7 @@ def _generate_from(model, prompt, data):
     return unique_id, responses, log
 
 
-def generate_from(
+def generate_all_from(
     model_ids: List[int],
     prompt_ids: List[int],
     responses_dir: str,
@@ -67,7 +67,7 @@ def generate_from(
             prompt = Prompts.get_by_id(session, prompt_id)
 
             print(f"Generating from model {model} using prompt {prompt.id}...")
-            unique_id, responses, log = _generate_from(model, prompt, data)
+            unique_id, responses, log = _generate_all(model, prompt, data)
 
             unique_id = f"{model.short_name}-{model_id}-{prompt.id}.{unique_id}"
             generated_responses = {
@@ -113,8 +113,8 @@ def generate_from(
                 )
                 print(generated_responses)
 
-            if not save_to_json(generated_log, os.path.join(log_dir, f"{unique_id}.json")):
-                print(
-                    f"Error saving log for {model} and {prompt}, printing instead:"
-                )
+            if not save_to_json(
+                generated_log, os.path.join(log_dir, f"{unique_id}.json")
+            ):
+                print(f"Error saving log for {model} and {prompt}, printing instead:")
                 print(generated_log)
