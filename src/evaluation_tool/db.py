@@ -116,3 +116,41 @@ class Ris(Base):
         df = pd.DataFrame(data)
 
         return df
+
+
+class WrongReports(Base):
+    """Model class for the wrong_reports table."""
+
+    __tablename__ = "wrong_reports"
+
+    klinische_angaben: Mapped[str] = mapped_column(TEXT)
+    fragestellung: Mapped[str] = mapped_column(TEXT)
+    methodik: Mapped[str] = mapped_column(TEXT)
+    befund: Mapped[str] = mapped_column(TEXT)
+    beurteilung: Mapped[str] = mapped_column(TEXT)
+
+    @classmethod
+    def get_all(cls, session: Session):
+        """Function to get all reports as a DataFrame."""
+
+        results = session.query(cls).all()
+
+        data = []
+        for result in results:
+            data.append(
+                {
+                    "id": result.id,
+                    "klinische_angaben": result.klinische_angaben,
+                    "fragestellung": result.fragestellung,
+                    "methodik": result.methodik,
+                    "befund": result.befund,
+                    "beurteilung": result.beurteilung,
+                }
+            )
+
+        df = pd.DataFrame(data)
+
+        return df
+
+    def __repr__(self) -> str:
+        return f"Wrong Report: {self.id}"

@@ -5,7 +5,7 @@ import os
 from argparse import ArgumentParser
 import language_tool_python as ltp
 
-from evaluation_tool.compute import generate_all_from
+from evaluation_tool.compute import generate_all_from, generate_all_special
 from evaluation_tool.evaluate import evaluate_from_unique_ids
 from evaluation_tool.util import create_directories, create_db_session
 
@@ -41,13 +41,21 @@ def main():
 
     match args.command:
         case "generate":
-            generate_all_from(
-                args.models,
-                args.prompts,
-                directories["generated"],
-                directories["logs"],
-                session,
-            )
+            if args.prompts == [8]:
+                generate_all_special(
+                    args.models,
+                    8,
+                    directories["generated"],
+                    session,
+                )
+            else:
+                generate_all_from(
+                    args.models,
+                    args.prompts,
+                    directories["generated"],
+                    directories["logs"],
+                    session,
+                )
         case "evaluate":
             if args.server:
                 server = args.server
