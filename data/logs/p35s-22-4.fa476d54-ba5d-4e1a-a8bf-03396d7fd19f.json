@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": 22,
+        "name": "phi3.5",
+        "size": "3.8b",
+        "options": null,
+        "family": "phi",
+        "short_name": "p35s"
+    },
+    "prompt": {
+        "id": 4,
+        "text": "You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "english"
+        ]
+    },
+    "unique_id": "p35s-22-4.fa476d54-ba5d-4e1a-a8bf-03396d7fd19f",
+    "log": {}
+}

@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": 24,
+        "name": "llama3.2",
+        "size": "3b",
+        "options": null,
+        "family": "llama",
+        "short_name": "l32s"
+    },
+    "prompt": {
+        "id": 4,
+        "text": "You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "english"
+        ]
+    },
+    "unique_id": "l32s-24-4.3eac5b66-5790-4abd-85d2-b53c958140cb",
+    "log": {}
+}

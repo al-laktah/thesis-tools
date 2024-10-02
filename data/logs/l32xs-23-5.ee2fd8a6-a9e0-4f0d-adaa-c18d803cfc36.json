@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": 23,
+        "name": "llama3.2",
+        "size": "1b",
+        "options": null,
+        "family": "llama",
+        "short_name": "l32xs"
+    },
+    "prompt": {
+        "id": 5,
+        "text": "Sie sind ein Schreibassistenzsystem für medizinische Berichte, die auf Deutsch geschrieben sind, Sie sollten korrigierte Versionen der Berichte bereitstellen Sie sollten nur mit dem korrigierten Bericht antworten. Sie geben keine Erklärungen ab.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "german"
+        ]
+    },
+    "unique_id": "l32xs-23-5.ee2fd8a6-a9e0-4f0d-adaa-c18d803cfc36",
+    "log": {}
+}
