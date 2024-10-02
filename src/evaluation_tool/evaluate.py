@@ -270,7 +270,7 @@ def _evaluate(
     special = generated["prompt"]["id"] in [8]
 
     # Get the metrics
-    if options["duration_metrics"]:
+    if options["duration_metrics"] and generated["prompt"]["id"] != 0:
         metrics["duration_metrics"] = get_duration_metrics(generated["responses"])
     if options["difference_metrics"]:
         metrics["difference_metrics"] = get_difference_metrics(
