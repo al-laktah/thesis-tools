@@ -10,7 +10,11 @@
     "prompt": {
         "id": 4,
         "text": "You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
-        "tags": ["role", "no-explanation", "english"]
+        "tags": [
+            "role",
+            "no-explanation",
+            "english"
+        ]
     },
     "unique_id": "l31m-3-4.a9d0cfde-6881-4424-ac4d-6d6db6e22698",
     "metrics": {
@@ -1354,7 +1358,7 @@
                 195,
                 22,
                 1061,
-                4990,
+                5400,
                 357,
                 32,
                 11,
@@ -1563,7 +1567,7 @@
                 0.07608271556769411,
                 0.02386117136659436,
                 0.2537063605930177,
-                0.843475321162948,
+                0.9127789046653144,
                 0.10426401869158879,
                 0.017158176943699734,
                 0.007198952879581152,
@@ -1772,7 +1776,7 @@
                 0.9239172844323059,
                 0.9761388286334056,
                 0.7462936394069823,
-                0.156524678837052,
+                0.08722109533468558,
                 0.8957359813084113,
                 0.9828418230563003,
                 0.9928010471204188,
@@ -1902,688 +1906,1899 @@
         "language_tool_metrics": {
             "misspelled": [
                 [
-                    "Iml",
-                    "cervicalen",
-                    "polylope",
-                    "weichteildicht",
-                    "polylope"
-                ],
-                [],
-                [
-                    "pilzpneumonie",
-                    "Pleuraergüßen"
-                ],
-                [],
-                [],
-                [
-                    "Fraktureinstrahlen",
-                    "Frakturlinie",
-                    "Eminentia",
-                    "intercondylaris",
-                    "Epi-",
-                    "Ganganagelschaft",
-                    "Ganganagelschaft"
-                ],
-                [],
-                [],
-                [
-                    "Inselläsion"
-                ],
-                [],
-                [
-                    "Zn",
-                    "malignosuspekter"
-                ],
-                [
-                    "beurteiltelbar"
-                ],
-                [],
-                [],
-                [
-                    "Volkmannschen"
-                ],
-                [],
-                [],
-                [
-                    "multiplanaren",
-                    "Hüft-TEP-Bilder",
-                    "röntgendichtiges",
-                    "adenomatöse",
-                    "röntgendichtiges"
-                ],
-                [
-                    "Willisii"
-                ],
-                [
-                    "Rektumstumpfininsuffizienz",
-                    "Rektumstumpfininsuffizienz"
-                ],
-                [],
-                [],
-                [
-                    "Lasegue"
-                ],
-                [
-                    "mgIod",
-                    "Sub",
-                    "enggestellten"
-                ],
-                [],
-                [
-                    "Mehrfaktige",
-                    "periapikaler",
-                    "Abscessus"
-                ],
-                [],
-                [
-                    "SCG-Abszess",
-                    "computergestützer",
-                    "hypointensen",
-                    "Knochenmarksignals",
-                    "extrakapsulären",
-                    "kontrastmittelanreichernden",
-                    "größenkonstantes"
-                ],
-                [
-                    "Ödämisierung",
-                    "retropatellären",
-                    "inferomedial",
-                    "Desinsertion",
-                    "schaliger",
-                    "Avulsion",
-                    "patellaren",
-                    "Trochleawinkel",
-                    "Avulsionsfraktur",
-                    "Desinsertion",
-                    "retropatellären"
-                ],
-                [
-                    "Schmorlsche-Knötchen",
-                    "paramediane",
-                    "rezessalem",
-                    "paramedianen",
-                    "neuroforaminalen"
-                ],
-                [
-                    "SKS",
-                    "Foraminalstenose",
-                    "intraspinaler",
-                    "hypointenser"
-                ],
-                [
-                    "segmentige",
-                    "Knochenmarksödem"
-                ],
-                [
-                    "hypoechoger",
-                    "hypoechoger"
-                ],
-                [],
-                [
-                    "MKR-OP-Clips"
-                ],
-                [],
-                [
-                    "OP-Klips"
-                ],
-                [
-                    "Vordiagnostiken"
-                ],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [
-                    "antientiv",
-                    "Infektwertanstieg"
-                ],
-                [],
-                [
-                    "Anerysm",
-                    "popliteale",
-                    "Anerysm"
-                ],
-                [],
-                [
-                    "Angdeuetete"
-                ],
-                [],
-                [
-                    "staging"
-                ],
-                [
-                    "Unterlappen-Emphysema"
-                ],
-                [],
-                [
-                    "Weiterehin",
-                    "weiterehin"
-                ],
-                [],
-                [
-                    "diebnt",
-                    "Befundungsteam"
-                ],
-                [
-                    "Kontrastierungs-"
-                ],
-                [
-                    "Child-Pugh-Stadium",
-                    "LTX-Evaluation",
-                    "LTX-Listing"
-                ],
-                [
-                    "sepstisch",
-                    "cholestase",
-                    "Telebrix-Gastro",
-                    "ausgeleiteten"
-                ],
-                [
-                    "dediziertzer",
-                    "überkontrastiertes"
-                ],
-                [
-                    "Telebrix-Gastro",
-                    "hausgepflegten",
-                    "Darmmukosa",
-                    "Bauchwandhernie",
-                    "Rektumsdiastase",
-                    "Darmmukosa",
-                    "Bauchwandhernie",
-                    "Rektumsdiastase"
-                ],
-                [
-                    "low-dose"
-                ],
-                [
-                    "PAt"
-                ],
-                [
-                    "progredierte"
-                ],
-                [
-                    "perikardeguss",
-                    "Phasenkonstanter",
-                    "Kontrastmittelextravasation",
-                    "aktiveste",
-                    "subdiaphragmale",
-                    "sekreverlegt"
-                ],
-                [
-                    "Visceralgefäße",
-                    "schmalkalibrierte"
-                ],
-                [
-                    "VJImit",
-                    "mgIod"
-                ],
-                [
-                    "Weichgewebsimwachsende",
-                    "Weichgewebsimwachsende",
-                    "Weichgewebsimwachsende",
-                    "Weichgewebsimwachsende",
-                    "ascendierender"
-                ],
-                [
-                    "multiplanaren",
-                    "Modalitytten",
-                    "Modalitytten"
-                ],
-                [
-                    "Myomen"
-                ],
-                [
-                    "Diarrhöe",
-                    "Telebrix-IG",
-                    "Weichgewebsimibierung",
-                    "Steilgestellte"
-                ],
-                [
-                    "Laparskopie",
-                    "Iml",
-                    "Mehrzeilenspiral-CT-Untersuchung"
-                ],
-                [
-                    "Pyelourethral",
-                    "Imbibieren"
-                ],
-                [
-                    "Mehrzeilenspiral-CT-Untersuchung",
-                    "Poststenotisches",
-                    "stenosierter"
-                ],
-                [
-                    "dichteregrediert",
-                    "semisoliden",
-                    "hilum"
-                ],
-                [],
-                [],
-                [
-                    "Schuttelfrost",
-                    "kompatibele",
-                    "floridem"
-                ],
-                [],
-                [
-                    "Mehrzeilige-Spiral-CT",
-                    "Dichtewerte",
-                    "pektoralen",
-                    "Dichtewerte",
-                    "pektoralen"
-                ],
-                [
-                    "Multiplane",
-                    "Sinusmaxillaris-Inhalt",
-                    "Sinusmaxillaris-Inhalt"
-                ],
-                [
-                    "natiiver",
-                    "Iliakalstents",
-                    "Iliakalstents",
-                    "endolektischen",
-                    "kalkdichtem",
-                    "fEVAR-Verfahrensbehandlung",
-                    "endolektische"
-                ],
-                [
-                    "Zwerchfellkuppe",
-                    "intrathorakaler",
-                    "parietotemporal",
-                    "mittellinienüberschreitenden",
-                    "adominell",
-                    "periplenischer"
-                ],
-                [
-                    "Zn",
-                    "knöchernern"
-                ],
-                [],
-                [],
-                [
-                    "Radialis-Transplantat",
-                    "Vorgutuntersuchung",
-                    "metastasenanhängigen"
-                ],
-                [],
-                [
-                    "Metakarpalhalsfraktur",
-                    "Carpus"
-                ],
-                [
-                    "intraokulärem"
-                ],
-                [],
-                [],
-                [
-                    "überkontrastiertes"
-                ],
-                [
-                    "Mitralkalk"
-                ],
-                [
-                    "Non-Hodgkin-Lymphom"
-                ],
-                [
-                    "prä-OP",
-                    "Mittellappensegments",
-                    "Leberparenchymläsion",
-                    "peri-kaval",
-                    "perikaval"
-                ],
-                [
-                    "Regressz"
-                ],
-                [
-                    "mgIod"
-                ],
-                [
-                    "kontrastmittelanreichernden",
-                    "urografischer",
-                    "Ösophagealer",
-                    "Sekretspiegel",
-                    "Hilusniveau",
-                    "infrarenales"
-                ],
-                [
-                    "biatrialer",
-                    "superaortales"
-                ],
-                [
-                    "CT-HTA",
-                    "bullösem",
-                    "Skoliotische",
-                    ".a",
-                    "zahnverlegung"
-                ],
-                [
-                    "stuhlleeren",
-                    "Para"
-                ],
-                [],
-                [
-                    "Visceralgefäße"
-                ],
-                [
-                    "Vv",
-                    "Stentthrombose",
-                    "wandständige",
-                    "Stentthrombose"
-                ],
-                [
-                    "Mehrzeilenspiral-CT-Untersuchung",
-                    "Multiplarereformationen"
-                ],
-                [
-                    "Granulosazell-Tumor",
-                    "Telebrix-Gastro",
-                    "Telebrix-Gastro",
-                    "semi",
-                    "sub"
-                ],
-                [
-                    "klammernach",
-                    "Anastomosennaht",
-                    "perfundiertes",
-                    "Anastomosennaht"
-                ],
-                [
-                    "Visceralgefäße"
-                ],
-                [
-                    "Corticalisinseln",
-                    "Lungenapex"
-                ],
-                [
-                    "Weichgewebsimibierung",
-                    "Uretersystem"
-                ],
-                [
-                    "kastratresistentes"
-                ],
-                [
-                    "bn",
-                    "VATS-Lobektomie",
-                    "CT-Thorax-low-Dose-Untersuchung",
-                    "Mehrzeilenspiral-CT-Untersuchung",
-                    "Multiplane-Reformationen"
-                ],
-                [],
-                [
-                    "hypertrophie"
-                ],
-                [
-                    "varikoös"
-                ],
-                [
-                    "nichtionischen",
-                    "Pleurale",
-                    "größenprogreditiv",
-                    "hilfugalem",
-                    "Trachealbifurkation",
-                    "infrakarinalen"
-                ],
-                [
-                    "Fenestrierung",
-                    "Fenestrierung"
-                ],
-                [
-                    "strahlentehrapeutische",
-                    "cervicalen"
-                ],
-                [],
-                [
-                    "cummonuis"
-                ],
-                [
-                    "Mehrzeilenspiral-CT-Untersuchung"
-                ],
-                [
-                    "spuria",
-                    "Mehrzeilenspiral-CT-Untersuchung",
-                    "nichtionischen",
-                    "röntgendichteren",
-                    "superfizialis",
-                    "Weichgewebsimibierung",
-                    "superfizialis",
-                    "Weichgewebsimibierung"
-                ],
-                [
-                    "Dikdarmdivertikel"
-                ],
-                [
-                    "Infiltation",
-                    "Ausdehung",
-                    "mittellinienüberschreitender",
-                    "wasserisodenser"
-                ],
-                [],
-                [],
-                [],
-                [],
-                [
-                    "kalzifizierender",
-                    "kalzifizierender"
-                ],
-                [],
-                [],
-                [],
-                [
-                    "retroperitonealen",
-                    "retroperitonealen"
-                ],
-                [
-                    "mgIod"
-                ],
-                [
-                    "rechtertorakale",
-                    "rechtsherzbelastungszeichen"
-                ],
-                [],
-                [
-                    "Frakturfragments"
-                ],
-                [],
-                [],
-                [],
-                [
-                    "kalzifizierender"
-                ],
-                [
-                    "Ekatsie"
-                ],
-                [
-                    "mehranreichernden"
-                ],
-                [
-                    "Willisii",
-                    "intra"
-                ],
-                [
-                    "Willisii"
-                ],
-                [
-                    "ateromatösen",
-                    "ateromatösen",
-                    "Hypodensen"
-                ],
-                [
-                    "gefangenenen"
-                ],
-                [],
-                [
-                    "intraabdominal"
-                ],
-                [
-                    "Rhinoorbitale",
-                    "Lungsverbandes",
-                    "perisplenischer",
-                    "perihepatischer"
-                ],
-                [
-                    "Rea"
-                ],
-                [
-                    "ERCP-Pankreatitis"
-                ],
-                [
-                    "drainagenwürdiger",
-                    "Intrahepatischer",
-                    "drainagenwürdiger"
-                ],
-                [],
-                [
-                    "tibiale"
-                ],
-                [
-                    "Pericarderguss",
-                    "PACS"
-                ],
-                [
-                    "Photon-Counting-Detektor",
-                    "Mitralklappenverkalkung",
-                    "Mitralklappenverkalkung",
-                    "Mitralklappenverkalkung",
-                    "Mitralklappenverkalkung"
-                ],
-                [
-                    "suprakoronarer",
-                    "sternalcerclagen"
-                ],
-                [
-                    "flüssigkeitsgefillter",
-                    "distension"
-                ],
-                [
-                    "bihilarer"
-                ],
-                [
-                    "Tricuspidvalvuloplastik",
-                    "Tricuspidklappe",
-                    "Tricuspidvalvuloplastik",
-                    "ligamentär-bedingt"
-                ],
-                [],
-                [
-                    "Abkip-pung"
-                ],
-                [
-                    "Tibiotalokalkaneare-Arthrodese",
-                    "rechtsa",
-                    "assoziert"
-                ],
-                [
-                    "Wilkie-Syndroms"
-                ],
-                [
-                    "Miterscanner"
-                ],
-                [],
-                [
-                    "arter",
-                    "Poplitea",
-                    "Mitabgebildete",
-                    "Poplitea"
-                ],
-                [
-                    "größenregredierte",
-                    "größenregredierte",
-                    "größenregredierte"
-                ],
-                [
-                    "Subpleural"
-                ],
-                [
-                    "Mandibulakopf",
-                    "Knocheninterponats",
-                    "Humeruskopfs",
-                    "Subpleurale"
-                ],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [
-                    "Überstenting"
-                ],
-                [
-                    "dehisziert"
-                ],
-                [
-                    "gewichts-adaptierter"
-                ],
-                [
-                    "Drainagewürdiger"
-                ],
-                [
-                    "Trapezium",
-                    "Daumingers"
-                ],
-                [
-                    "coeliakalen",
-                    "läsionen",
-                    "retrokrurale"
-                ],
-                [
-                    "erklärem",
-                    "gewichtsangleichender"
-                ],
-                [
-                    "Gallenblasencarcinom",
-                    "maligneintrupmonalen"
-                ],
-                [
-                    "falziforme"
-                ],
-                [
-                    "Infektfoci"
-                ],
-                [
-                    "vasosklerotische"
-                ],
-                [
-                    "proteide"
-                ],
-                [
-                    "SCLC-aktuelle"
-                ],
-                [],
-                [
-                    "falziforme"
-                ],
-                [
-                    "Vorgeschicht",
-                    "perimandibulären"
-                ],
-                [],
-                [],
-                [
-                    "pectoral"
-                ],
-                [
-                    "mitabgebildet"
-                ],
-                [],
-                [],
+                    [
+                        "Iml",
+                        "...ge Kontrastmittel 70 ml Ultravist 370mg/Iml (500 ml) Methodik NICHT FERTIG  Befund ..."
+                    ],
+                    [
+                        "cervicalen",
+                        "...024.  Hals: Die vorbekannten, suspekten cervicalen Lymphknoten stellen sich im Vergleich z..."
+                    ],
+                    [
+                        "polylope",
+                        "...ten Nasennebenhöhlen.  Thorax: Multiple polylope maligne-suspekte Lungenrundherde beidse..."
+                    ],
+                    [
+                        "weichteildicht",
+                        "...ind die bekannten Lymphknoten weiterhin weichteildicht abgrenzbar und ebenfalls mit randständi..."
+                    ],
+                    [
+                        "polylope",
+                        "...Miterfasstes oberes Abdomen: Zahlreiche polylope, disseminierte, hypodense Leberläsionen..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "pilzpneumonie",
+                        "Klinische Angaben Patient mit pilzpneumonie, Stolpersturz und Thoraxtrauma rechts, ..."
+                    ],
+                    [
+                        "Pleuraergüßen",
+                        "...ltratelast (Pilz vs. COVID), Frage nach Pleuraergüßen, Frage nach Rippenfraktur.  Methodik Na..."
+                    ],
+                    [
+                        "bds.",
+                        "...r.  Weiterhin ausgeprägte Pleuraergüsse bds.. Unveränderter knöcherner Status, kein ..."
+                    ]
+                ],
+                [],
+                [],
+                [
+                    [
+                        "Fraktureinstrahlen",
+                        "...rfragmentäre Fraktur des Tibiaplateaus. Fraktureinstrahlen über das laterale Tibiaplateau bis hin ..."
+                    ],
+                    [
+                        "Frakturlinie",
+                        "...en Tibiadiaphyse, keine intraartikuläre Frakturlinie innerhalb der Eminentia intercondylaris..."
+                    ],
+                    [
+                        "Eminentia",
+                        "...raartikuläre Frakturlinie innerhalb der Eminentia intercondylaris und der medialen Gelenk..."
+                    ],
+                    [
+                        "intercondylaris",
+                        "...re Frakturlinie innerhalb der Eminentia intercondylaris und der medialen Gelenkfläche abgrenzba..."
+                    ],
+                    [
+                        "Epi-",
+                        "... Fraktur der proximalen Fibula, von der Epi- bis in die Diaphyse. Hier keine wesentl..."
+                    ],
+                    [
+                        "Ganganagelschaft",
+                        "...en reaktiv. Links ist ein teilerfasster Ganganagelschaft abgrenzbar, sowie eine lateral angrenze..."
+                    ],
+                    [
+                        "Ganganagelschaft",
+                        "...ung:  Die korrekte Schreibweise lautet \"Ganganagelschaft\" statt \"Gammanagelschaft\"."
+                    ]
+                ],
+                [],
+                [],
+                [
+                    [
+                        "Inselläsion",
+                        "...ter, gut vereinbar mit einer corticalen Inselläsion.  Bei Beschwerdepersistenz oder klinisc..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Zn",
+                        "Klinische Angaben Zn dorsaler Stabilisierung LWK 4-SWK 1 bei..."
+                    ],
+                    [
+                        "malignosuspekter",
+                        "...dwandel.  Übriger Befund: Kein Nachweis malignosuspekter intrapulmonaler Rundherde, keine Pleura..."
+                    ]
+                ],
+                [
+                    [
+                        "beurteiltelbar",
+                        "...ewegungsartefakten. Ruhige Milz. Soweit beurteiltelbar parenchymatöse Oberbauchorgane unauffäl..."
+                    ]
+                ],
+                [],
+                [],
+                [
+                    [
+                        "Volkmannschen",
+                        "...ng disloziertem Fragment im Bereich des Volkmannschen Dreiecks, nach medial disloziertem Frag..."
+                    ]
+                ],
                 [],
-                [],
-                [
-                    "Telebrix-Gastro",
-                    "Stomas"
-                ],
-                [],
-                [
-                    "Typ-A-Dissektion",
-                    "Ascendensersatzes",
-                    "Zahnästhetisch"
-                ],
                 [],
                 [
-                    "Femoralis",
-                    "Beinengefäße"
+                    [
+                        "multiplanaren",
+                        "...estützte Analyse und die Erstellung von multiplanaren Reformationen in sagittaler und coronar..."
+                    ],
+                    [
+                        "Hüft-TEP-Bilder",
+                        "...urteilung war aufgrund der einliegenden Hüft-TEP-Bilder mit entsprechenden Aufhärtungsartefakte..."
+                    ],
+                    [
+                        "röntgendichtiges",
+                        "...kten eingeschränkt.  Ein punktförmiges, röntgendichtiges Konkrement befand sich im rechten mittl..."
+                    ],
+                    [
+                        "adenomatöse",
+                        "...e im distalen Drittel beobachtet.  Eine adenomatöse Hypertrophie der linken Nebenniere war ..."
+                    ],
+                    [
+                        "röntgendichtiges",
+                        "...raktur.  Beurteilung: Ein punktförmiges röntgendichtiges Konkrement im rechten mittleren Drittel..."
+                    ]
+                ],
+                [
+                    [
+                        "Willisii",
+                        "...CT-Untersuchung vom Circulus arteriosus Willisii bis zum Oberschenkel mit gewichtsadapti..."
+                    ]
+                ],
+                [
+                    [
+                        "Rektumstumpfininsuffizienz",
+                        "Klinische Angaben Zur Abklärung der Rektumstumpfininsuffizienz nach Rektumstumpfnachresektion (Zur Abk..."
+                    ],
+                    [
+                        "Rektumstumpfininsuffizienz",
+                        "...omie und Lebertx bei PSC) Fragestellung Rektumstumpfininsuffizienz Methodik Spiral-CT-Untersuchung des Abd..."
+                    ]
+                ],
+                [],
+                [],
+                [
+                    [
+                        "Lasegue",
+                        "...ule (LWS). Einschränkung der Mobilität. Lasegue links positiv ab 20 Grad sowie leichte ..."
+                    ]
+                ],
+                [
+                    [
+                        "mgIod",
+                        "...kus?  Kontrastmittel 80 ml Ultravist 370mgIod/ml  Methodik Spiral-CT-Untersuchung von..."
+                    ],
+                    [
+                        "Sub",
+                        "...Kein Nachweis pneumonischer Infiltrate. Sub solider, 0,5 cm messender Rundherd im M..."
+                    ],
+                    [
+                        "enggestellten",
+                        "...owie vereinzelten abgrenzbaren deutlich enggestellten Dünndarmschlingen, passend zu einer Pas..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Mehrfaktige",
+                        "...lla und Mandibula vom 27.10.2022 vor.   Mehrfaktige Nasenbeinfraktur. Wurzelfrakturen der p..."
+                    ],
+                    [
+                        "periapikaler",
+                        "...iver Auflockerung der Wurzeln, z.B. ein periapikaler Abscessus. Zudem abgebrochener medialer..."
+                    ],
+                    [
+                        "Abscessus",
+                        "...rung der Wurzeln, z.B. ein periapikaler Abscessus. Zudem abgebrochener medialer Rand des ..."
+                    ],
+                    [
+                        "bds..",
+                        "...Regelrechte Belüftung der Mastoidzellen bds... Regelrechte Artikulation der beiden te..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "SCG-Abszess",
+                        "...ische Angaben Chronische Schmerzen nach SCG-Abszess links bei Z.n. mehreren Wunddebridement..."
+                    ],
+                    [
+                        "computergestützer",
+                        "...ovist, 7 ml, Chargennummer KT0LKCJ) mit computergestützer Errechnung entsprechender Subtraktionen..."
+                    ],
+                    [
+                        "hypointensen",
+                        "...nsen Knochenmarkssignals durch einen T1-hypointensen Signal sowie abgrenzbare kräftige Kontr..."
+                    ],
+                    [
+                        "Knochenmarksignals",
+                        "...Im übrigen unauffällige Darstellung des Knochenmarksignals.Flüssigkeitsisointenses Signal im links..."
+                    ],
+                    [
+                        "Flüssigkeitsisointenses",
+                        "...lige Darstellung des Knochenmarksignals.Flüssigkeitsisointenses Signal im linksseitigen AC-Gelenk mit A..."
+                    ],
+                    [
+                        "extrakapsulären",
+                        "...sbreitung nach dorsomediokaudal. In den extrakapsulären Anteilen Nachweis einer dicken und star..."
+                    ],
+                    [
+                        "kontrastmittelanreichernden",
+                        "...nteilen Nachweis einer dicken und stark kontrastmittelanreichernden  Kapsel mit zentralem flüssigkeitsisoin..."
+                    ],
+                    [
+                        "dorso-medio-kaudal",
+                        "...klavikulargelenk mit begleitendem, nach dorso-medio-kaudal auslaufendem Abszess. - Soweit intermod..."
+                    ],
+                    [
+                        "größenkonstantes",
+                        "...szess. - Soweit intermodal vergleichbar größenkonstantes, a.e. bipolares Schilddrüsenrest."
+                    ]
+                ],
+                [
+                    [
+                        "Ödämisierung",
+                        "...eils, begleitende fokale Ausdünnung und Ödämisierung des darüberliegenden retropatellären (i..."
+                    ],
+                    [
+                        "retropatellären",
+                        "...g und Ödämisierung des darüberliegenden retropatellären (inferomedial liegenden) Knorpels. Deut..."
+                    ],
+                    [
+                        "inferomedial",
+                        "...g des darüberliegenden retropatellären (inferomedial liegenden) Knorpels. Deutliches Kontusi..."
+                    ],
+                    [
+                        "Desinsertion",
+                        "... Wellig konfiguriertes MPFL mit fokaler Desinsertion am medialen Patellapol mit schaliger si..."
+                    ],
+                    [
+                        "schaliger",
+                        "...Desinsertion am medialen Patellapol mit schaliger signalfreier Absprengung, ca. 10 mm mes..."
+                    ],
+                    [
+                        "Avulsion",
+                        "...0 mm messend, im Sinne einer knöchernen Avulsion am patellaren Ansatz. Kein Patellatilt ..."
+                    ],
+                    [
+                        "patellaren",
+                        "..., im Sinne einer knöchernen Avulsion am patellaren Ansatz. Kein Patellatilt sowie -shift. ..."
+                    ],
+                    [
+                        "Trochleawinkel",
+                        "...dialen Trochleafacette bei regelrechten Trochleawinkel (146°). Darüber hinaus normaler TTTG Ab..."
+                    ],
+                    [
+                        "Avulsionsfraktur",
+                        "... begleitender chondraler Verletzung und Avulsionsfraktur und fokaler Desinsertion des MPFL. - Kn..."
+                    ],
+                    [
+                        "Desinsertion",
+                        "...etzung und Avulsionsfraktur und fokaler Desinsertion des MPFL. - Knochenmarködem des lateral..."
+                    ],
+                    [
+                        "retropatellären",
+                        "...urkondylus; - Knorpelödem des lateralen retropatellären Knorpels ohne fokale Läsion."
+                    ]
+                ],
+                [
+                    [
+                        "Schmorlsche-Knötchen",
+                        "...rund- als auch der Deckplatten i.S. von Schmorlsche-Knötchen. Regelrechtes Signalverhalten der Knoch..."
+                    ],
+                    [
+                        "paramediane",
+                        "...nd LWK 5/SWK 1. Segment: LWK 1/2: links paramediane Bandscheibenprotrusion mit Pellotierung..."
+                    ],
+                    [
+                        "rezessalem",
+                        "...oraminale oder spinale Enge, jedoch mit rezessalem Kontakt zur linken L5-Nervenwurzel. LWK..."
+                    ],
+                    [
+                        "paramedianen",
+                        "...tigen L5-Nervenwurzel durch einen links paramedianen Bandscheibenvorfall LWK 4/5 und eine br..."
+                    ],
+                    [
+                        "neuroforaminalen",
+                        "...on LWK 5/SWK 1, die zu einer relevanter neuroforaminalen Enge geführt hat."
+                    ]
+                ],
+                [
+                    [
+                        "SKS",
+                        "...ermatom.  Fragestellung Ausschluss BSV? SKS? Foraminalstenose? Rezessusstenose?  Me..."
+                    ],
+                    [
+                        "Foraminalstenose",
+                        "...om.  Fragestellung Ausschluss BSV? SKS? Foraminalstenose? Rezessusstenose?  Methodik MRT-Untersu..."
+                    ],
+                    [
+                        "intraspinaler",
+                        "...Segmenten LWK 2/3 und LWK 3/4, hier bei intraspinaler abgrenzbarer epiduraler Lipomatose mit ..."
+                    ],
+                    [
+                        "hypointenser",
+                        "...ntensität des Myelons.  Nachweis ebenso hypointenser narbiger postoperativer Veränderungen i..."
+                    ]
+                ],
+                [
+                    [
+                        "segmentige",
+                        "...e CT-Untersuchung vom 20.06.2024 vor. 7-segmentige Halswirbelsäule mit regelhaft erhaltene..."
+                    ],
+                    [
+                        "Knochenmarksödem",
+                        "... Ansonsten kein weiteres pathologisches Knochenmarksödem. Unauffälliges Signalverhalten des Myel..."
+                    ]
+                ],
+                [
+                    [
+                        "hypoechoger",
+                        "...iger Perfusion.  Ovalär konfigurierter, hypoechoger Läsion der rechten Glandula parotis von..."
+                    ],
+                    [
+                        "hypoechoger",
+                        "...nicht möglich. - Ovalär konfigurierter, hypoechoger Läsion der rechten Glandula parotis von..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "MKR-OP-Clips",
+                        "... links sowie der zwei Thoraxdrainagen.  MKR-OP-Clips in Projektion auf das obere Mediastinum..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "OP-Klips",
+                        "...tralklappenrekonstruktion, mediastinale OP-Klips, Sternalcerclagen, Hautklammernähte"
+                    ]
+                ],
+                [
+                    [
+                        "Vordiagnostiken",
+                        "...llung Verlaufskontrolle? Befund Mehrere Vordiagnostiken zum Befundvergleich vorliegen, zuletzt ..."
+                    ]
+                ],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [
+                    [
+                        "antientiv",
+                        "...n Patient mit klinischer Pneumonie, der antientiv ausbehandelt war. Nach Absetzen der Ant..."
+                    ],
+                    [
+                        "Infektwertanstieg",
+                        "..., wieder klinische Verschlechterung und Infektwertanstieg.  Fragestellung Bitte um CT-Thorax mit ..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Anerysm",
+                        "...ben Intraoperativ wurde ein popliteales Anerysm, passend zum Traumamechanismus, festges..."
+                    ],
+                    [
+                        "popliteale",
+                        "...estgestellt.  Fragestellung Besteht das popliteale Anerysm aus einer Pseudoaneurysma oder ..."
+                    ],
+                    [
+                        "Anerysm",
+                        "....  Fragestellung Besteht das popliteale Anerysm aus einer Pseudoaneurysma oder einer Di..."
+                    ],
+                    [
+                        "Spiral-CT-Angiographie",
+                        "...a oder einer Dissektion?  Methodik Eine Spiral-CT-Angiographie der Aorta abdominalis sowie der Becken-..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Angdeuetete",
+                        "...horax. Schwere Skoliose mit Osteopenie. Angdeuetete Hypodensität im LV-Septum basal, DD beg..."
+                    ]
+                ],
+                [
+                    [
+                        "Spiral-CT-Angiographie",
+                        "...l Ultravist 370 mg/ml (200 ml) Methodik Spiral-CT-Angiographie der Aorta abdominalis sowie der Becken-..."
+                    ],
+                    [
+                        "bds.",
+                        "...u Dreigefäßversorgung der Unterschenkel bds.. Venöses System durchgängig kontrastier..."
+                    ]
+                ],
+                [
+                    [
+                        "staging",
+                        "...Zyklen erhalten. Fragestellung Bitte CT staging vor dem 3 Zyklus Paclitaxel zur Kontrol..."
+                    ]
+                ],
+                [
+                    [
+                        "Unterlappen-Emphysema",
+                        "...inschlüsse ohne Restbefund. Angrenzende Unterlappen-Emphysema rechts.  Regredienter, sehr diskreter P..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Weiterehin",
+                        "...d Letzte Voruntersuchung vom 29.9.2022. Weiterehin ausgeprägte Schwellung der Nasenhaupthö..."
+                    ],
+                    [
+                        "weiterehin",
+                        "...eilung Die Nasennebenhöhlen zeigen eine weiterehin ausgeprägte Schwellung der Nasenhaupthö..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "diebnt",
+                        "...er Reformationen.  Befund Zum Vergleich diebnt die konventionelle Voruntersuchung vom ..."
+                    ],
+                    [
+                        "Befundungsteam",
+                        "...inlich.  interne Notiz: Leber Timm, das Befundungsteam hat dieses CT leider vergessen; daher s..."
+                    ],
+                    [
+                        "nacht",
+                        "...r schicke ich dir das ungefragt Samstag nacht in die Liste. Lasst diese Notiz gerne d..."
+                    ]
+                ],
+                [
+                    [
+                        "Kontrastierungs-",
+                        "... kontrastiert. Fragliches progredientes Kontrastierungs- und Perfusionsdefizit von Dünndarmschli..."
+                    ]
+                ],
+                [
+                    [
+                        "Child-Pugh-Stadium",
+                        "... mit alkoholassoziierter Leberzirrhose, Child-Pugh-Stadium C mit hepatorenalem Syndrom. LTX-Evalua..."
+                    ],
+                    [
+                        "LTX-Evaluation",
+                        "...gh-Stadium C mit hepatorenalem Syndrom. LTX-Evaluation  Fragestellung Bitte um Evaluation vor ..."
+                    ],
+                    [
+                        "LTX-Listing",
+                        "...  Fragestellung Bitte um Evaluation vor LTX-Listing  Kontrastmittel 80 ml Ultravist 370 mg ..."
+                    ]
+                ],
+                [
+                    [
+                        "sepstisch",
+                        "...rialischämie Fragestellung Patient wird sepstisch, steigende cholestase Parameter bitten ..."
+                    ],
+                    [
+                        "cholestase",
+                        "...llung Patient wird sepstisch, steigende cholestase Parameter bitten um 3 Phasen CT mit ora..."
+                    ],
+                    [
+                        "Telebrix-Gastro",
+                        "...ml Ultravist 370mg Jod/ml (500ml) 30 ml Telebrix-Gastro 300mgJ/ml/100ml Methodik Spiral-CT-Unte..."
+                    ],
+                    [
+                        "ausgeleiteten",
+                        "...dickung der über das linksseitige Stoma ausgeleiteten Darmschlinge; daher erscheint ein Infek..."
+                    ]
+                ],
+                [
+                    [
+                        "dediziertzer",
+                        "...alen Lymphadenopathie, soweit bei nicht dediziertzer Untersuchung erfasst. Abdomen: In arter..."
+                    ],
+                    [
+                        "überkontrastiertes",
+                        "... erfasst. Abdomen: In arterieller Phase überkontrastiertes Areal in Lebersegment IVb, DD z.B. Häma..."
+                    ]
+                ],
+                [
+                    [
+                        "Telebrix-Gastro",
+                        "... Ultravist 370 mg Jod/ml (500 ml) 15 ml Telebrix-Gastro 300 mg/ml/100ml  Methodik Spiral-CT-Unt..."
+                    ],
+                    [
+                        "hausgepflegten",
+                        "...gelrechte Kontrastierung des nicht mehr hausgepflegten Colonlumens vom Rektum bis hin zum abor..."
+                    ],
+                    [
+                        "Darmmukosa",
+                        "...rterien. Regelrechte Kontrastierung der Darmmukosa.  Bauchwandhernie/Rektumsdiastase im ve..."
+                    ],
+                    [
+                        "Bauchwandhernie",
+                        "...lrechte Kontrastierung der Darmmukosa.  Bauchwandhernie/Rektumsdiastase im ventralen Unterbauch..."
+                    ],
+                    [
+                        "Rektumsdiastase",
+                        "...ierung der Darmmukosa.  Bauchwandhernie/Rektumsdiastase im ventralen Unterbauch mit Prolaps ein..."
+                    ],
+                    [
+                        "Darmmukosa",
+                        "...störung. Regelrechte Kontrastierung der Darmmukosa.  Bauchwandhernie/Rektumsdiastase im ve..."
+                    ],
+                    [
+                        "Bauchwandhernie",
+                        "...lrechte Kontrastierung der Darmmukosa.  Bauchwandhernie/Rektumsdiastase im ventralen Unterbauch..."
+                    ],
+                    [
+                        "Rektumsdiastase",
+                        "...ierung der Darmmukosa.  Bauchwandhernie/Rektumsdiastase im ventralen Unterbauch mit Prolaps ein..."
+                    ]
+                ],
+                [
+                    [
+                        "low-dose",
+                        "...n sowie Harnstau I-II° links.  Bitte um low-dose CT zur Steinsuche  Fragestellung V.a. U..."
+                    ]
+                ],
+                [
+                    [
+                        "PAt",
+                        "Klinische Angaben PAt nach TriClip und jetzt Nachweis eines s..."
+                    ]
+                ],
+                [
+                    [
+                        "progredierte",
+                        "...ibrose mit Honigwabenmuster. Zusätzlich progredierte mediastinale Lymphadenopathie.  Diese V..."
+                    ]
+                ],
+                [
+                    [
+                        "perikardeguss",
+                        "...dissektion am Bulbus nach TAVI, kleiner perikardeguss. Beurteilung Aorta, Carotiden.  Kontras..."
+                    ],
+                    [
+                        "Phasenkonstanter",
+                        "...Pigtail-Katheter perikardial. hierunter Phasenkonstanter Perikarderguss mit ca. 1,8 cm mit ca. 1..."
+                    ],
+                    [
+                        "Kontrastmittelextravasation",
+                        "...der Zugangswege. Hier bds. Nachweis von Kontrastmittelextravasation.  Ösophagus sekretgefüllt, sowie zum Te..."
+                    ],
+                    [
+                        "aktiveste",
+                        "...t angrenzenden Belüftungsstörungen. Die aktiveste Blutungsquelle ist die subdiaphragmale ..."
+                    ],
+                    [
+                        "subdiaphragmale",
+                        "...n. Die aktiveste Blutungsquelle ist die subdiaphragmale Blutung im Bereich des Zugangsweges der..."
+                    ],
+                    [
+                        "sekreverlegt",
+                        "...um des linken Unterlappens ist zum Teil sekreverlegt, was einer Aspiration entspricht."
+                    ]
+                ],
+                [
+                    [
+                        "Spiral-CT-Angiographie",
+                        "...l Ultravist 370 mg/ml (500 ml) Methodik Spiral-CT-Angiographie der Aorta abdominalis sowie der Becken-..."
+                    ],
+                    [
+                        "Visceralgefäße",
+                        "...ige Vasosklerose der Aorta abdominalis. Visceralgefäße regelrecht kontrastiert, soweit erfasst..."
+                    ],
+                    [
+                        "schmalkalibrierte",
+                        "...rastiert, soweit erfasst.  Rechts: Über schmalkalibrierte Kollateralen überbrückter, a.e. akuter ..."
+                    ]
+                ],
+                [
+                    [
+                        "VJImit",
+                        "...llarabszess und Thrombose/Phlebitis der VJImit mögl. sept. Embolien? Danke  Fragestell..."
+                    ],
+                    [
+                        "sept",
+                        "...nd Thrombose/Phlebitis der VJImit mögl. sept. Embolien? Danke  Fragestellung s.o.  K..."
+                    ],
+                    [
+                        "mgIod",
+                        "... s.o.  Kontrastmittel 1 ml Ultravist 370mgIod/ml (500 ml)  Methodik Spiral-CT-Untersu..."
+                    ]
+                ],
+                [
+                    [
+                        "Weichgewebsimwachsende",
+                        "...ttel, sowie umgebend des linken Ureters Weichgewebsimwachsende. Diese Weichgewebsimwachsende zeigt sic..."
+                    ],
+                    [
+                        "Weichgewebsimwachsende",
+                        "...n Ureters Weichgewebsimwachsende. Diese Weichgewebsimwachsende zeigt sich auch distal des Harnleiterko..."
+                    ],
+                    [
+                        "Weichgewebsimwachsende",
+                        "...ttel, sowie umgebend des linken Ureters Weichgewebsimwachsende. Diese Weichgewebsimwachsende zeigt sic..."
+                    ],
+                    [
+                        "Weichgewebsimwachsende",
+                        "...n Ureters Weichgewebsimwachsende. Diese Weichgewebsimwachsende zeigt sich auch distal des Harnleiterko..."
+                    ],
+                    [
+                        "ascendierender",
+                        "...istal des Harnleiterkonkrementes, somit ascendierender Harnwegsinfekt links. Konsekutiver Harn..."
+                    ]
+                ],
+                [
+                    [
+                        "multiplanaren",
+                        "...ergestützte Analyse und Anfertigung von multiplanaren Reformationen in sagittaler und coronar..."
+                    ],
+                    [
+                        "Modalitytten",
+                        "...mforderung unter 1 cm kann aufgrund der Modalitytten dem Nachweis entgehen. Eine kleine Nebe..."
+                    ],
+                    [
+                        "Modalitytten",
+                        "...mforderung unter 1 cm kann aufgrund der Modalitytten dem Nachweis entgehen."
+                    ]
+                ],
+                [
+                    [
+                        "Myomen",
+                        "...m links. Uterusverkalkungen, passend zu Myomen. Dickdarmdivertikel. Vasosklerose."
+                    ]
+                ],
+                [
+                    [
+                        "Diarrhöe",
+                        "...e, Druckschmerzen im linken Unterbauch, Diarrhöe und Erbrechen seit drei Tagen. Keine au..."
+                    ],
+                    [
+                        "Telebrix-IG",
+                        "...gkeit, freie Luft?  Kontrastmittel 5 ml Telebrix-IG 300 mg I/ml /100 ml  Methodik Spiral-CT..."
+                    ],
+                    [
+                        "Weichgewebsimibierung",
+                        "...wandverdickten Darmabschnitte deutliche Weichgewebsimibierung und zum Teil Flüssigkeitsstraßen, keine..."
+                    ],
+                    [
+                        "Steilgestellte",
+                        "...s. basale Belüftungsstörungen.  Skelett:Steilgestellte Wirbelsäule, soweit erfasst. Fortgeschr..."
+                    ]
+                ],
+                [
+                    [
+                        "Laparskopie",
+                        "Klinische Angaben  Vor einer Woche Laparskopie bei Briden, jetzt massiv erhöhte Infekt..."
+                    ],
+                    [
+                        "Iml",
+                        "...  Kontrastmittel  80 ml Ultravist 370mg/Iml (200 ml)  Methodik  Mehrzeilenspiral-CT..."
+                    ],
+                    [
+                        "Mehrzeilenspiral-CT-Untersuchung",
+                        "...Ultravist 370mg/Iml (200 ml)  Methodik  Mehrzeilenspiral-CT-Untersuchung des Abdomens nach intravenöser Applikat..."
+                    ]
+                ],
+                [
+                    [
+                        "Pyelourethral",
+                        "...enwandverdickung und verdickte Wand des Pyelourethral, sowie umgebendes Imbibieren. Aufgetrie..."
+                    ],
+                    [
+                        "Imbibieren",
+                        "...and des Pyelourethral, sowie umgebendes Imbibieren. Aufgetriebene Darstellung der linken N..."
+                    ]
+                ],
+                [
+                    [
+                        "Mehrzeilenspiral-CT-Untersuchung",
+                        "...travist 370mg/Iod/ml (200 ml)  Methodik Mehrzeilenspiral-CT-Untersuchung der infrarenalen arteriellen, einschlie..."
+                    ],
+                    [
+                        "Poststenotisches",
+                        "...ca communis. Höhergradige Stenosierung. Poststenotisches erweitertes Gefäßlumen. Regelrechte Kon..."
+                    ],
+                    [
+                        "stenosierter",
+                        "... sich durch gemischte Plaque hochgradig stenosierter, gibt jedoch poststenotisch die A. femo..."
+                    ]
+                ],
+                [
+                    [
+                        "dichteregrediert",
+                        "...rherigen Abmessung von 1 cm größen- und dichteregrediert hat. Die Dichte des Rundherdes ist eben..."
+                    ],
+                    [
+                        "semisoliden",
+                        "...ebenfalls abgenommen und zeigt nun eine semisoliden Struktur. Unveränderte Veränderungen re..."
+                    ],
+                    [
+                        "hilum",
+                        "...se von Lymphadenopathien im Bereich des hilum, der Mediastinum oder der Axilla. Weite..."
+                    ]
+                ],
+                [],
+                [],
+                [
+                    [
+                        "Schuttelfrost",
+                        "...karzinose (Ovarialkarzinom). Fieber und Schuttelfrost seit zwei Tagen. Drainagematerial berei..."
+                    ],
+                    [
+                        "kompatibele",
+                        "...ch vereinzelte mit pleuralen Adhäsionen kompatibele Konturen des z.T. belüftungsgestörten U..."
+                    ],
+                    [
+                        "floridem",
+                        "...lidierungen rechts pulmonal, passend zu floridem Pleuraempyem. - Progredienter Seropneum..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Mehrzeilige-Spiral-CT",
+                        "... besprochen, bitte natürlich.  Methodik Mehrzeilige-Spiral-CT Untersuchung des Thorax. 5/1 mm Schicht..."
+                    ],
+                    [
+                        "Dichtewerte",
+                        "...f Höhe der AKE. Der seröse Anteil weist Dichtewerte bis ca. 26 HU sowie Lufteinschlüsse auf..."
+                    ],
+                    [
+                        "pektoralen",
+                        "... Mutmaßlicher Fistelgang zu einem links pektoralen Weichteilemphysem in diesem Bereich. Di..."
+                    ],
+                    [
+                        "Thoraxwand-Dehiszenz",
+                        "...  Nativ CT-grafisch kein Nachweis einer Thoraxwand-Dehiszenz im engeren Sinne. Kein Nachweis einer L..."
+                    ],
+                    [
+                        "Dichtewerte",
+                        "...f Höhe der AKE. Der seröse Anteil weist Dichtewerte bis ca. 26 HU sowie Lufteinschlüsse auf..."
+                    ],
+                    [
+                        "pektoralen",
+                        "... Mutmaßlicher Fistelgang zu einem links pektoralen Weichteilemphysem in diesem Bereich. Di..."
+                    ],
+                    [
+                        "Thoraxwand-Dehiszenz",
+                        "...  Nativ CT-grafisch kein Nachweis einer Thoraxwand-Dehiszenz im engeren Sinne. Kein Nachweis einer L..."
+                    ]
+                ],
+                [
+                    [
+                        "Multiplane",
+                        "... Weichteilfenster; 3/1 mm Schichtdicke. Multiplane Reformationen.  Befund Keine Voruntersu..."
+                    ],
+                    [
+                        "Sinusmaxillaris-Inhalt",
+                        "...merarius) links mit nicht eindeutig vom Sinusmaxillaris-Inhalt abgrenzbarer Verlegungshöhle, als mögli..."
+                    ],
+                    [
+                        "Sinusmaxillaris-Inhalt",
+                        "...merarius) links mit nicht eindeutig vom Sinusmaxillaris-Inhalt abgrenzbarer Verlegungshöhle, als mögli..."
+                    ]
+                ],
+                [
+                    [
+                        "natiiver",
+                        "...astmittels (Ultravist 370). - Erfassung natiiver und in arterieller und venöser Kontrast..."
+                    ],
+                    [
+                        "iliacae",
+                        "...is und Aorta abdominalis bis in die Aa. iliacae communes zur Therapie des bekannten, in..."
+                    ],
+                    [
+                        "Iliakalstents",
+                        "...en Bauchaortenaneurysmas mittels zweier Iliakalstents, sowie Überstentung des Abgangs der rec..."
+                    ],
+                    [
+                        "Kortikalisinsel.",
+                        "...riebene Mehrsklerosierung des LWK 3, DD Kortikalisinsel.. Beurteilung: Zwischenzeitlich eingebra..."
+                    ],
+                    [
+                        "iliacae",
+                        "...is und Aorta abdominalis bis in die Aa. iliacae communes zur Therapie des bekannten, in..."
+                    ],
+                    [
+                        "Iliakalstents",
+                        "...en Bauchaortenaneurysmas mittels zweier Iliakalstents, sowie Überstentung des Abgangs der rec..."
+                    ],
+                    [
+                        "endolektischen",
+                        "...ich als stabil und ohne Anzeichen einer endolektischen Komplikation oder aktiver Blutung. Die ..."
+                    ],
+                    [
+                        "kalkdichtem",
+                        "... links mit erweitertem Nierenbecken und kalkdichtem Konkrement ist ein bereits bekanntes Pr..."
+                    ],
+                    [
+                        "fEVAR-Verfahrensbehandlung",
+                        "...ient in einem stabilen Zustand nach der fEVAR-Verfahrensbehandlung des infrarenalen Bauchaortenaneurysmas...."
+                    ],
+                    [
+                        "endolektische",
+                        "...aortenaneurysmas. Die Anzeigen für eine endolektische Komplikation, aktive Blutung oder infek..."
+                    ]
+                ],
+                [
+                    [
+                        "Glasgow-Komaskala",
+                        "...Klinische Angaben Treppensturz. Initial Glasgow-Komaskala von 3. Klinisch bekannte Krepitationen ..."
+                    ],
+                    [
+                        "Zwerchfellkuppe",
+                        "...gkeit bis 70 HU angrenzend an die linke Zwerchfellkuppe in Nachbarschaft zu der Rippenserienfra..."
+                    ],
+                    [
+                        "intrathorakaler",
+                        "...uma mit Mantelpneumothorax und geringer intrathorakaler Blutkollektion; sowie Lungenkontusionen..."
+                    ],
+                    [
+                        "parietotemporal",
+                        "...slozierten Schädelkalottenfraktur links parietotemporal mit Einstrahlen in die Schädelbasis vom..."
+                    ],
+                    [
+                        "mittellinienüberschreitenden",
+                        "...dzellen bis zum linken Karotiskanal und mittellinienüberschreitenden den Sinus sphenoidalis mit entsprechend..."
+                    ],
+                    [
+                        "adominell",
+                        "...echts zeigen sich: Dem Zwerchfell links adominell aufliegendes, periplenischer Hämatom oh..."
+                    ],
+                    [
+                        "periplenischer",
+                        "...werchfell links adominell aufliegendes, periplenischer Hämatom ohne Nachweis einer Organlazera..."
+                    ]
+                ],
+                [
+                    [
+                        "Zn",
+                        "...Angaben neue Höhenminderung BWK 7 sowie Zn bds Schulterlux mit linksseitiger rever..."
+                    ],
+                    [
+                        "knöchernern",
+                        "... bitte Schulter und BWS CT.  Frage nach knöchernern Frakturen (Schulter und BWS) Methodik N..."
+                    ]
+                ],
+                [],
+                [],
+                [
+                    [
+                        "Radialis-Transplantat",
+                        "...nks, ND 1-3 links und Defektdeckung mit Radialis-Transplantat Fragestellung Verlaufskontrolle Kontras..."
+                    ],
+                    [
+                        "Vorgutuntersuchung",
+                        "...ravist 370 mg/ml (500 ml) Befund Letzte Vorgutuntersuchung vom 12.1.2024.  Partiell eingeschränkte..."
+                    ],
+                    [
+                        "metastasenanhängigen",
+                        "... HWK 4. Beurteilung Kein Nachweis einer metastasenanhängigen Läsion im Untersuchungsvolumen."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Metakarpalhalsfraktur",
+                        "...mentäre, radialseitig längs verlaufende Metakarpalhalsfraktur (4. Halsknochen), einstrahlend über die..."
+                    ],
+                    [
+                        "Carpus",
+                        "...ralisierte Weichteilschwellung über dem Carpus. Interne Notiz Heute bitte nicht ungefr..."
+                    ]
+                ],
+                [
+                    [
+                        "intraokulärem",
+                        "...linken Auges mit Linsenverletzung, v.a. intraokulärem Fremdkörper.  Fragestellung Intraokulär..."
+                    ]
+                ],
+                [],
+                [],
+                [
+                    [
+                        "überkontrastiertes",
+                        "...tenose.   Abdomen: In arterieller Phase überkontrastiertes Areal in Lebersegment IVb, DD z.B. Häma..."
+                    ]
+                ],
+                [
+                    [
+                        "Mitralkalk",
+                        "...kein Pneumothorax. Kein Perikarderguss. Mitralkalk. Vasosklerose inklusive Coronarsklerose..."
+                    ]
+                ],
+                [
+                    [
+                        "Non-Hodgkin-Lymphom",
+                        "...sionsstörung unklarer Genese, bekanntes Non-Hodgkin-Lymphom unter Therapie, bekannte Colitis ulcero..."
+                    ]
+                ],
+                [
+                    [
+                        "prä-OP",
+                        "...P am 24.07.2024  Fragestellung Staging, prä-OP  Kontrastmittel 80 ml Ultravist 370 mg/..."
+                    ],
+                    [
+                        "Mittellappensegments",
+                        "...elektatische Veränderungen des medialen Mittellappensegments. Kein Perikarderguss. Vasosklerose inkl..."
+                    ],
+                    [
+                        "Leberparenchymläsion",
+                        "...kein Nachweis einer metastasensuspekten Leberparenchymläsion. Singuläre, tief angelegte Niere links...."
+                    ],
+                    [
+                        "peri-kaval",
+                        "...doch prominenter Lymphknoten bis 0,8 cm peri-kaval angrenzendes Lebersegment II. Stomaanla..."
+                    ],
+                    [
+                        "perikaval",
+                        "...al pathologisch vergrößerte Lymphknoten perikaval angrenzendes Lebersegment II. Darüber h..."
+                    ]
+                ],
+                [
+                    [
+                        "Regressz",
+                        "...gulation.  Fragestellung Befundzunahme? Regressz? Frische Blutanteile?  Methodik Native ..."
+                    ]
+                ],
+                [
+                    [
+                        "mgIod",
+                        "...pie.  Kontrastmittel 60 ml Ultravist 370mgIod/ml (200 ml)  Methodik Spiral-CT-Untersu..."
+                    ]
+                ],
+                [
+                    [
+                        "kontrastmittelanreichernden",
+                        "...e Angaben Abklärung einer MR grafischen kontrastmittelanreichernden Nierenzyste am linken Nierenoberpol. Fr..."
+                    ],
+                    [
+                        "urografischer",
+                        "...ätzlich nativ und in arterieller, sowie urografischer Kontrastmittelphase. 5 / 1 mm Rekonstru..."
+                    ],
+                    [
+                        "Ösophagealer",
+                        "...oten. Keine thorakale Lymphadenopathie. Ösophagealer Sekretspiegel wie bei gastroösophageale..."
+                    ],
+                    [
+                        "Sekretspiegel",
+                        "...horakale Lymphadenopathie. Ösophagealer Sekretspiegel wie bei gastroösophagealem Reflux. Kein..."
+                    ],
+                    [
+                        "Hilusniveau",
+                        "... Unterpol, sowie bis 0,9 cm messend auf Hilusniveau. Perirenales Schwielen links. Parenchym..."
+                    ],
+                    [
+                        "infrarenales",
+                        "...Vasosklerose. Bis ca. 3,6 cm messendes, infrarenales Bauchaortenaneurysma. Fettige Leistenhe..."
+                    ]
+                ],
+                [
+                    [
+                        "biatrialer",
+                        "...enose, progredientem Perikarderguss und biatrialer Kardiomegalie.  Verlaufs-CT erbeten bei..."
+                    ],
+                    [
+                        "superaortales",
+                        "...g der Arteria vertebralis rechts als 3. superaortales Gefäß. Truncus bicaroticus. Konstante, ..."
+                    ]
+                ],
+                [
+                    [
+                        "CT-HTA",
+                        "...llöses Pemphigoid Fragestellung Anfrage CT-HTA z.B. Malignität bei stark ausgeprägtem ..."
+                    ],
+                    [
+                        "bullösem",
+                        "... z.B. Malignität bei stark ausgeprägtem bullösem Pemphigoid Kontrastmittel 100 ml Ultrav..."
+                    ],
+                    [
+                        "Skoliotische",
+                        "...hie, kein Nachweis einer Raumforderung. Skoliotische Fehlhaltung des Achsskelett, hierunter ..."
+                    ],
+                    [
+                        ".a",
+                        "...hologischen Wert. Axiale Hiatushernie. C.a. 4 x 3 cm messendes Lipom innerhalb des..."
+                    ],
+                    [
+                        "bds.",
+                        "...nktförmige Milzverkalkung. Nierenzysten bds.. Lipomatöser Pankreasumbau. Darüber hin..."
+                    ],
+                    [
+                        "zahnverlegung",
+                        "...rsuchungsvolumen. Interne Notiz:  Keine zahnverlegung - aber radikuläre Zyste re. maxillär"
+                    ]
+                ],
+                [
+                    [
+                        "stuhlleeren",
+                        "...uktion des Colon descendens bis hin zur stuhlleeren Colon sigmoideum. Kein Nachweis einer P..."
+                    ],
+                    [
+                        "Para",
+                        "...rarefizierten Lebervenen, komprimiertem Para hypertrophem Lobus caudatus und inhomog..."
+                    ]
+                ],
+                [
+                    [
+                        "bds.",
+                        "...äre Lymphadenopathie. Gynäkomastia vera bds.. Z. n. LTX mit entsprechendem Fremdmate..."
+                    ],
+                    [
+                        "bds.",
+                        "...al rechts, ektop. Perirenales Stranding bds.. Pankreaslipomatose, soweit erfasst. Am..."
+                    ]
+                ],
+                [
+                    [
+                        "Visceralgefäße",
+                        "...pathie.  Regelrechte Kontrastierung der Visceralgefäße. Nebenbefundlich Nebennierenhypertrophi..."
+                    ]
+                ],
+                [
+                    [
+                        "Vv",
+                        "...ersuchung vom 18.01.2024  Stents in den Vv. brachiocephalicae beidseits, jeweils d..."
+                    ],
+                    [
+                        "brachiocephalicae",
+                        "...chung vom 18.01.2024  Stents in den Vv. brachiocephalicae beidseits, jeweils distal verankert in ..."
+                    ],
+                    [
+                        "Stentthrombose",
+                        "...ephalica, vereinbar mit einer umspülten Stentthrombose; jedoch aktuell in geringerer Ausprägun..."
+                    ],
+                    [
+                        "wandständige",
+                        "...ales Ödem.  Beurteilung Unvollständige, wandständige Stentthrombose in der Vena brachiocepha..."
+                    ],
+                    [
+                        "Stentthrombose",
+                        "...eurteilung Unvollständige, wandständige Stentthrombose in der Vena brachiocephalica rechts. Re..."
+                    ]
+                ],
+                [
+                    [
+                        "Mehrzeilenspiral-CT-Untersuchung",
+                        "...ravist 370 mg Iod/ml (500 ml)  Methodik Mehrzeilenspiral-CT-Untersuchung des linken Armes. Erfassung der venösen..."
+                    ],
+                    [
+                        "Multiplarereformationen",
+                        "...avenöser Applikation von Ultravist 370. Multiplarereformationen. Ausfertigung von Bildserien mittels Kn..."
+                    ]
+                ],
+                [
+                    [
+                        "Granulosazell-Tumor",
+                        "Klinische Angaben Granulosazell-Tumor der Ovar. Zuvor Ovarektomie links.  Fra..."
+                    ],
+                    [
+                        "Telebrix-Gastro",
+                        "...ltravist 370 mg Iod/ml (500 ml) - 30 ml Telebrix-Gastro 300 mg J/ml/100ml - 90 ml Ultravist 370..."
+                    ],
+                    [
+                        "Telebrix-Gastro",
+                        "...ltravist 370 mg Iod/ml (500 ml) - 30 ml Telebrix-Gastro 300 mg J/ml/100ml  Methodik: - Spiral-C..."
+                    ],
+                    [
+                        "semi",
+                        "...en Unterlappensegment links bis 1,3 cm, semi solide sowie pleuraständig bis 0,6 cm s..."
+                    ],
+                    [
+                        "sub",
+                        "...i solide sowie pleuraständig bis 0,6 cm sub solide im lateralen Mittellappensegment..."
+                    ]
+                ],
+                [
+                    [
+                        "klammernach",
+                        "...gaben Wie viel Speiserröhre noch da? Wo klammernach?  Komplikationen: Sleeve -> Magenbypass..."
+                    ],
+                    [
+                        "Anastomosennaht",
+                        "...estiver Anastomose. Es findet sich eine Anastomosennaht gastroösophageal auf Höhe der Zwerchfel..."
+                    ],
+                    [
+                        "perfundiertes",
+                        "...e 1,9 cm messende Läsion mit DD kräftig perfundiertes Hämangiom. Nierenzysten links. Kleine h..."
+                    ],
+                    [
+                        "Anastomosennaht",
+                        "...estiver Anastomose. Es findet sich eine Anastomosennaht gastroösophageal auf Höhe der Zwerchfel..."
+                    ]
+                ],
+                [
+                    [
+                        "Visceralgefäße",
+                        "...pathie.  Regelrechte Kontrastierung der Visceralgefäße trotz kontinuierlicher Erweiterung der ..."
+                    ]
+                ],
+                [
+                    [
+                        "Corticalisinseln",
+                        "...eutliche Dislokation.  Nebenbefundlich: Corticalisinseln BWK 4. Degenerative Veränderungen des t..."
+                    ],
+                    [
+                        "Lungenapex",
+                        "...ssten Achsskelett. Teilerfasster linker Lungenapex unauffällig."
+                    ]
+                ],
+                [
+                    [
+                        "Weichgewebsimibierung",
+                        "...ominente Lymphknoten. Geringe umgebende Weichgewebsimibierung. - Flüssigkeitsäquivalente Leberläsion ..."
+                    ],
+                    [
+                        "Uretersystem",
+                        "...ren mit minimalem Konkrement im rechten Uretersystem. - Verdickte Harnblasenwand mit promine..."
+                    ]
+                ],
+                [
+                    [
+                        "kastratresistentes",
+                        "Klinische Angaben Metastasiertes kastratresistentes Prostatakarzinom. PSA-Anstieg und Rücke..."
+                    ]
+                ],
+                [
+                    [
+                        "bn",
+                        "...Persistierende unklare Fistelung bei Z. bn. nach VATS-Lobektomie des rechten Unter..."
+                    ],
+                    [
+                        "VATS-Lobektomie",
+                        "...rende unklare Fistelung bei Z. bn. nach VATS-Lobektomie des rechten Unterlappens am 2.7.2024.  ..."
+                    ],
+                    [
+                        "CT-Thorax-low-Dose-Untersuchung",
+                        "...2024.  Fragestellung Wir bitten um eine CT-Thorax-low-Dose-Untersuchung zur Beurteilung und Therapieplanung.  M..."
+                    ],
+                    [
+                        "Mehrzeilenspiral-CT-Untersuchung",
+                        "...g und Therapieplanung.  Methodik Native Mehrzeilenspiral-CT-Untersuchung des Thorax mit Bildserien mittels Lunge..."
+                    ],
+                    [
+                        "Multiplane-Reformationen",
+                        "...mittels Lungen- und Weichteilkernellen. Multiplane-Reformationen in 5/1 mm Schichtdicke.  Befund Letzte ..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "hypertrophie",
+                        "...ch Cholezystektomie zeigte sich geringe hypertrophie der linken Nebenniere, eine Parapelvine..."
+                    ]
+                ],
+                [
+                    [
+                        "varikoös",
+                        "...eurteilbar ist die Pfortader am ehesten varikoös transformiert, insbesondere intrahepati..."
+                    ]
+                ],
+                [
+                    [
+                        "nichtionischen",
+                        "...horax nach intravenöser Applikation des nichtionischen, röntgendichten Kontrastmittels (Ultrav..."
+                    ],
+                    [
+                        "Pleurale",
+                        "...hen- und Mitralklappenringverkalkungen. Pleurale Raumforderung links größenprogreditiv m..."
+                    ],
+                    [
+                        "größenprogreditiv",
+                        "...kalkungen. Pleurale Raumforderung links größenprogreditiv mit hilfugalem Querdurchmesser von ca. ..."
+                    ],
+                    [
+                        "hilfugalem",
+                        "...umforderung links größenprogreditiv mit hilfugalem Querdurchmesser von ca. 0,9 cm (vormals..."
+                    ],
+                    [
+                        "Trachealbifurkation",
+                        "...n mediastinalen Lymphknotens kaudal der Trachealbifurkation (VU: 1,5 cm, nun 1,7 cm quer). Keine so..."
+                    ],
+                    [
+                        "infrakarinalen",
+                        "...Größenprogredienz des malignomsuspekten infrakarinalen Lymphknotens. Bds. progrediente Pleurae..."
+                    ]
+                ],
+                [
+                    [
+                        "Fenestrierung",
+                        "...ris zum Teil nicht abgrenzbar; wie nach Fenestrierung (DD chronisch entzündlicher Genese). We..."
+                    ],
+                    [
+                        "Fenestrierung",
+                        "...ris zum Teil nicht abgrenzbar; wie nach Fenestrierung (DD chronisch entzündlicher Genese). We..."
+                    ]
+                ],
+                [
+                    [
+                        "strahlentehrapeutische",
+                        "...  Bitte CT- Wirbelsäule und CT-Hals zur strahlentehrapeutische Nachsorge Ende Juni (falls nicht bereit..."
+                    ],
+                    [
+                        "cervicalen",
+                        "...024.  Hals: Die vorbekannten, suspekten cervicalen Lymphknoten stellen sich im Vergleich z..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "cummonuis",
+                        "...sates. Stent der V. iliaca externa bis -cummonuis links, wahrscheinlich chronisch verschl..."
+                    ]
+                ],
+                [
+                    [
+                        "Mehrzeilenspiral-CT-Untersuchung",
+                        "...ravist 370mg Jod/ml (500 ml)  Methodik  Mehrzeilenspiral-CT-Untersuchung des Abdomens mit intravenöser Applikati..."
+                    ]
+                ],
+                [
+                    [
+                        "spuria",
+                        "Klinische Angaben A. spuria nach TAVI, Fragestellung CT-Angio+Bein+..."
+                    ],
+                    [
+                        "Mehrzeilenspiral-CT-Untersuchung",
+                        "...travist 370 mg/Iod/ml (500 ml) Methodik Mehrzeilenspiral-CT-Untersuchung von der infrarenalen Aorta abdominalis ..."
+                    ],
+                    [
+                        "nichtionischen",
+                        "...men nach intravenöser Applikation eines nichtionischen, röntgendichteren Kontrastmittels (Ultr..."
+                    ],
+                    [
+                        "röntgendichteren",
+                        "...nöser Applikation eines nichtionischen, röntgendichteren Kontrastmittels (Ultravist 370). Erfass..."
+                    ],
+                    [
+                        "superfizialis",
+                        "...ssigkeitskollektion um die A. femoralis superfizialis, DD Serom/Hämatom. Kein Nachweis einer ..."
+                    ],
+                    [
+                        "Weichgewebsimibierung",
+                        "...ntem Extravasat ventralwärts. Umgebende Weichgewebsimibierung. Bekannte Vasosklerose, infrarenal beto..."
+                    ],
+                    [
+                        "superfizialis",
+                        "...ssigkeitskollektion um die A. femoralis superfizialis, DD Serom/Hämatom. Kein Nachweis einer ..."
+                    ],
+                    [
+                        "Weichgewebsimibierung",
+                        "...ntem Extravasat ventralwärts. Umgebende Weichgewebsimibierung."
+                    ]
+                ],
+                [
+                    [
+                        "Dikdarmdivertikel",
+                        "...lige Darstellung der viszeralen Organe. Dikdarmdivertikel. Keine freie Luft, keine freie Flüssigk..."
+                    ]
+                ],
+                [
+                    [
+                        "Infiltation",
+                        "...m rechts; Größenprogress in der MRT mit Infiltation der S1- und S2-Wurzel.  Fragestellung K..."
+                    ],
+                    [
+                        "Ausdehung",
+                        "...und S2-Wurzel.  Fragestellung Knöcherne Ausdehung? Implantatlage?  Kontrastmittel 1 ml Ul..."
+                    ],
+                    [
+                        "mittellinienüberschreitender",
+                        "...ßen der Tumor überschreitende, nun auch mittellinienüberschreitender Tumor osteolytisch mit Hauptlast in der..."
+                    ],
+                    [
+                        "wasserisodenser",
+                        "...eilbar); größere Nierenzyste rechts mit wasserisodenser Textur, Dickdarmdivertikel. Nahtmateria..."
+                    ]
+                ],
+                [],
+                [],
+                [],
+                [],
+                [
+                    [
+                        "bds.",
+                        "...ng. Dorsobasale Dystelektasen der Lunge bds.. Keine pneumonischen Infiltrate. Kein P..."
+                    ],
+                    [
+                        "bds.",
+                        "...einzelten, unkomplizierten Nierenzysten bds.. Darüber hinaus unauffällige Darstellun..."
+                    ],
+                    [
+                        "kalzifizierender",
+                        "...or sowie Nachweis weiterer ausgeprägter kalzifizierender Plaques im Verlauf der A. mesenterica s..."
+                    ],
+                    [
+                        "kalzifizierender",
+                        "...or sowie Nachweis weiterer ausgeprägter kalzifizierender Plaques im Verlauf der A. mesenterica s..."
+                    ]
+                ],
+                [
+                    [
+                        "max",
+                        ".... kraniokaudale Ausdehnung 27 cm, axial max 1,9 cm messend). Vier einliegende Drain..."
+                    ],
+                    [
+                        "bds.",
+                        "...belsäule. Mäßig ausgeprägte Koxarthrose bds..  Beurteilung - Z.n. TEA und Patch-Erwe..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "computertomographisch",
+                        "...ige Harnblase.  Im Übrigen soweit nativ computertomographisch beurteilbar unauffällige Darstellung de..."
+                    ]
+                ],
+                [
+                    [
+                        "retroperitonealen",
+                        "...tis.  Nachweis eines ausgedehnten links retroperitonealen Hämatoms von ventral des linken M. psoa..."
+                    ],
+                    [
+                        "retroperitonealen",
+                        "...tis.  Nachweis eines ausgedehnten links retroperitonealen Hämatoms von ventral des linken M. psoa..."
+                    ]
+                ],
+                [
+                    [
+                        "mgIod",
+                        "...luss?  Kontrastmittel 1 ml Ultravist 370mgIod/ml a 1ml  Methodik Spiral-CT-Untersuchu..."
+                    ]
+                ],
+                [
+                    [
+                        "rechtertorakale",
+                        "...e Angaben D-Dimere: 17.000. Dyspnoe und rechtertorakale Schmerzen. Extern rechtsherzbelastungsz..."
+                    ],
+                    [
+                        "rechtsherzbelastungszeichen",
+                        "...e und rechtertorakale Schmerzen. Extern rechtsherzbelastungszeichen im EKG.  Fragestellung Lungenarterienem..."
+                    ]
+                ],
+                [
+                    [
+                        "coral",
+                        "...ierende Plaques der Aorta abdominalis (\"coral reef\") im Viszeralsegment. Aus der Voru..."
+                    ],
+                    [
+                        "bds.",
+                        "...ehnte pneumonische Infiltrate der Lunge bds.. Kein Pneumothorax oder Pleuraerguss.  ..."
+                    ],
+                    [
+                        "bds.",
+                        "...ehnte pneumonische Infiltrate der Lunge bds..  Befundmitteilung sowie interdisziplin..."
+                    ]
+                ],
+                [
+                    [
+                        "Frakturfragments",
+                        "...en Fraktur mit Dislokation des distalen Frakturfragments nach medial um eine Schaftbreite und na..."
+                    ]
+                ],
+                [
+                    [
+                        "bds.",
+                        "...partiell miterfassten Lungenabschnitte, bds..  Abdomen: Unauffällige Darstellung der..."
+                    ]
+                ],
+                [
+                    [
+                        "bds.",
+                        "...olithiasis. Unkomplizierte Nierenzysten bds.. Wie in der Voruntersuchung Nachweis ei..."
+                    ],
+                    [
+                        "Computertomographisch",
+                        "...z LWK 5 gegenüber SWK 1.  Beurteilung - Computertomographisch keine abgrenzbare Ursache für die Liege..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "kalzifizierender",
+                        "...Aorta thoracalis mit mäßig ausgeprägten kalzifizierender Plaques. Regelrechte Kontrastierung der..."
+                    ]
+                ],
+                [
+                    [
+                        "Ekatsie",
+                        "...ttetes Hämangiom möglich. Beurteilung - Ekatsie der Aorta thoracalis. Keine Aortendisse..."
+                    ]
+                ],
+                [
+                    [
+                        "mehranreichernden",
+                        "...tersuchung: Nachweis zweier randständig mehranreichernden Flüssigkeitskollektionen dorsal des lin..."
+                    ]
+                ],
+                [
+                    [
+                        "Willisii",
+                        "...CT-Untersuchung vom Circulus arteriosus Willisii bis zum Oberschenkel mit gewichtsadapti..."
+                    ],
+                    [
+                        "bds.",
+                        "...nge dorsobasale Dystelektasen der Lunge bds.. Normal großes Herz jedoch mit Zeichen ..."
+                    ],
+                    [
+                        "intra",
+                        "...r Blutung im linken M. iliopsoas sowohl intra als auch extraabdominell (kurz vor dem ..."
+                    ]
+                ],
+                [
+                    [
+                        "Willisii",
+                        "...CT-Untersuchung vom Circulus arteriosus Willisii bis zum Oberschenkel mit gewichtsadapti..."
+                    ],
+                    [
+                        "bds.",
+                        "...te. Dorsobasale Dystelektasen der Lunge bds.. Normal großes Herz ohne Zeichen der De..."
+                    ]
+                ],
+                [
+                    [
+                        "ateromatösen",
+                        "...hweis einer Verlagerung der kalkdichten ateromatösen Wandauflagerungen der Aorta abdominalis..."
+                    ],
+                    [
+                        "ateromatösen",
+                        "...hweis einer Verlagerung der kalkdichten ateromatösen Wandauflagerungen der Aorta abdominalis..."
+                    ],
+                    [
+                        "Hypodensen",
+                        "...Pleurafinger, primär malignomsuspekt. - Hypodensen unklare Leberläsion im Segment VII am L..."
+                    ]
+                ],
+                [
+                    [
+                        "gefangenenen",
+                        "...Pleuraergüsse bds., rechts teils apikal gefangenenen. Kein Pneumothorax.  Kardiomegalie mit ..."
+                    ],
+                    [
+                        "bds.",
+                        "...ypodens zur Darstellung kommende Nieren bds.. PEG-Sonde. Skelett: Keine Fraktur. Mäß..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Spiral-CT-Angiographie",
+                        "..., aktive Blutung, Dissektion?  Methodik Spiral-CT-Angiographie der Aorta abdominalis sowie der Becken-..."
+                    ],
+                    [
+                        "intraabdominal",
+                        "... Ausläufer perineal, nach kranial sowie intraabdominal."
+                    ]
+                ],
+                [
+                    [
+                        "Rhinoorbitale",
+                        "...ben Z.n. nach 2facher SZT bei AML, Z.n. Rhinoorbitale Mukormykose mit Operativer Resektion du..."
+                    ],
+                    [
+                        "Lungsverbandes",
+                        "...im Mittellappen können mit der GVHD des Lungsverbandes vereinbar sein. Die Teilatelektase im l..."
+                    ],
+                    [
+                        "perisplenischer",
+                        "...zeigt einen geringen Perikarderguss. In perisplenischer und perihepatischer Richtung sind gerin..."
+                    ],
+                    [
+                        "perihepatischer",
+                        "... Perikarderguss. In perisplenischer und perihepatischer Richtung sind geringe Mengen freier Flü..."
+                    ]
+                ],
+                [
+                    [
+                        "bds.",
+                        "... DD eingeblutet. Verplumpte Nebennieren bds.. Darüber hinaus unauffällige Darstellun..."
+                    ],
+                    [
+                        "Rea",
+                        "...en erstmal ja gesagt aber dann nach der Rea gegangen.  (ich hab Verdacht geäußert w..."
+                    ]
+                ],
+                [
+                    [
+                        "ERCP-Pankreatitis",
+                        "...on 2 Litern. Aktuell stationär mit post ERCP-Pankreatitis. Im Verlauf hydropisch dekompensiert mi..."
+                    ]
+                ],
+                [
+                    [
+                        "drainagenwürdiger",
+                        "...ei bekannten biliogenen Abszessen. Kein drainagenwürdiger Abszess. Intrahepatischer Cholestase, ä..."
+                    ],
+                    [
+                        "Intrahepatischer",
+                        "...zessen. Kein drainagenwürdiger Abszess. Intrahepatischer Cholestase, ähnlich zur Voruntersuchung..."
+                    ],
+                    [
+                        "drainagenwürdiger",
+                        "... bekannten biliogenen Abszessen. - Kein drainagenwürdiger Abszess."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "tibiale",
+                        "...Versorgung beider Unterschenkel. Die A. tibiale posterior als führendes Gefäß beidersei..."
+                    ]
+                ],
+                [
+                    [
+                        "Pericarderguss",
+                        "... im Rahmen der Notfalldiagnostik.  Kein Pericarderguss. Keine freie Flüssigkeit im Recessus he..."
+                    ],
+                    [
+                        "PACS",
+                        "... zusammengefasst werden (mit unseren im PACS)."
+                    ]
+                ],
+                [
+                    [
+                        "Photon-Counting-Detektor",
+                        "...s und der thorakoabdominellen Aorta mit Photon-Counting-Detektor und gewichtsadaptierter intravenöser Ap..."
+                    ],
+                    [
+                        "Mitralklappenverkalkung",
+                        "...Ausgeprägte, vitientypische Aorten- und Mitralklappenverkalkung. Vasosklerose inklusive Koronarsklerose..."
+                    ],
+                    [
+                        "Mitralklappenverkalkung",
+                        "... Ausgeprägte vitientypische Aorten- und Mitralklappenverkalkung.  Vasosklerose inklusive Koronarskleros..."
+                    ],
+                    [
+                        "Mitralklappenverkalkung",
+                        "... Ausgeprägte vitientypische Aorten- und Mitralklappenverkalkung wurde zu Ausgeprägte vitientypische Aor..."
+                    ],
+                    [
+                        "Mitralklappenverkalkung",
+                        "... Ausgeprägte vitientypische Aorten- und Mitralklappenverkalkung geändert. Vasosklerose inklusive Korona..."
+                    ]
+                ],
+                [
+                    [
+                        "suprakoronarer",
+                        "Klinische Angaben Z.n.  bAKE und suprakoronarer Ascendensersatz am 04.06.  Fragestellun..."
+                    ],
+                    [
+                        "sternalcerclagen",
+                        "...rax.  Keine thorakale Lymphadenopathie, sternalcerclagen, Hautklammernaht.  Schrittmacheraggrega..."
+                    ]
+                ],
+                [
+                    [
+                        "flüssigkeitsgefillter",
+                        "...ine freie Luft. Distendierter großteils flüssigkeitsgefillter Magen mit Luft-Flüssigkeits-Spiegel.  Z..."
+                    ],
+                    [
+                        "distension",
+                        "...teilung Der Befund zeigt eine deutliche distension der Dünn- und Dickdarmschlingen ohne Na..."
+                    ]
+                ],
+                [
+                    [
+                        "bihilarer",
+                        "...Angaben CT-Abklärung einer verdächtigen bihilarer Lymphadenopathie in der konventionellen..."
+                    ]
+                ],
+                [
+                    [
+                        "Tricuspidvalvuloplastik",
+                        "...en Hypotonie, 2,5 Punkte Hb-Abfall nach Tricuspidvalvuloplastik am Dienstag.  Fragestellung Bestehen Ab..."
+                    ],
+                    [
+                        "Tricuspidklappe",
+                        "... Bestehen Abflussstörung im Bereich der Tricuspidklappe? Gibt es eine retroperitoneale Blutung ..."
+                    ],
+                    [
+                        "Tricuspidvalvuloplastik",
+                        "...utung bei einem Hämatom der Leiste nach Tricuspidvalvuloplastik am Dienstag?  Befund CT-Thorax-Vorunter..."
+                    ],
+                    [
+                        "ligamentär-bedingt",
+                        "...tenotischer Dilatation, in erster Linie ligamentär-bedingt. Vereinbar mit Dunbar-Syndrom. Abgangss..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Abkip-pung",
+                        "...fraktur der linken proximalen Tibia mit Abkip-pung der proximalen Frakturfragmente nach do..."
+                    ]
+                ],
+                [
+                    [
+                        "Tibiotalokalkaneare-Arthrodese",
+                        "... einliegendes Osteosynthesematerial zur Tibiotalokalkaneare-Arthrodese rechtsa. Kein Hinweis auf Materialbruch..."
+                    ],
+                    [
+                        "rechtsa",
+                        "...rial zur Tibiotalokalkaneare-Arthrodese rechtsa. Kein Hinweis auf Materialbruch, -oder ..."
+                    ],
+                    [
+                        "-oder",
+                        "...echtsa. Kein Hinweis auf Materialbruch, -oder -dislokation. Die Frakturspalte in der ..."
+                    ],
+                    [
+                        "assoziert",
+                        "... mediale Knochenspange. DD: Entzündlich assoziert. Insgesamt keine zunehmende knöcherne D..."
+                    ]
+                ],
+                [
+                    [
+                        "Wilkie-Syndroms",
+                        "...cheinlichkeit eines gering ausgeprägten Wilkie-Syndroms."
+                    ]
+                ],
+                [
+                    [
+                        "Miterscanner",
+                        "...ediastinalen oder hilären Lymphknoten.  Miterscanner Oberbauch: Ähnlich zu Voruntersuchung z..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "arter",
+                        "...hung CT-Angiographie untere Extremität, arter.+ven., vom 19.06.2024  Klinische Angabe..."
+                    ],
+                    [
+                        "Spiral-CT-Angiographie",
+                        "...Angiografie des rechten Beins  Methodik Spiral-CT-Angiographie der Aorta abdominalis sowie der Becken-..."
+                    ],
+                    [
+                        "Poplitea",
+                        "...s, Wiederauffüllung der rechten Arteria Poplitea über Kollateralen. Langstreckiger Versc..."
+                    ],
+                    [
+                        "Mitabgebildete",
+                        "...hweis einer Thrombose.  Übriger Befund: Mitabgebildete Nierenzyste rechts, unauffällige mitabg..."
+                    ],
+                    [
+                        "Poplitea",
+                        "...s, Wiederauffüllung der rechten Arteria Poplitea über Kollateralen. - Langstreckiger Ver..."
+                    ]
+                ],
+                [
+                    [
+                        "größenregredierte",
+                        "...ax: Im längerfristigen Verlauf deutlich größenregredierte, spikulierte Raumforderung im rechten p..."
+                    ],
+                    [
+                        "größenregredierte",
+                        "...rsuchung vom 29.10.2023 zeigt sich eine größenregredierte Läsion im Lebersegment VII von ca. 1,0 ..."
+                    ],
+                    [
+                        "größenregredierte",
+                        "...h zu der Voruntersuchung vom 29.10.2023 größenregredierte Läsion im Lebersegment VII. - Im oberen..."
+                    ],
+                    [
+                        "mammographische",
+                        "...elaufnehmenden Läsion, DD: Fibroadenom; mammographische Korrelation empfohlen."
+                    ]
+                ],
+                [
+                    [
+                        "Subpleural",
+                        "... einer frischen Fraktur.  Beurteilung - Subpleural betonte bipulmonale Retikulationen, ple..."
+                    ]
+                ],
+                [
+                    [
+                        "Mandibulakopf",
+                        "...h nicht vollständig erreicht. Der linke Mandibulakopf befindet sich achsengerecht und die Ste..."
+                    ],
+                    [
+                        "Knocheninterponats",
+                        "...sich achsengerecht und die Stellung des Knocheninterponats ist weiterhin optimal.  Im Vergleich zu..."
+                    ],
+                    [
+                        "Humeruskopfs",
+                        "...nde randsklerosierte Läsion des rechten Humeruskopfs.  Bilanz:  Kein Rezidiv bekanntem Platt..."
+                    ],
+                    [
+                        "Subpleurale",
+                        "...ch vergrößerten zervikalen Lymphknoten. Subpleurale Mikronodulus und Pleuraständige Verdich..."
+                    ]
+                ],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [
+                    [
+                        "carotidae",
+                        "...ommunis links sowie zwischen beiden Aa. carotidae communes ventral der Schilddrüse (sowei..."
+                    ],
+                    [
+                        "Überstenting",
+                        "...t maximal 3,6 cm Durchmesser. Bekanntes Überstenting der AMI. Vergrößertes Herz. Kein Perika..."
+                    ]
+                ],
+                [
+                    [
+                        "dehisziert",
+                        "...zeigt. Der Frakturspalt ist um ca. 5 mm dehisziert. Es werden keine weiteren frischen knöc..."
+                    ]
+                ],
+                [
+                    [
+                        "gewichts-adaptierter",
+                        "...Untersuchung von Thorax und Abdomen mit gewichts-adaptierter intravenöser Applikation eines nicht-io..."
+                    ]
+                ],
+                [
+                    [
+                        "Drainagewürdiger",
+                        "...hen Rinne sowie im kleinen Becken. Kein Drainagewürdiger Abszess."
+                    ]
+                ],
+                [
+                    [
+                        "Trapezium",
+                        ".... V. a. Subluxationsfehlstellung des Os Trapezium. Degenerative Skelettveränderungen, ins..."
+                    ],
+                    [
+                        "Daumingers",
+                        "...esondere Geröllzysten im MCP-Gelenk des Daumingers 3 rechts."
+                    ]
+                ],
+                [
+                    [
+                        "bds.",
+                        "...onaler Rundherde. Pleurakuppenschwielen bds.. Keine pneumonischen Infiltrate. Keine ..."
+                    ],
+                    [
+                        "coeliakalen",
+                        "... Upside-down-Magen sowie Herniation vom coeliakalen Fettgewebe nach intrathorakal mit angre..."
+                    ],
+                    [
+                        "läsionen",
+                        "...Übergangs.  Keine Lebermetastasen oder -läsionen. Mehrere konstante zystische Leberläsio..."
+                    ],
+                    [
+                        "retrokrurale",
+                        "...r als Rezidiv interpretiert werden. Die retrokrurale Lymphknotenmetastase bleibt unverändert..."
+                    ]
+                ],
+                [
+                    [
+                        "erklärem",
+                        "...gs.  Fragestellung Tumorsuche bei nicht erklärem Aszites.  Methodik Spiral-CT-Untersuchu..."
+                    ],
+                    [
+                        "gewichtsangleichender",
+                        "...Untersuchung von Thorax und Abdomen mit gewichtsangleichender intravenöser Applikation eines nicht-io..."
+                    ]
+                ],
+                [
+                    [
+                        "Gallenblasencarcinom",
+                        "Klinische Angaben Z. n. Gallenblasencarcinom. Aktuell Nachsorge.  Fragestellung Rezi..."
+                    ],
+                    [
+                        "maligneintrupmonalen",
+                        "...zuletzt vom 08.03.2024.  Thorax:  Keine maligneintrupmonalen Rundherde. Keine pneumonischen Infiltra..."
+                    ]
+                ],
+                [
+                    [
+                        "falziforme",
+                        "...Segment 5. Mehrverfettung am Ligamentum falziforme. Multiple Nierenzysten.  Im Übrigen una..."
+                    ]
+                ],
+                [
+                    [
+                        "Infektfoci",
+                        ".... Bemerkung: Keine Hinweise auf weitere Infektfoci oder Komplikationen der Zystischen Nier..."
+                    ]
+                ],
+                [
+                    [
+                        "vasosklerotische",
+                        "...her Hypertrophie des linken Ventrikels, vasosklerotische Herzkrankheit und hochgradige Aortenkla..."
+                    ]
+                ],
+                [
+                    [
+                        "proteide",
+                        "...n. LVAD-Implantation am 03.06.; aktuell proteide Sekretion und Krepitation -> OP-Revisio..."
+                    ]
+                ],
+                [
+                    [
+                        "SCLC-aktuelle",
+                        "Klinische Angaben SCLC-aktuelle obere Einflussstauung.  Im CT 5/24 bere..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "falziforme",
+                        "....  Geringe Mehrverfettung am Ligamentum falziforme. Partiell miterfasste Oberbauchorgane u..."
+                    ]
+                ],
+                [
+                    [
+                        "Vorgeschicht",
+                        "... Reformationen.  Befund Keine relevante Vorgeschicht zur Verfügung, um eine Vergleichbarkeit..."
+                    ],
+                    [
+                        "perimandibulären",
+                        "... ermöglichen.  Ausgedehnte Fettsucht im perimandibulären linken Bereich mit Arrosion und Destruk..."
+                    ]
+                ],
+                [
+                    [
+                        "urographischen",
+                        "...Kontrastmittelphase der Aorta sowie der urographischen Phase des Abdomens. Ausspielung in Weic..."
+                    ]
+                ],
+                [
+                    [
+                        "iliacae",
+                        "...ior. Begleitende Aneurysmata beider Aa. iliacae communes (rechts bis ca. 3,4 und links ..."
+                    ],
+                    [
+                        "iliacae",
+                        "...mit begleitenden Aneurysmata beider Aa. iliacae communes (rechts bis ca. 3,4 und links ..."
+                    ]
+                ],
+                [
+                    [
+                        "pectoral",
+                        "...1,3 cm). Einliegendes Portsystem rechts pectoral mit Verlauf über die rechte V. subclavi..."
+                    ]
+                ],
+                [
+                    [
+                        "mitabgebildet",
+                        "... unauffällig. Die Nasennebenhöhlen sind mitabgebildet und regelhaft pneumatisiert."
+                    ]
+                ],
+                [],
+                [],
+                [
+                    [
+                        "iliacae",
+                        "...upraaortalen Gefäßabgänge sowie der Aa. iliacae communes et externae beidseits. Fortges..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Telebrix-Gastro",
+                        "... Ultravist 370mg/Iod/ml (500 ml)  30 ml Telebrix-Gastro 300mg/ml/100ml  Methodik Spiral-CT-Unte..."
+                    ],
+                    [
+                        "Stomas",
+                        "...nie des zwischenzeitlich neu angelegten Stomas ohne Inkarzerationszeichen."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Typ-A-Dissektion",
+                        "...e Angaben Zur Beurteilung nach Herz-OP (Typ-A-Dissektion).  Fragestellung Verlaufskontrolle.  Me..."
+                    ],
+                    [
+                        "Ascendensersatzes",
+                        "...ens-Ersatz. Regelrechte Darstellung des Ascendensersatzes. Nachfolgend im Wesentlichen befundkons..."
+                    ],
+                    [
+                        "Zahnästhetisch",
+                        "...Herz ohne akute Dekompensationszeichen. Zahnästhetisch mit entsprechender Sternalcercalgen.  A..."
+                    ]
+                ],
+                [],
+                [
+                    [
+                        "Femoralis",
+                        "...ellung V.a. Verschluss der AFS (Arteria Femoralis Superior).  Methodik Spiral-CT-Angiogra..."
+                    ],
+                    [
+                        "Spiral-CT-Angiographie",
+                        "...(Arteria Femoralis Superior).  Methodik Spiral-CT-Angiographie der Aorta abdominalis sowie der Becken-..."
+                    ],
+                    [
+                        "Beinengefäße",
+                        "...ie rechts iliakal. Die nachgeschalteten Beinengefäße sind nicht kontrastiert in der arteriel..."
+                    ]
                 ],
                 []
             ],
@@ -2592,6 +3807,9 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_SUBJECT_VERB_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2608,18 +3826,34 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT2"
+                ],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT",
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2631,12 +3865,18 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
                 [],
                 [],
                 [],
+                [
+                    "OBJECT_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2662,10 +3902,16 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT2"
+                ],
                 [],
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2678,6 +3924,9 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2686,6 +3935,9 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2693,12 +3945,41 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT2"
+                ],
+                [
+                    "ANS_ARTIKEL"
+                ],
+                [
+                    "DE_AGREEMENT",
+                    "DE_AGREEMENT"
+                ],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
+                [
+                    "DE_AGREEMENT",
+                    "MEIN_KLEIN_HAUS"
+                ],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
+                [
+                    "MAX_MIN_PUNKT"
+                ],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2710,6 +3991,9 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2717,6 +4001,9 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2726,6 +4013,9 @@
                 [],
                 [],
                 [],
+                [
+                    "SENT_START_SIN_PLU"
+                ],
                 [],
                 [],
                 [],
@@ -2738,8 +4028,17 @@
                 [],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
+                [
+                    "DE_AGREEMENT"
+                ],
                 [],
                 [],
                 [],
@@ -2748,34 +4047,9 @@
                 [],
                 [],
                 [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
+                [
+                    "PRAEP_DAT"
+                ],
                 [],
                 [],
                 [],
@@ -2796,219 +4070,427 @@
                 [],
                 []
             ],
-            "other": [
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                []
-            ]
+            "other": []
         },
         "semantic_metrics": {
-            "llm_scores": [],
-            "embedding_scores": []
+            "llm_scores": [
+                0.99,
+                0.98,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                0.95,
+                0.98,
+                1.0,
+                1.0,
+                0.98,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.7,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.98,
+                0.98,
+                0.98,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                0.9,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                0.95,
+                0.95,
+                1.0,
+                0.95,
+                0.98,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                0.95,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                0.98,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                0.98,
+                -1,
+                -1,
+                0.98,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                0.99,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.99,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.98,
+                1.0,
+                1.0,
+                0.98,
+                1.0,
+                1.0,
+                1.0,
+                0.99,
+                1.0,
+                1.0,
+                1.0,
+                0.99,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.8,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                -1,
+                1.0,
+                1.0,
+                -1,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.99,
+                1.0,
+                0.95,
+                0.99,
+                0.98,
+                1.0,
+                0.95,
+                0.95,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.98,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.98,
+                1.0,
+                0.98,
+                1.0,
+                1.0,
+                1.0,
+                0.95,
+                1.0,
+                1.0,
+                0.98,
+                1.0,
+                1.0,
+                0.99,
+                0.6,
+                0.95,
+                1.0,
+                1.0,
+                0.99,
+                1.0,
+                1.0,
+                0.8,
+                1.0,
+                1.0,
+                0.95,
+                0.95,
+                1.0,
+                1.0,
+                1.0,
+                0.99,
+                1.0,
+                1.0,
+                0.9,
+                1.0,
+                1.0,
+                1.0,
+                0.98,
+                1.0,
+                -1
+            ],
+            "embedding_scores": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
         }
     }
 }

@@ -8,7 +8,7 @@ import diff_match_patch as dmp_module
 import language_tool_python as ltp
 from sqlalchemy.orm import Session
 from ollama import ResponseError, generate
-from .db import Ris, Models, Prompts
+from .db import Ris, Models, Prompts, WrongReports
 from .util import save_to_json, get_whitelist
 
 
@@ -60,7 +60,7 @@ def levenshtein_distance_ratio(input_report, output_report):
 
 
 def get_difference_metrics(
-    responses: Dict[str, Any], session: Session
+    responses: Dict[str, Any], session: Session, special: bool = False
 ) -> Dict[str, Any]:
     """function to get the diffrence metrics"""
     difference_metrics = {
@@ -71,13 +71,16 @@ def get_difference_metrics(
     }
 
     for response in responses:
-        ris = Ris.get_by_id(session, response["ris_id"])
-        if ris.revision_1 is not None:
-            input_report = ris.revision_1
-        elif ris.revision_2 is not None:
-            input_report = ris.revision_2
+        if special:
+            input_report = WrongReports.get_by_id(session, response["ris_id"]).befund
         else:
-            continue
+            ris = Ris.get_by_id(session, response["ris_id"])
+            if ris.revision_1 is not None:
+                input_report = ris.revision_1
+            elif ris.revision_2 is not None:
+                input_report = ris.revision_2
+            else:
+                continue
 
         output_report = response["raw"]["response"]
 
@@ -100,6 +103,7 @@ def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, voc
 
     misspelled = []
     whitelist = get_whitelist(vocab_dir)
+    whitelist = [] #TODO: remove this line
 
     try:
         matches = lang_tool.check(output_report)
@@ -189,7 +193,9 @@ def get_semantic_similarity_embedding(input_report, output_report):
     return 0
 
 
-def get_semantic_metrics(responses, session, prompt_id=6, model_id=7) -> Dict[str, Any]:
+def get_semantic_metrics(
+    responses, session, prompt_id=6, model_id=7, special: bool = False
+) -> Dict[str, Any]:
     """function to get the semantic metrics"""
     semantic_metrics = {
         "llm_scores": [],
@@ -200,13 +206,16 @@ def get_semantic_metrics(responses, session, prompt_id=6, model_id=7) -> Dict[st
     prompt = Prompts.get_by_id(session, prompt_id)
 
     for response in responses:
-        ris = Ris.get_by_id(session, response["ris_id"])
-        if ris.revision_1 is not None:
-            input_report = ris.revision_1
-        elif ris.revision_2 is not None:
-            input_report = ris.revision_2
+        if special:
+            input_report = WrongReports.get_by_id(session, response["ris_id"]).befund
         else:
-            continue
+            ris = Ris.get_by_id(session, response["ris_id"])
+            if ris.revision_1 is not None:
+                input_report = ris.revision_1
+            elif ris.revision_2 is not None:
+                input_report = ris.revision_2
+            else:
+                continue
 
         output_report = response["raw"]["response"]
 
@@ -258,12 +267,14 @@ def _evaluate(
         "semantic_metrics": {"llm_scores": [], "embedding_scores": []},
     }
 
+    special = generated["prompt"]["id"] in [8]
+
     # Get the metrics
     if options["duration_metrics"]:
         metrics["duration_metrics"] = get_duration_metrics(generated["responses"])
     if options["difference_metrics"]:
         metrics["difference_metrics"] = get_difference_metrics(
-            generated["responses"], session
+            generated["responses"], session, special=special
         )
     if options["language_tool_metrics"]:
         metrics["language_tool_metrics"] = get_language_tool_metrics(
@@ -271,7 +282,7 @@ def _evaluate(
         )
     if options["semantic_metrics"]:
         metrics["semantic_metrics"] = get_semantic_metrics(
-            generated["responses"], session
+            generated["responses"], session, special=special
         )
 
     # Save the results
@@ -289,7 +300,6 @@ def _evaluate(
         )
     # Return the results
     return res
-
 
 def evaluate_from_unique_ids(
     unique_ids: Union[str, List[str]],
