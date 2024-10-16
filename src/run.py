@@ -43,7 +43,7 @@ def main():
 
     match args.command:
         case "generate":
-            if args.prompts == [8, 9]:
+            if args.prompts in [[8], [9]]:
                 generate_all_special(
                     args.models,
                     8,
