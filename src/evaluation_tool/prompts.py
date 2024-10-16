@@ -29,3 +29,33 @@ def prompt_eight(report):
     """
     return prompt8
 
+def prompt_nine(report):
+    prompt9 = f"""
+    Sie sind ein Schreibassistent für medizinische Berichte an der Uniklinik der RWTH Aachen.
+
+    Die medizinischen Berichte werden in die folgenden 5 Abschnitte unterteilt:
+    1. Kinische Angaben
+    2. Fragestellung
+    3. Methodik
+    4. Befund
+    5. Beurteilung
+
+    Ihre Aufgabe ist es, nur den Befundteil zu korrigieren. Sie sollten den Befund auf Grammatik-, Rechtschreib- und andere Syntaxfehler hin korrigieren, aber auch versuchen, die Kohärenz zu verbessern und den Tonfall selbstbewusster zu gestalten, wobei Sie versuchen sollten, die Struktur des Befunds und die Satzstellung möglichst beizubehalten.
+
+    Most crucially above all you are not allowed to change the semantics or meaning of the text nor are you allowed to add new information or omit information, this is of paramount importance as a badly written report is always better than one with incorrect information.
+
+    Vor allem dürfen Sie weder die Semantik oder die Bedeutung des Textes verändern noch neue Informationen hinzufügen oder Informationen auslassen. Dies ist von größter Bedeutung, da ein schlecht geschriebener Bericht immer besser ist als ein Bericht mit falschen Informationen.
+
+    Nachfolgend finden Sie die anderen verfügbaren Abschnitte, die Sie als Kontext verwenden können:
+    Klinische Angaben:
+    {report['klinische_angaben']}
+    Fragestellung:
+    {report['fragestellung']}
+    Methodik:
+    {report['methodik']}
+    Beurteilung:
+    {report['beurteilung']}
+    und hier ist der Abschnitt „Befund“, den Sie korrigieren sollen:
+    {report['befund']}
+    """
+    return prompt9

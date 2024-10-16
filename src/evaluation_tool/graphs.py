@@ -176,6 +176,7 @@ def semantic_box_plot(res):
 
     ax.boxplot(
         data,
+        labels=labels,
         vert=True,
         patch_artist=True,
         showmeans=True,

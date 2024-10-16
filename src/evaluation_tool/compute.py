@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from .db import Models, Prompts, Ris, WrongReports
 from .util import save_to_json
-from .prompts import prompt_eight
+from .prompts import prompt_eight, prompt_nine
 
 
 def _generate_all(model, prompt, data):
@@ -221,5 +221,7 @@ def prompt_switcher(prompt_id, report):
     match prompt_id:
         case 8:
             return prompt_eight(report)
+        case 9:
+            return prompt_nine(report)
         case _:
             raise ValueError(f"Invalid prompt_id: {prompt_id}")
