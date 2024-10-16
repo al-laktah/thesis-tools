@@ -26,6 +26,8 @@ def parse_arguments():
     parser_evaluate = subparsers.add_parser("evaluate", help="evaluate outputs.")
     parser_evaluate.add_argument("--server", type=str)
     parser_evaluate.add_argument("--uids", nargs="+", type=str, required=True)
+    parser_evaluate.add_argument("--options", nargs="+", type=int)
+    parser_evaluate.add_argument("--update", action="store_true")
 
     return parser.parse_args()
 
@@ -67,6 +69,8 @@ def main():
                 directories,
                 session,
                 lang_tool,
+                options=args.options,
+                update=args.update,
             )
             lang_tool.close()
         case _:

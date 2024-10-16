@@ -246,6 +246,7 @@ def _evaluate(
     session: Session,
     lang_tool: ltp.LanguageTool,
     options: Dict[str, bool],
+    update: bool,
 ):
     """function to evaluate the performance of the models"""
     # Initialize the metrics
@@ -294,10 +295,16 @@ def _evaluate(
 
     # Save the results
     if options["save_json"]:
-        save_to_json(
-            res,
-            os.path.join(directories["evaluations"], f"{generated['unique_id']}.json"),
-        )
+        if update:
+            save_to_json(
+                res,
+                os.path.join(directories["evaluations"], f"update_{generated['unique_id']}.json"),
+            )
+        else:
+            save_to_json(
+                res,
+                os.path.join(directories["evaluations"], f"{generated['unique_id']}.json"),
+            )
     # Return the results
     return res
 
@@ -307,6 +314,7 @@ def evaluate_from_unique_ids(
     session: Session,
     lang_tool: ltp.LanguageTool,
     options: Dict[str, bool] = None,
+    update: bool = False,
 ):
     """function to evaluate the performance of the models"""
     if isinstance(unique_ids, str):
@@ -320,6 +328,14 @@ def evaluate_from_unique_ids(
             "semantic_metrics": True,
             "save_json": True,
         }
+    else:
+        options = {
+            "duration_metrics": 1 in options,
+            "difference_metrics": 2 in options,
+            "language_tool_metrics": 3 in options,
+            "semantic_metrics": 4 in options,
+            "save_json": 5 in options,
+        }
     for unique_id in unique_ids:
         file_path = os.path.join(directories["generated"], f"{unique_id}.json")
         with open(file_path, "r", encoding="utf-8") as file:
@@ -330,5 +346,6 @@ def evaluate_from_unique_ids(
             directories,
             session,
             lang_tool,
-            options,
+            options=options,
+            update=update,
         )
