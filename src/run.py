@@ -46,7 +46,7 @@ def main():
             if args.prompts in [[8], [9]]:
                 generate_all_special(
                     args.models,
-                    8,
+                    args.prompts[0],
                     directories["generated"],
                     session,
                 )
