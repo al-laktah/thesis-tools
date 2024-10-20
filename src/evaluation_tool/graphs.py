@@ -14,7 +14,7 @@ def duration_t_s_box_plot(res):
 
     for i in range(number_of_models):
         data.append(res[i]["metrics"]["duration_metrics"]["eval_durations_t/s"])
-        labels.append(f'{res[i]["model"]["name"]}:{res[i]["model"]["size"]}')
+        labels.append(f'{res[i]["model"]["name"]}:{res[i]["model"]["size"]}-{res[i]["prompt"]["id"]}')
 
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.boxplot(
@@ -65,7 +65,7 @@ def multi_histogram(res, metric, titel, leg_loc="upper left"):
         _, _, patches = ax.hist(
             ratios, bins=10, range=(0, 1), edgecolor="black", density=True
         )
-        ax.set_title(f'{titel}: {res[i]["model"]["name"]}:{res[i]["model"]["size"]}')
+        ax.set_title(f'{titel}: {res[i]["model"]["name"]}:{res[i]["model"]["size"]}-{res[i]["prompt"]["id"]}')
 
         sns.kdeplot(ratios, ax=ax, color="red", label="KDE")
         frequencies, _ = np.histogram(ratios, bins=10, range=(0, 1))
@@ -102,7 +102,7 @@ def multi_bar_graph(res, metric, title):
     for model_res in res:
         count = get_count(metric, model_res)
         label_count_dict[
-            f"{model_res['model']['name']}:{model_res['model']['size']}"
+            f"{model_res['model']['name']}:{model_res['model']['size']}-{model_res['prompt']['id']}"
         ] = count
 
     fig, ax = plt.subplots(figsize=(12, 8))
@@ -140,7 +140,7 @@ def multi_bar_model_graph(model_res, metric, yinc):
     )
 
     # Set the labels and title
-    ax.set_title(metric + ' - ' + model_res["model"]["name"] + ':' + model_res["model"]["size"])
+    ax.set_title(metric + f"{model_res['model']['name']}:{model_res['model']['size']}-{model_res['prompt']['id']}")
 
      # Set the ticks
     ax.set_xticks(np.arange(1, len(lengths) + 1, 2))
@@ -169,7 +169,7 @@ def semantic_box_plot(res):
         fails = [score for score in llm_scores if score == -1]
 
         data.append(valid_scores)
-        labels.append(f'{res[i]["model"]["name"]}:{res[i]["model"]["size"]}')
+        labels.append(f'{res[i]["model"]["name"]}:{res[i]["model"]["size"]}-{res[i]["prompt"]["id"]}')
         fail_counts.append(len(fails))
 
     fig, ax = plt.subplots(figsize=(12, 8))
@@ -219,7 +219,7 @@ def violin_plot(res):
         valid_scores = [score for score in llm_scores if score != -1]
         data.extend(valid_scores)
         labels.extend(
-            [f'{model_res["model"]["name"]}:{model_res["model"]["size"]}']
+            [f"{model_res['model']['name']}:{model_res['model']['size']}-{model_res['prompt']['id']}"]
             * len(valid_scores)
         )
 
