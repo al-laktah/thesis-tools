@@ -2,6 +2,7 @@
 
 from typing import Dict, List
 import pandas as pd
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped, Session, mapped_column
 from sqlalchemy.dialects.sqlite import INTEGER, JSON, TEXT
@@ -145,6 +146,65 @@ class WrongReports(Base):
                     "methodik": result.methodik,
                     "befund": result.befund,
                     "beurteilung": result.beurteilung,
+                }
+            )
+
+        df = pd.DataFrame(data)
+
+        return df
+
+    def __repr__(self) -> str:
+        return f"Wrong Report: {self.id}"
+
+
+class CorrectReports(Base):
+    """Model class for the wrong_reports table."""
+
+    __tablename__ = "correct_reports"
+
+    klinische_angaben: Mapped[str] = mapped_column(TEXT)
+    fragestellung: Mapped[str] = mapped_column(TEXT)
+    methodik: Mapped[str] = mapped_column(TEXT)
+    befund: Mapped[str] = mapped_column(TEXT)
+    beurteilung: Mapped[str] = mapped_column(TEXT)
+    ris_id: Mapped[int] = mapped_column(INTEGER, ForeignKey('ris.id'))
+
+    @classmethod
+    def get_all(cls, session: Session):
+        """Function to get all reports as a DataFrame."""
+
+        results = session.query(cls).all()
+
+        data = []
+        for result in results:
+            data.append(
+                {
+                    "id": result.id,
+                    "klinische_angaben": result.klinische_angaben,
+                    "fragestellung": result.fragestellung,
+                    "methodik": result.methodik,
+                    "befund": result.befund,
+                    "beurteilung": result.beurteilung,
+                    "ris_id": result.ris_id,
+                }
+            )
+
+        df = pd.DataFrame(data)
+
+        return df
+
+    @classmethod
+    def get_befunds(cls, session: Session):
+        """Function to get all befunds as a DataFrame."""
+
+        results = session.query(cls).all()
+
+        data = []
+        for result in results:
+            data.append(
+                {
+                    "ris_id": result.ris_id,
+                    "befund": result.befund,
                 }
             )
 
