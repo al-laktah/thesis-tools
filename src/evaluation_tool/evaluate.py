@@ -75,26 +75,30 @@ def get_difference_metrics(
     }
 
     for response in responses:
-        if special:
-            input_report = WrongReports.get_by_id(session, response["ris_id"]).befund
-        else:
-            ris = Ris.get_by_id(session, response["ris_id"])
-            if ris.revision_1 is not None:
-                input_report = ris.revision_1
-            elif ris.revision_2 is not None:
-                input_report = ris.revision_2
+        try:
+            if special:
+                input_report = WrongReports.get_by_id(session, response["ris_id"]).befund
             else:
-                continue
+                ris = Ris.get_by_id(session, response["ris_id"])
+                if ris.revision_1 is not None:
+                    input_report = ris.revision_1
+                elif ris.revision_2 is not None:
+                    input_report = ris.revision_2
+                else:
+                    continue
 
-        output_report = response["raw"]["response"]
+            output_report = response["raw"]["response"]
 
-        difference_metrics["sm_similarity_ratios"].append(
-            sm_similarity_ratio(input_report, output_report)
-        )
-        distance, ratio = levenshtein_distance_ratio(input_report, output_report)
-        difference_metrics["levenshtein_distances"].append(distance)
-        difference_metrics["levenshtein_distance_ratios"].append(ratio)
-        difference_metrics["levenshtein_distance_inverse_ratios"].append(1 - ratio)
+            difference_metrics["sm_similarity_ratios"].append(
+                sm_similarity_ratio(input_report, output_report)
+            )
+            distance, ratio = levenshtein_distance_ratio(input_report, output_report)
+            difference_metrics["levenshtein_distances"].append(distance)
+            difference_metrics["levenshtein_distance_ratios"].append(ratio)
+            difference_metrics["levenshtein_distance_inverse_ratios"].append(1 - ratio)
+        except Exception as e:
+            print(e)
+            continue
 
     return difference_metrics
 
