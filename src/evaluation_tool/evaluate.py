@@ -24,18 +24,22 @@ def get_duration_metrics(responses: Dict[str, Any]) -> Dict[str, Any]:
     }
 
     for response in responses:
-        duration_metrics["load_durations"].append(response["raw"]["load_duration"])
-        duration_metrics["prompt_eval_durations"].append(
-            response["raw"]["prompt_eval_duration"]
-        )
-        duration_metrics["eval_counts"].append(response["raw"]["eval_count"])
-        duration_metrics["eval_durations"].append(response["raw"]["eval_duration"])
-        duration_metrics["eval_durations_t/s"].append(
-            int(
-                response["raw"]["eval_count"]
-                // (response["raw"]["eval_duration"] / 10**9)
+        try:
+            duration_metrics["load_durations"].append(response["raw"]["load_duration"])
+            duration_metrics["prompt_eval_durations"].append(
+                response["raw"]["prompt_eval_duration"]
             )
-        )
+            duration_metrics["eval_counts"].append(response["raw"]["eval_count"])
+            duration_metrics["eval_durations"].append(response["raw"]["eval_duration"])
+            duration_metrics["eval_durations_t/s"].append(
+                int(
+                    response["raw"]["eval_count"]
+                    // (response["raw"]["eval_duration"] / 10**9)
+                )
+            )
+        except Exception as e:
+            print(e)
+            continue
 
     return duration_metrics
 
