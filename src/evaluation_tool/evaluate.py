@@ -214,35 +214,39 @@ def get_semantic_metrics(
     prompt = Prompts.get_by_id(session, prompt_id)
 
     for response in responses:
-        if special:
-            input_report = WrongReports.get_by_id(session, response["ris_id"]).befund
-        else:
-            ris = Ris.get_by_id(session, response["ris_id"])
-            if ris.revision_1 is not None:
-                input_report = ris.revision_1
-            elif ris.revision_2 is not None:
-                input_report = ris.revision_2
+        try:
+            if special:
+                input_report = WrongReports.get_by_id(session, response["ris_id"]).befund
             else:
-                continue
+                ris = Ris.get_by_id(session, response["ris_id"])
+                if ris.revision_1 is not None:
+                    input_report = ris.revision_1
+                elif ris.revision_2 is not None:
+                    input_report = ris.revision_2
+                else:
+                    continue
 
-        output_report = response["raw"]["response"]
+            output_report = response["raw"]["response"]
 
-        eval_prompt = (
-            prompt.text
-            + "\n"
-            + "report 1:\n"
-            + input_report
-            + "\n"
-            + "report 2:\n"
-            + output_report
-        )
+            eval_prompt = (
+                prompt.text
+                + "\n"
+                + "report 1:\n"
+                + input_report
+                + "\n"
+                + "report 2:\n"
+                + output_report
+            )
 
-        semantic_metrics["llm_scores"].append(
-            get_semantic_similarity_llm(model, eval_prompt)
-        )
-        semantic_metrics["embedding_scores"].append(
-            get_semantic_similarity_embedding(input_report, output_report)
-        )
+            semantic_metrics["llm_scores"].append(
+                get_semantic_similarity_llm(model, eval_prompt)
+            )
+            semantic_metrics["embedding_scores"].append(
+                get_semantic_similarity_embedding(input_report, output_report)
+            )
+        except Exception as e:
+            print(e)
+            continue
 
     return semantic_metrics
 
