@@ -289,7 +289,7 @@ def get_semantic_metrics(
             semantic_metrics["llm_scores"].append(
                 get_semantic_similarity_llm(model, eval_prompt)
             )
-            semantic_metrics["llm_score"].append(
+            semantic_metrics["llm_ratings"].append(
                 get_semantic_similarity_rating_llm(model, eval_prompt_score)
             )
             semantic_metrics["embedding_scores"].append(
@@ -328,7 +328,7 @@ def _evaluate(
             "levenshtein_distance_inverse_ratios": [],
         },
         "language_tool_metrics": {"misspelled": [], "grammar": [], "other": []},
-        "semantic_metrics": {"llm_scores": [], "embedding_scores": []},
+        "semantic_metrics": {"llm_scores": [], "llm_ratings": [], "embedding_scores": []},
     }
 
     special = generated["prompt"]["id"] in [8, 9, 10, 11]
