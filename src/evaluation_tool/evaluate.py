@@ -77,7 +77,9 @@ def get_difference_metrics(
     for response in responses:
         try:
             if special:
-                input_report = WrongReports.get_by_id(session, response["ris_id"]).befund
+                input_report = WrongReports.get_by_id(
+                    session, response["ris_id"]
+                ).befund
             else:
                 ris = Ris.get_by_id(session, response["ris_id"])
                 if ris.revision_1 is not None:
@@ -111,7 +113,7 @@ def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, voc
 
     misspelled = []
     whitelist = get_whitelist(vocab_dir)
-    whitelist = [] #TODO: remove this line
+    whitelist = []  # TODO: remove this line
 
     try:
         matches = lang_tool.check(output_report)
@@ -196,13 +198,46 @@ def get_semantic_similarity_llm(model, prompt):
         return -1
 
 
+def get_semantic_similarity_rating_llm(model, prompt):
+    """function to get the semantic similarity using LLM"""
+    response = {}
+    try:
+        response["raw"] = generate(
+            model=model.name + ":" + model.size,
+            options=model.options,
+            prompt=prompt,
+            stream=False,
+            context=None,
+        )
+        try:
+            del response["raw"]["context"]
+        except KeyError:
+            pass
+    except ResponseError as e:
+        print(e)
+        return -1
+
+    try:
+        response_value = response["raw"]["response"]
+        float_value = int(response_value)
+        return float_value
+    except (KeyError, ValueError, TypeError):
+        print(f"Bad response: {response['raw']}")
+        return -1
+
+
 def get_semantic_similarity_embedding(input_report, output_report):
     """function to get the semantic similarity using embeddings"""
     return 0
 
 
 def get_semantic_metrics(
-    responses, session, prompt_id=6, model_id=7, special: bool = False
+    responses,
+    session,
+    prompt_id=6,
+    score_prompt_id=12,
+    model_id=7,
+    special: bool = False,
 ) -> Dict[str, Any]:
     """function to get the semantic metrics"""
     semantic_metrics = {
@@ -212,11 +247,14 @@ def get_semantic_metrics(
 
     model = Models.get_by_id(session, model_id)
     prompt = Prompts.get_by_id(session, prompt_id)
+    score_prompt = Prompts.get_by_id(session, score_prompt_id)
 
     for response in responses:
         try:
             if special:
-                input_report = WrongReports.get_by_id(session, response["ris_id"]).befund
+                input_report = WrongReports.get_by_id(
+                    session, response["ris_id"]
+                ).befund
             else:
                 ris = Ris.get_by_id(session, response["ris_id"])
                 if ris.revision_1 is not None:
@@ -238,8 +276,21 @@ def get_semantic_metrics(
                 + output_report
             )
 
+            eval_prompt_score = (
+                score_prompt.text
+                + "\n"
+                + "report 1:\n"
+                + input_report
+                + "\n"
+                + "report 2:\n"
+                + output_report
+            )
+
             semantic_metrics["llm_scores"].append(
                 get_semantic_similarity_llm(model, eval_prompt)
+            )
+            semantic_metrics["llm_score"].append(
+                get_semantic_similarity_rating_llm(model, eval_prompt_score)
             )
             semantic_metrics["embedding_scores"].append(
                 get_semantic_similarity_embedding(input_report, output_report)
@@ -280,7 +331,7 @@ def _evaluate(
         "semantic_metrics": {"llm_scores": [], "embedding_scores": []},
     }
 
-    special = generated["prompt"]["id"] in [8]
+    special = generated["prompt"]["id"] in [8, 9, 10, 11]
 
     # Get the metrics
     if options["duration_metrics"] and generated["prompt"]["id"] != 0:
@@ -310,15 +361,20 @@ def _evaluate(
         if update:
             save_to_json(
                 res,
-                os.path.join(directories["evaluations"], f"update_{generated['unique_id']}.json"),
+                os.path.join(
+                    directories["evaluations"], f"update_{generated['unique_id']}.json"
+                ),
             )
         else:
             save_to_json(
                 res,
-                os.path.join(directories["evaluations"], f"{generated['unique_id']}.json"),
+                os.path.join(
+                    directories["evaluations"], f"{generated['unique_id']}.json"
+                ),
             )
     # Return the results
     return res
+
 
 def evaluate_from_unique_ids(
     unique_ids: Union[str, List[str]],
