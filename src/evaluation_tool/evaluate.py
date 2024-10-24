@@ -170,60 +170,63 @@ def get_language_tool_metrics(
 
 
 # Semantic Metrics
-def get_semantic_similarity_llm(model, prompt):
+
+def get_semantic_similarity_llm(model, score_prompt, rating_prompt):
     """function to get the semantic similarity using LLM"""
     response = {}
-    try:
-        response["raw"] = generate(
-            model=model.name + ":" + model.size,
-            options=model.options,
-            prompt=prompt,
-            stream=False,
-            context=None,
-        )
+    score = -1
+    rating = -1
+    # Get the score
+    for _ in range(3):
         try:
-            del response["raw"]["context"]
-        except KeyError:
-            pass
-    except ResponseError as e:
-        print(e)
-        return -1
+            response["score"] = generate(
+                model=model.name + ":" + model.size,
+                options=model.options,
+                prompt=score_prompt,
+                stream=False,
+                context=None,
+            )
+            try:
+                del response["score"]["context"]
+            except KeyError:
+                pass
+        except ResponseError:
+            continue
 
-    try:
-        response_value = response["raw"]["response"]
-        float_value = float(response_value)
-        return float_value
-    except (KeyError, ValueError, TypeError):
-        print(f"Bad response: {response['raw']}")
-        return -1
-
-
-def get_semantic_similarity_rating_llm(model, prompt):
-    """function to get the semantic similarity using LLM"""
-    response = {}
-    try:
-        response["raw"] = generate(
-            model=model.name + ":" + model.size,
-            options=model.options,
-            prompt=prompt,
-            stream=False,
-            context=None,
-        )
         try:
-            del response["raw"]["context"]
-        except KeyError:
-            pass
-    except ResponseError as e:
-        print(e)
-        return -1
+            response_value = response["score"]["response"]
+            score = float(response_value)
+            break
+        except (KeyError, ValueError, TypeError):
+            score = -1
+            continue
 
-    try:
-        response_value = response["raw"]["response"]
-        float_value = int(response_value)
-        return float_value
-    except (KeyError, ValueError, TypeError):
-        print(f"Bad response: {response['raw']}")
-        return -1
+    # Get the rating
+    for _ in range(3):
+        try:
+            response["rating"] = generate(
+                model=model.name + ":" + model.size,
+                options=model.options,
+                prompt=rating_prompt,
+                stream=False,
+                context=None,
+            )
+            try:
+                del response["rating"]["context"]
+            except KeyError:
+                pass
+        except ResponseError:
+            continue
+
+        try:
+            response_value = response["rating"]["response"]
+            rating = int(response_value)
+            break
+        except (KeyError, ValueError, TypeError):
+            rating = -1
+            continue
+
+    return score, rating
 
 
 def get_semantic_similarity_embedding(input_report, output_report):
@@ -234,8 +237,8 @@ def get_semantic_similarity_embedding(input_report, output_report):
 def get_semantic_metrics(
     responses,
     session,
-    prompt_id=6,
-    score_prompt_id=12,
+    scores_prompt_id=6,
+    ratings_prompt_id=12,
     model_id=7,
     special: bool = False,
 ) -> Dict[str, Any]:
@@ -246,8 +249,8 @@ def get_semantic_metrics(
     }
 
     model = Models.get_by_id(session, model_id)
-    prompt = Prompts.get_by_id(session, prompt_id)
-    score_prompt = Prompts.get_by_id(session, score_prompt_id)
+    scores_prompt = Prompts.get_by_id(session, scores_prompt_id)
+    ratings_prompt = Prompts.get_by_id(session, ratings_prompt_id)
 
     for response in responses:
         try:
@@ -266,8 +269,8 @@ def get_semantic_metrics(
 
             output_report = response["raw"]["response"]
 
-            eval_prompt = (
-                prompt.text
+            eval_prompt_score = (
+                scores_prompt
                 + "\n"
                 + "report 1:\n"
                 + input_report
@@ -276,8 +279,8 @@ def get_semantic_metrics(
                 + output_report
             )
 
-            eval_prompt_score = (
-                score_prompt.text
+            eval_prompt_rating = (
+                ratings_prompt.text
                 + "\n"
                 + "report 1:\n"
                 + input_report
@@ -285,12 +288,14 @@ def get_semantic_metrics(
                 + "report 2:\n"
                 + output_report
             )
+
+            score, rating = get_semantic_similarity_llm(model, eval_prompt_score, eval_prompt_rating)
 
             semantic_metrics["llm_scores"].append(
-                get_semantic_similarity_llm(model, eval_prompt)
+                score
             )
             semantic_metrics["llm_ratings"].append(
-                get_semantic_similarity_rating_llm(model, eval_prompt_score)
+                rating
             )
             semantic_metrics["embedding_scores"].append(
                 get_semantic_similarity_embedding(input_report, output_report)
@@ -402,7 +407,7 @@ def evaluate_from_unique_ids(
             "difference_metrics": 2 in options,
             "language_tool_metrics": 3 in options,
             "semantic_metrics": 4 in options,
-            "save_json": 5 in options,
+            "save_json": True,
         }
     for unique_id in unique_ids:
         file_path = os.path.join(directories["generated"], f"{unique_id}.json")
