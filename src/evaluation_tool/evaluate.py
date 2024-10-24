@@ -245,6 +245,7 @@ def get_semantic_metrics(
     """function to get the semantic metrics"""
     semantic_metrics = {
         "llm_scores": [],
+        "llm_ratings": [],
         "embedding_scores": [],
     }
 
@@ -270,7 +271,7 @@ def get_semantic_metrics(
             output_report = response["raw"]["response"]
 
             eval_prompt_score = (
-                scores_prompt
+                scores_prompt.text
                 + "\n"
                 + "report 1:\n"
                 + input_report
