@@ -339,6 +339,8 @@ def _evaluate(
 
     special = generated["prompt"]["id"] in [8, 9, 10, 11]
 
+    print(f"Evaluating {generated['model']['name']}:{generated['model']['size']} with prompt {generated['prompt']['id']}")
+
     # Get the metrics
     if options["duration_metrics"] and generated["prompt"]["id"] != 0:
         metrics["duration_metrics"] = get_duration_metrics(generated["responses"])
