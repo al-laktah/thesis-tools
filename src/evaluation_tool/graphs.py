@@ -156,7 +156,7 @@ def multi_bar_model_graph(model_res, metric, yinc):
 
 
 # Semantic Graphs
-def semantic_box_plot(res):
+def semantic_box_plot(res, metric="llm_scores"):
     "show a box plot of the semantic similarity of the models"
     number_of_models = len(res)
     data = []
@@ -164,7 +164,7 @@ def semantic_box_plot(res):
     fail_counts = []
 
     for i in range(number_of_models):
-        llm_scores = res[i]["metrics"]["semantic_metrics"]["llm_scores"]
+        llm_scores = res[i]["metrics"]["semantic_metrics"][metric]
         valid_scores = [score for score in llm_scores if score != -1]
         fails = [score for score in llm_scores if score == -1]
 
@@ -184,7 +184,7 @@ def semantic_box_plot(res):
         showfliers=False,
     )
 
-    ax.set_title("Semantic Similarity according to Gemma 2 using prompt 6")
+    ax.set_title("Semantic Similarity according to Gemma 2:9b")
     ax.set_ylabel("Speed (tokens/s)")
     ax.grid(True, color="gray", linestyle="--", linewidth=0.5, axis="y")
 

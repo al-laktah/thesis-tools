@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from .db import Models, Prompts, Ris, WrongReports
 from .util import save_to_json
-from .prompts import prompt_eight, prompt_nine, prompt_ten, prompt_eleven
+from .prompts import prompt_eight, prompt_nine, prompt_ten, prompt_eleven, prompt_twelve, prompt_thirteen, prompt_fourteen
 
 
 def _generate_all(model, prompt, data):
@@ -158,7 +158,7 @@ def generate_all_special(
     for model_id in model_ids:
         model = Models.get_by_id(session, model_id)
 
-        print(f"Generating from model {model} using speical prompt...")
+        print(f"Generating from model {model} using speical prompt {prompt_id}...")
         unique_id = str(uuid4())
         unique_id = f"{model.short_name}-{model_id}-{prompt_id}.{unique_id}"
         responses = []
@@ -227,5 +227,27 @@ def prompt_switcher(prompt_id, report):
             return prompt_ten(report)
         case 11:
             return prompt_eleven(report)
+        case 12:
+            return prompt_twelve(report)
+        case 13:
+            return prompt_thirteen(report)
+        case 14:
+            return prompt_fourteen(report)
         case _:
             raise ValueError(f"Invalid prompt_id: {prompt_id}")
+
+def general_generate(
+    model_ids: List[int],
+    prompt_ids: List[int],
+    responses_dir: str,
+    log_dir: str,
+    session: Session,
+) -> None:
+    for prompt_id in prompt_ids:
+        if prompt_id in [4,5]:
+            print(f"Generating from models {model_ids} using prompt {prompt_id}...")
+            generate_all_from(model_ids, [prompt_id], responses_dir, log_dir, session)
+        else:
+            print(f"Generating from models using special prompt {prompt_id}...")
+            generate_all_special(model_ids, prompt_id, responses_dir, session)
+    print("Generation complete.")
