@@ -8,7 +8,9 @@ import diff_match_patch as dmp_module
 import language_tool_python as ltp
 from sqlalchemy.orm import Session
 from ollama import ResponseError, generate
-from .db import Ris, Models, Prompts, WrongReports
+from nltk.tokenize import sent_tokenize
+from sentence_transformers import SentenceTransformer
+from .db import Ris, Models, Prompts, WrongReports, CorrectReports
 from .util import save_to_json, get_whitelist
 
 
@@ -268,9 +270,76 @@ def get_semantic_similarity_llm(model, score_prompt, rating_prompt):
     return score, rating
 
 
-def get_semantic_similarity_embedding(input_report, output_report):
+def get_semantic_similarity_embedding(input_report, output_report, correct_report):
     """function to get the semantic similarity using embeddings"""
-    return 0
+    scores = {
+        "input_output": {
+            "whole": (0.0, 0.0),
+            "sentences": ([],[]),
+        },
+        "input_correct": {
+            "whole": (0.0, 0.0),
+            "sentences": ([],[]),
+        },
+        "output_correct": {
+            "whole": (0.0, 0.0),
+            "sentences": ([],[]),
+        },
+    }
+
+    input_sentences = sent_tokenize(input_report)
+    output_sentences = sent_tokenize(output_report)
+    correct_sentences = sent_tokenize(correct_report)
+
+    model1 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
+    model2 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-mpnet-base-v2')
+
+    # Get the embeddings for the whole reports
+    try:
+        whole_embeddings1 = model1.encode([input_report, output_report, correct_report], normalize_embeddings=True)
+        whole_embeddings2 = model2.encode([input_report, output_report, correct_report], normalize_embeddings=True)
+    except Exception as e:
+        print(e)
+
+    # Get the cosine similarity for the whole reports
+    try:
+        scores["input_output"]["whole"] = (whole_embeddings1[0] @ whole_embeddings2[1], whole_embeddings2   [0] @ whole_embeddings2[1])
+        scores["input_correct"]["whole"] = (whole_embeddings1[0] @ whole_embeddings2[2], whole_embeddings2  [0] @ whole_embeddings2[2])
+        scores["output_correct"]["whole"] = (whole_embeddings1[1] @ whole_embeddings2[2], whole_embeddings2 [1] @ whole_embeddings2[2])
+    except Exception as e:
+        print(e)
+    
+    # Get the embeddings for the sentences
+    all_sentences = input_sentences + output_sentences + correct_sentences
+    try:
+        sentence_embeddings1 = model1.encode(all_sentences, normalize_embeddings=True)
+        sentence_embeddings2 = model2.encode(all_sentences, normalize_embeddings=True)
+    except Exception as e:
+        print(e)
+    
+    # Get the cosine similarity for the sentences
+    try:
+        i = 0
+        o = len(input_sentences)
+        c = o + len(output_sentences) + 1
+        end = len(all_sentences) - 1
+        while i < o:
+            scores["input_output"]["sentences"][0].append(sentence_embeddings1[i] @ sentence_embeddings2[i + o])
+            scores["input_output"]["sentences"][1].append(sentence_embeddings2[i] @ sentence_embeddings2[i + o])
+            i += 1
+        i = 0
+        while i < o and i + o < end:
+            scores["input_correct"]["sentences"][0].append(sentence_embeddings1[i] @ sentence_embeddings2[i + o])
+            scores["input_correct"]["sentences"][1].append(sentence_embeddings2[i] @ sentence_embeddings2[i + o])
+            i += 1
+        while o < c and o + c < end:
+            scores["output_correct"]["sentences"][0].append(sentence_embeddings1[o] @ sentence_embeddings2[o + c])
+            scores["output_correct"]["sentences"][1].append(sentence_embeddings2[o] @ sentence_embeddings2[o + c])
+            o += 1
+    except Exception as e:
+        print(e)
+
+    return scores
 
 
 def get_semantic_metrics(
@@ -300,17 +369,11 @@ def get_semantic_metrics(
         ris_id = response["ris_id"]
         try:
             if special:
-                input_report = WrongReports.get_by_id(
-                    session, ris_id
-                ).befund
+                input_report = WrongReports.get_by_id(session, ris_id).befund
+                correct_report = CorrectReports.get_by_id(session, ris_id).befund
             else:
-                ris = Ris.get_by_id(session, ris_id)
-                if ris.revision_1 is not None:
-                    input_report = ris.revision_1
-                elif ris.revision_2 is not None:
-                    input_report = ris.revision_2
-                else:
-                    continue
+                input_report = Ris.get_by_id(session, ris_id).revision_2
+                correct_report = Ris.get_by_id(session, ris_id).final
 
             output_report = response["raw"]["response"]
 
@@ -346,7 +409,7 @@ def get_semantic_metrics(
             else:
                 semantic_metrics["llm_ratings"].update({ris_id: rating})
 
-            semantic_metrics["embedding_scores"].update({ris_id: get_semantic_similarity_embedding(input_report, output_report)})
+            semantic_metrics["embedding_scores"].update({ris_id: get_semantic_similarity_embedding(input_report, output_report, correct_report)})
         except Exception as e:
             print(e)
             continue
