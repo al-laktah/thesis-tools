@@ -115,10 +115,10 @@ def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, voc
                 ]
                 if word in whitelist:
                     whitelist_count += 1
-                    typos.append((word, match.context, False))
+                    typos.append((word, match.context, True))
                 else:
                     typos_count += 1
-                    typos.append((word, match.context, True))
+                    typos.append((word, match.context, False))
             except Exception as e:
                 print(e)
     except ltp.utils.LanguageToolError as e:
@@ -137,7 +137,7 @@ def language_tool_grammar_check(lang_tool: ltp.LanguageTool, output_report):
     try:
         matches = lang_tool.check(output_report)
         for match in matches:
-            grammar.append(match.ruleId)
+            grammar.append(match.__dict__)
     except ltp.utils.LanguageToolError:
         grammar.append("LT Error")
 
@@ -145,15 +145,15 @@ def language_tool_grammar_check(lang_tool: ltp.LanguageTool, output_report):
 
 def language_tool_other_check(lang_tool: ltp.LanguageTool, output_report):
     """function to check the output report using language tool"""
-    lang_tool.enabled_rules_only = True
-    lang_tool.enabled_categories = {}
+    lang_tool.enabled_rules_only = False
+    lang_tool.disabled_categories = {"TYPOS", "GRAMMAR"}
 
     other = []
 
     try:
         matches = lang_tool.check(output_report)
         for match in matches:
-            other.append(match.ruleId)
+            other.append(match.__dict__)
     except ltp.utils.LanguageToolError:
         other.append("LT Error")
 
@@ -171,9 +171,15 @@ def get_language_tool_metrics(
             "grammar": 0,
             "other": 0,
         },
-        "typos": {},
-        "grammar": {},
-        "other": {},
+        "typos": {
+            "count": 0,
+        },
+        "grammar": {
+            "count": 0,
+        },
+        "other": {
+            "count": 0,
+        },
     }
 
     for response in responses:
@@ -188,15 +194,15 @@ def get_language_tool_metrics(
             print(e)
             continue
         try:
-            grammar, count = language_tool_grammar_check(lang_tool, output_report)
-            language_tool_metrics["counts"]["grammar"] += count
+            grammar, grammar_count = language_tool_grammar_check(lang_tool, output_report)
+            language_tool_metrics["counts"]["grammar"] += grammar_count
             language_tool_metrics["grammar"].update({ris_id: grammar})
         except Exception as e:
             print(e)
             continue
         try:
-            other, count = language_tool_other_check(lang_tool, output_report)
-            language_tool_metrics["counts"]["other"] += count
+            other, other_count = language_tool_other_check(lang_tool, output_report)
+            language_tool_metrics["counts"]["other"] += other_count
             language_tool_metrics["other"].update({ris_id: other})
         except Exception as e:
             print(e)
@@ -277,8 +283,12 @@ def get_semantic_metrics(
 ) -> Dict[str, Any]:
     """function to get the semantic metrics"""
     semantic_metrics = {
-        "llm_scores": {},
-        "llm_ratings": {},
+        "llm_scores": {
+            "fails": [],
+        },
+        "llm_ratings": {
+            "fails": [],
+        },
         "embedding_scores": {},
     }
 
@@ -325,8 +335,17 @@ def get_semantic_metrics(
             )
 
             score, rating = get_semantic_similarity_llm(model, eval_prompt_score, eval_prompt_rating)
-            semantic_metrics["llm_scores"].update({ris_id: score})
-            semantic_metrics["llm_ratings"].update({ris_id: rating})
+
+            if score == -1:
+                semantic_metrics["llm_scores"]["fails"].append(ris_id)
+            else:
+                semantic_metrics["llm_scores"].update({ris_id: score})
+
+            if rating == -1:
+                semantic_metrics["llm_ratings"]["fails"].append(ris_id)
+            else:
+                semantic_metrics["llm_ratings"].update({ris_id: rating})
+
             semantic_metrics["embedding_scores"].update({ris_id: get_semantic_similarity_embedding(input_report, output_report)})
         except Exception as e:
             print(e)
