@@ -9,6 +9,7 @@ from evaluation_tool import general_generate
 from evaluation_tool.evaluate import evaluate_from_unique_ids
 from evaluation_tool.util import create_directories, create_db_session
 
+from sentence_transformers import SentenceTransformer
 
 def parse_arguments():
     """Parse command-line arguments."""
@@ -55,10 +56,18 @@ def main():
                 server = args.server
             else:
                 server = "http://localhost:8010"
-            if 3 not in args.options:
-                lang_tool = None
-            else:
+            
+            if 3 in args.options:
                 lang_tool = ltp.LanguageTool("de-De", remote_server=server)
+            else:
+                lang_tool = None
+            if 4 in args.options:
+                model1 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
+                model2 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-mpnet-base-v2')
+            else:
+                model1 = None
+                model2 = None
+
             evaluate_from_unique_ids(
                 args.uids,
                 directories,

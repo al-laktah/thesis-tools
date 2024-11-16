@@ -9,7 +9,6 @@ import language_tool_python as ltp
 from sqlalchemy.orm import Session
 from ollama import ResponseError, generate
 from nltk.tokenize import sent_tokenize
-from sentence_transformers import SentenceTransformer
 from .db import Ris, Models, Prompts, WrongReports, CorrectReports
 from .util import save_to_json, get_whitelist
 
@@ -270,7 +269,7 @@ def get_semantic_similarity_llm(model, score_prompt, rating_prompt):
     return score, rating
 
 
-def get_semantic_similarity_embedding(input_report, output_report, correct_report):
+def get_semantic_similarity_embedding(model1, model2, input_report, output_report, correct_report):
     """function to get the semantic similarity using embeddings"""
     scores = {
         "input_output": {
@@ -290,9 +289,6 @@ def get_semantic_similarity_embedding(input_report, output_report, correct_repor
     input_sentences = sent_tokenize(input_report)
     output_sentences = sent_tokenize(output_report)
     correct_sentences = sent_tokenize(correct_report)
-
-    model1 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
-    model2 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-mpnet-base-v2')
 
     # Get the embeddings for the whole reports
     try:
@@ -345,6 +341,8 @@ def get_semantic_similarity_embedding(input_report, output_report, correct_repor
 def get_semantic_metrics(
     responses,
     session,
+    model1,
+    model2,
     scores_prompt_id=6,
     ratings_prompt_id=12,
     model_id=7,
@@ -409,7 +407,7 @@ def get_semantic_metrics(
             else:
                 semantic_metrics["llm_ratings"].update({ris_id: rating})
 
-            semantic_metrics["embedding_scores"].update({ris_id: get_semantic_similarity_embedding(input_report, output_report, correct_report)})
+            semantic_metrics["embedding_scores"].update({ris_id: get_semantic_similarity_embedding(model1, model2, input_report, output_report, correct_report)})
         except Exception as e:
             print("get_semantic_similarity_embedding", e)
             continue
@@ -422,7 +420,9 @@ def _evaluate(
     generated: Dict[str, Any],
     directories: List[str],
     session: Session,
-    lang_tool: ltp.LanguageTool,
+    lang_tool: Union[ltp.LanguageTool, None],
+    model1,
+    model2,
     options: Dict[str, bool],
     update: bool,
 ):
@@ -452,7 +452,7 @@ def _evaluate(
         )
     if options["semantic_metrics"]:
         metrics["semantic_metrics"] = get_semantic_metrics(
-            generated["responses"], session, special=special
+            generated["responses"], session, model1, model2, special=special
         )
 
     # Save the results
@@ -487,6 +487,8 @@ def evaluate_from_unique_ids(
     directories: List[str],
     session: Session,
     lang_tool: Union[ltp.LanguageTool, None],
+    model1,
+    model2,
     options: Dict[str, bool] = None,
     update: bool = False,
 ):
@@ -520,6 +522,8 @@ def evaluate_from_unique_ids(
             directories,
             session,
             lang_tool,
+            model1,
+            model2,
             options=options,
             update=update,
         )
