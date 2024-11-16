@@ -18,9 +18,9 @@ from .util import save_to_json, get_whitelist
 def get_duration_metrics(responses: Dict[str, Any]) -> Dict[str, Any]:
     """function to get the duration metrics"""
     duration_metrics = {
-        "eval_counts": [],
-        "eval_durations": [],
-        "eval_speeds_t/s": [],
+        "eval_counts": {},
+        "eval_durations": {},
+        "eval_speeds_t/s": {},
     }
 
     for response in responses:
