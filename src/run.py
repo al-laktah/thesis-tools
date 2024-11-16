@@ -55,10 +55,10 @@ def main():
                 server = args.server
             else:
                 server = "http://localhost:8010"
-            if 3 in args.options:
-                lang_tool = ltp.LanguageTool("de-De", remote_server=server)
-            else:
+            if 3 not in args.options:
                 lang_tool = None
+            else:
+                lang_tool = ltp.LanguageTool("de-De", remote_server=server)
             evaluate_from_unique_ids(
                 args.uids,
                 directories,
