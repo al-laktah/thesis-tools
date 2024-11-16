@@ -152,6 +152,11 @@ class WrongReports(Base):
         df = pd.DataFrame(data)
 
         return df
+    
+    @classmethod
+    def get_by_ris_id(cls, session: Session, ris_id: int):
+        """Function to get a row by its id."""
+        return session.query(cls).filter_by(ris_id=ris_id).first()
 
     def __repr__(self) -> str:
         return f"Wrong Report: {self.id}"
@@ -211,6 +216,11 @@ class CorrectReports(Base):
         df = pd.DataFrame(data)
 
         return df
+
+    @classmethod
+    def get_by_ris_id(cls, session: Session, ris_id: int):
+        """Function to get a row by its id."""
+        return session.query(cls).filter_by(ris_id=ris_id).first()
 
     def __repr__(self) -> str:
         return f"Wrong Report: {self.id}"

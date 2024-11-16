@@ -370,7 +370,7 @@ def get_semantic_metrics(
         try:
             if special:
                 input_report = WrongReports.get_by_id(session, ris_id).befund
-                correct_report = CorrectReports.get_by_id(session, ris_id).befund
+                correct_report = CorrectReports.get_by_ris_id(session, ris_id).befund
             else:
                 input_report = Ris.get_by_id(session, ris_id).revision_2
                 correct_report = Ris.get_by_id(session, ris_id).final
