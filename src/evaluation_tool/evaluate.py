@@ -16,27 +16,18 @@ from .util import save_to_json, get_whitelist
 def get_duration_metrics(responses: Dict[str, Any]) -> Dict[str, Any]:
     """function to get the duration metrics"""
     duration_metrics = {
-        "load_durations": [],
-        "prompt_eval_durations": [],
         "eval_counts": [],
         "eval_durations": [],
-        "eval_durations_t/s": [],
+        "eval_speeds_t/s": [],
     }
 
     for response in responses:
         try:
-            duration_metrics["load_durations"].append(response["raw"]["load_duration"])
-            duration_metrics["prompt_eval_durations"].append(
-                response["raw"]["prompt_eval_duration"]
-            )
-            duration_metrics["eval_counts"].append(response["raw"]["eval_count"])
-            duration_metrics["eval_durations"].append(response["raw"]["eval_duration"])
-            duration_metrics["eval_durations_t/s"].append(
-                int(
-                    response["raw"]["eval_count"]
-                    // (response["raw"]["eval_duration"] / 10**9)
-                )
-            )
+            ris_id = response["ris_id"]
+            duration_metrics["eval_counts"].update({ris_id: response["raw"]["eval_count"]})
+            duration_metrics["eval_durations"].update({ris_id: response["raw"]["eval_duration"]})
+            eval_speed = int(response["raw"]["eval_count"] // (response["raw"]["eval_duration"] / 10**9))
+            duration_metrics["eval_speeds_t/s"].update({ris_id: eval_speed})
         except Exception as e:
             print(e)
             continue
@@ -45,7 +36,7 @@ def get_duration_metrics(responses: Dict[str, Any]) -> Dict[str, Any]:
 
 
 # Difference Metrics
-def sm_similarity_ratio(input_report, output_report):
+def sequencematcher_ratio(input_report, output_report):
     """function to calculate the similarity ratio using SequenceMatcher"""
     return SequenceMatcher(None, output_report, input_report).ratio()
 
@@ -68,20 +59,20 @@ def get_difference_metrics(
 ) -> Dict[str, Any]:
     """function to get the diffrence metrics"""
     difference_metrics = {
-        "sm_similarity_ratios": [],
-        "levenshtein_distances": [],
-        "levenshtein_distance_ratios": [],
-        "levenshtein_distance_inverse_ratios": [],
+        "sequencematcher_ratios": {},
+        "levenshtein_distances": {},
+        "levenshtein_distance_ratios": {},
     }
 
     for response in responses:
+        ris_id = response["ris_id"]
         try:
             if special:
                 input_report = WrongReports.get_by_id(
-                    session, response["ris_id"]
+                    session, ris_id
                 ).befund
             else:
-                ris = Ris.get_by_id(session, response["ris_id"])
+                ris = Ris.get_by_id(session, ris_id)
                 if ris.revision_1 is not None:
                     input_report = ris.revision_1
                 elif ris.revision_2 is not None:
@@ -91,13 +82,12 @@ def get_difference_metrics(
 
             output_report = response["raw"]["response"]
 
-            difference_metrics["sm_similarity_ratios"].append(
-                sm_similarity_ratio(input_report, output_report)
+            difference_metrics["sequencematcher_ratios"].update(
+                {ris_id: sequencematcher_ratio(input_report, output_report)}
             )
             distance, ratio = levenshtein_distance_ratio(input_report, output_report)
-            difference_metrics["levenshtein_distances"].append(distance)
-            difference_metrics["levenshtein_distance_ratios"].append(ratio)
-            difference_metrics["levenshtein_distance_inverse_ratios"].append(1 - ratio)
+            difference_metrics["levenshtein_distances"].update({ris_id: distance})
+            difference_metrics["levenshtein_distance_ratios"].update({ris_id: ratio})
         except Exception as e:
             print(e)
             continue
@@ -111,22 +101,30 @@ def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, voc
     lang_tool.enabled_rules_only = True
     lang_tool.enabled_categories = {"TYPOS"}
 
-    misspelled = []
+    typos = {}
+    typos_count = 0
+    whitelist_count = 0
     whitelist = get_whitelist(vocab_dir)
-    whitelist = []  # TODO: remove this line
 
     try:
         matches = lang_tool.check(output_report)
         for match in matches:
-            word = match.context[
-                match.offsetInContext : match.offsetInContext + match.errorLength
-            ]
-            if word not in whitelist:
-                misspelled.append((word, match.context))
-    except ltp.utils.LanguageToolError:
-        misspelled.append("LT Error")
+            try:
+                word = match.context[
+                    match.offsetInContext : match.offsetInContext + match.errorLength
+                ]
+                if word in whitelist:
+                    whitelist_count += 1
+                    typos.append((word, match.context, False))
+                else:
+                    typos_count += 1
+                    typos.append((word, match.context, True))
+            except Exception as e:
+                print(e)
+    except ltp.utils.LanguageToolError as e:
+        print(e)
 
-    return misspelled
+    return typos, typos_count, whitelist_count
 
 
 def language_tool_grammar_check(lang_tool: ltp.LanguageTool, output_report):
@@ -143,7 +141,23 @@ def language_tool_grammar_check(lang_tool: ltp.LanguageTool, output_report):
     except ltp.utils.LanguageToolError:
         grammar.append("LT Error")
 
-    return grammar
+    return grammar, len(matches)
+
+def language_tool_other_check(lang_tool: ltp.LanguageTool, output_report):
+    """function to check the output report using language tool"""
+    lang_tool.enabled_rules_only = True
+    lang_tool.enabled_categories = {}
+
+    other = []
+
+    try:
+        matches = lang_tool.check(output_report)
+        for match in matches:
+            other.append(match.ruleId)
+    except ltp.utils.LanguageToolError:
+        other.append("LT Error")
+
+    return other, len(matches)
 
 
 def get_language_tool_metrics(
@@ -151,26 +165,45 @@ def get_language_tool_metrics(
 ) -> Dict[str, Any]:
     """function to get the language tool metrics"""
     language_tool_metrics = {
-        "misspelled": [],
-        "grammer": [],
-        "other": [],
+        "counts": {
+            "typos": 0,
+            "whitelist": 0,
+            "grammar": 0,
+            "other": 0,
+        },
+        "typos": {},
+        "grammar": {},
+        "other": {},
     }
 
     for response in responses:
-        language_tool_metrics["misspelled"].append(
-            language_tool_spelling_check(
-                lang_tool, response["raw"]["response"], directories["vocab"]
-            )
-        )
-        language_tool_metrics["grammer"].append(
-            language_tool_grammar_check(lang_tool, response["raw"]["response"])
-        )
-
+        ris_id = response["ris_id"]
+        output_report = response["raw"]["response"]
+        try:
+            typos, typos_count, whitelist_count = language_tool_spelling_check(lang_tool, output_report, directories[0])
+            language_tool_metrics["counts"]["typos"] += typos_count
+            language_tool_metrics["counts"]["whitelist"] += whitelist_count
+            language_tool_metrics["typos"].update({ris_id: typos})
+        except Exception as e:
+            print(e)
+            continue
+        try:
+            grammar, count = language_tool_grammar_check(lang_tool, output_report)
+            language_tool_metrics["counts"]["grammar"] += count
+            language_tool_metrics["grammar"].update({ris_id: grammar})
+        except Exception as e:
+            print(e)
+            continue
+        try:
+            other, count = language_tool_other_check(lang_tool, output_report)
+            language_tool_metrics["counts"]["other"] += count
+            language_tool_metrics["other"].update({ris_id: other})
+        except Exception as e:
+            print(e)
+            continue
     return language_tool_metrics
 
-
 # Semantic Metrics
-
 def get_semantic_similarity_llm(model, score_prompt, rating_prompt):
     """function to get the semantic similarity using LLM"""
     response = {}
@@ -244,9 +277,9 @@ def get_semantic_metrics(
 ) -> Dict[str, Any]:
     """function to get the semantic metrics"""
     semantic_metrics = {
-        "llm_scores": [],
-        "llm_ratings": [],
-        "embedding_scores": [],
+        "llm_scores": {},
+        "llm_ratings": {},
+        "embedding_scores": {},
     }
 
     model = Models.get_by_id(session, model_id)
@@ -254,13 +287,14 @@ def get_semantic_metrics(
     ratings_prompt = Prompts.get_by_id(session, ratings_prompt_id)
 
     for response in responses:
+        ris_id = response["ris_id"]
         try:
             if special:
                 input_report = WrongReports.get_by_id(
-                    session, response["ris_id"]
+                    session, ris_id
                 ).befund
             else:
-                ris = Ris.get_by_id(session, response["ris_id"])
+                ris = Ris.get_by_id(session, ris_id)
                 if ris.revision_1 is not None:
                     input_report = ris.revision_1
                 elif ris.revision_2 is not None:
@@ -291,16 +325,9 @@ def get_semantic_metrics(
             )
 
             score, rating = get_semantic_similarity_llm(model, eval_prompt_score, eval_prompt_rating)
-
-            semantic_metrics["llm_scores"].append(
-                score
-            )
-            semantic_metrics["llm_ratings"].append(
-                rating
-            )
-            semantic_metrics["embedding_scores"].append(
-                get_semantic_similarity_embedding(input_report, output_report)
-            )
+            semantic_metrics["llm_scores"].update({ris_id: score})
+            semantic_metrics["llm_ratings"].update({ris_id: rating})
+            semantic_metrics["embedding_scores"].update({ris_id: get_semantic_similarity_embedding(input_report, output_report)})
         except Exception as e:
             print(e)
             continue
@@ -320,24 +347,13 @@ def _evaluate(
     """function to evaluate the performance of the models"""
     # Initialize the metrics
     metrics = {
-        "duration_metrics": {
-            "load_durations": [],
-            "prompt_eval_durations": [],
-            "eval_counts": [],
-            "eval_durations": [],
-            "eval_durations_t/s": [],
-        },
-        "difference_metrics": {
-            "sm_similarity_ratios": [],
-            "levenshtein_distances": [],
-            "levenshtein_distance_ratios": [],
-            "levenshtein_distance_inverse_ratios": [],
-        },
-        "language_tool_metrics": {"misspelled": [], "grammar": [], "other": []},
-        "semantic_metrics": {"llm_scores": [], "llm_ratings": [], "embedding_scores": []},
+        "duration_metrics": {},
+        "difference_metrics": {},
+        "language_tool_metrics": {},
+        "semantic_metrics": {},
     }
 
-    special = generated["prompt"]["id"] in [8, 9, 10, 11]
+    special = generated["prompt"]["id"] not in [4, 5]
 
     print(f"Evaluating {generated['model']['name']}:{generated['model']['size']} with prompt {generated['prompt']['id']}")
 
