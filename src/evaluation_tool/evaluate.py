@@ -31,7 +31,7 @@ def get_duration_metrics(responses: Dict[str, Any]) -> Dict[str, Any]:
             eval_speed = int(response["raw"]["eval_count"] // (response["raw"]["eval_duration"] / 10**9))
             duration_metrics["eval_speeds_t/s"].update({ris_id: eval_speed})
         except Exception as e:
-            print(e)
+            print("get_duration_metrics", e)
             continue
 
     return duration_metrics
@@ -91,7 +91,7 @@ def get_difference_metrics(
             difference_metrics["levenshtein_distances"].update({ris_id: distance})
             difference_metrics["levenshtein_distance_ratios"].update({ris_id: ratio})
         except Exception as e:
-            print(e)
+            print("get_difference_metrics",e)
             continue
 
     return difference_metrics
@@ -122,9 +122,9 @@ def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, voc
                     typos_count += 1
                     typos.append((word, match.context, False))
             except Exception as e:
-                print(e)
+                print("language_tool_spelling_check", e)
     except ltp.utils.LanguageToolError as e:
-        print(e)
+        print("language_tool_spelling_check", e)
 
     return typos, typos_count, whitelist_count
 
@@ -193,21 +193,21 @@ def get_language_tool_metrics(
             language_tool_metrics["counts"]["whitelist"] += whitelist_count
             language_tool_metrics["typos"].update({ris_id: typos})
         except Exception as e:
-            print(e)
+            print("get_language_tool_metrics", e)
             continue
         try:
             grammar, grammar_count = language_tool_grammar_check(lang_tool, output_report)
             language_tool_metrics["counts"]["grammar"] += grammar_count
             language_tool_metrics["grammar"].update({ris_id: grammar})
         except Exception as e:
-            print(e)
+            print("get_language_tool_metrics", e)
             continue
         try:
             other, other_count = language_tool_other_check(lang_tool, output_report)
             language_tool_metrics["counts"]["other"] += other_count
             language_tool_metrics["other"].update({ris_id: other})
         except Exception as e:
-            print(e)
+            print("get_language_tool_metrics", e)
             continue
     return language_tool_metrics
 
@@ -299,7 +299,7 @@ def get_semantic_similarity_embedding(input_report, output_report, correct_repor
         whole_embeddings1 = model1.encode([input_report, output_report, correct_report], normalize_embeddings=True)
         whole_embeddings2 = model2.encode([input_report, output_report, correct_report], normalize_embeddings=True)
     except Exception as e:
-        print(e)
+        print("get_semantic_similarity_embedding", e)
 
     # Get the cosine similarity for the whole reports
     try:
@@ -307,7 +307,7 @@ def get_semantic_similarity_embedding(input_report, output_report, correct_repor
         scores["input_correct"]["whole"] = (whole_embeddings1[0] @ whole_embeddings2[2], whole_embeddings2  [0] @ whole_embeddings2[2])
         scores["output_correct"]["whole"] = (whole_embeddings1[1] @ whole_embeddings2[2], whole_embeddings2 [1] @ whole_embeddings2[2])
     except Exception as e:
-        print(e)
+        print("get_semantic_similarity_embedding", e)
     
     # Get the embeddings for the sentences
     all_sentences = input_sentences + output_sentences + correct_sentences
@@ -315,7 +315,7 @@ def get_semantic_similarity_embedding(input_report, output_report, correct_repor
         sentence_embeddings1 = model1.encode(all_sentences, normalize_embeddings=True)
         sentence_embeddings2 = model2.encode(all_sentences, normalize_embeddings=True)
     except Exception as e:
-        print(e)
+        print("get_semantic_similarity_embedding", e)
     
     # Get the cosine similarity for the sentences
     try:
@@ -337,7 +337,7 @@ def get_semantic_similarity_embedding(input_report, output_report, correct_repor
             scores["output_correct"]["sentences"][1].append(sentence_embeddings2[o] @ sentence_embeddings2[o + c])
             o += 1
     except Exception as e:
-        print(e)
+        print("get_semantic_similarity_embedding", e)
 
     return scores
 
@@ -411,7 +411,7 @@ def get_semantic_metrics(
 
             semantic_metrics["embedding_scores"].update({ris_id: get_semantic_similarity_embedding(input_report, output_report, correct_report)})
         except Exception as e:
-            print(e)
+            print("get_semantic_similarity_embedding", e)
             continue
 
     return semantic_metrics

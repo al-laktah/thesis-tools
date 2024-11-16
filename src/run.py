@@ -67,7 +67,8 @@ def main():
                 options=args.options,
                 update=args.update,
             )
-            lang_tool.close()
+            if lang_tool:
+                lang_tool.close()
         case _:
             print("Unknown command")
 
