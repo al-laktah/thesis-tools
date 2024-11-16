@@ -486,7 +486,7 @@ def evaluate_from_unique_ids(
     unique_ids: Union[str, List[str]],
     directories: List[str],
     session: Session,
-    lang_tool: ltp.LanguageTool,
+    lang_tool: Union[ltp.LanguageTool, None],
     options: Dict[str, bool] = None,
     update: bool = False,
 ):
