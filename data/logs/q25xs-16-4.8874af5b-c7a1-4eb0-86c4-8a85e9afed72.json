@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": 16,
+        "name": "qwen2.5",
+        "size": "0.5b",
+        "options": null,
+        "family": "qwen",
+        "short_name": "q25xs"
+    },
+    "prompt": {
+        "id": 4,
+        "text": "You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "english"
+        ]
+    },
+    "unique_id": "q25xs-16-4.8874af5b-c7a1-4eb0-86c4-8a85e9afed72",
+    "log": {}
+}

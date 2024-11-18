@@ -9,6 +9,7 @@ from evaluation_tool import general_generate
 from evaluation_tool.evaluate import evaluate_from_unique_ids
 from evaluation_tool.util import create_directories, create_db_session
 
+# import nltk
 from sentence_transformers import SentenceTransformer
 
 def parse_arguments():
@@ -39,6 +40,9 @@ def main():
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     directories = create_directories(project_root)
     session = create_db_session(os.path.join(directories["data"], "DB.db"))
+    model1 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
+    model2 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-mpnet-base-v2')
+    #nltk.download("all")
 
     args = parse_arguments()
 
@@ -56,23 +60,19 @@ def main():
                 server = args.server
             else:
                 server = "http://localhost:8010"
-            
+
             if 3 in args.options:
                 lang_tool = ltp.LanguageTool("de-De", remote_server=server)
             else:
                 lang_tool = None
-            if 4 in args.options:
-                model1 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
-                model2 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-mpnet-base-v2')
-            else:
-                model1 = None
-                model2 = None
 
             evaluate_from_unique_ids(
                 args.uids,
                 directories,
                 session,
                 lang_tool,
+                model1,
+                model2,
                 options=args.options,
                 update=args.update,
             )

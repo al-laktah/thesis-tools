@@ -102,7 +102,7 @@ def language_tool_spelling_check(lang_tool: ltp.LanguageTool, output_report, voc
     lang_tool.enabled_rules_only = True
     lang_tool.enabled_categories = {"TYPOS"}
 
-    typos = {}
+    typos = []
     typos_count = 0
     whitelist_count = 0
     whitelist = get_whitelist(vocab_dir)
@@ -280,10 +280,6 @@ def get_semantic_similarity_embedding(model1, model2, input_report, output_repor
             "whole": (0.0, 0.0),
             "sentences": ([],[]),
         },
-        "output_correct": {
-            "whole": (0.0, 0.0),
-            "sentences": ([],[]),
-        },
     }
 
     input_sentences = sent_tokenize(input_report)
@@ -294,44 +290,40 @@ def get_semantic_similarity_embedding(model1, model2, input_report, output_repor
     try:
         whole_embeddings1 = model1.encode([input_report, output_report, correct_report], normalize_embeddings=True)
         whole_embeddings2 = model2.encode([input_report, output_report, correct_report], normalize_embeddings=True)
+        scores["input_output"]["whole"] = (float(whole_embeddings1[0] @ whole_embeddings1[1]), float(whole_embeddings2[0] @ whole_embeddings2[1]))
+        scores["input_correct"]["whole"] = (float(whole_embeddings1[0] @ whole_embeddings1[2]), float(whole_embeddings2[0] @ whole_embeddings2[2]))
     except Exception as e:
         print("get_semantic_similarity_embedding", e)
 
-    # Get the cosine similarity for the whole reports
-    try:
-        scores["input_output"]["whole"] = (whole_embeddings1[0] @ whole_embeddings2[1], whole_embeddings2   [0] @ whole_embeddings2[1])
-        scores["input_correct"]["whole"] = (whole_embeddings1[0] @ whole_embeddings2[2], whole_embeddings2  [0] @ whole_embeddings2[2])
-        scores["output_correct"]["whole"] = (whole_embeddings1[1] @ whole_embeddings2[2], whole_embeddings2 [1] @ whole_embeddings2[2])
-    except Exception as e:
-        print("get_semantic_similarity_embedding", e)
-    
     # Get the embeddings for the sentences
-    all_sentences = input_sentences + output_sentences + correct_sentences
     try:
-        sentence_embeddings1 = model1.encode(all_sentences, normalize_embeddings=True)
-        sentence_embeddings2 = model2.encode(all_sentences, normalize_embeddings=True)
-    except Exception as e:
-        print("get_semantic_similarity_embedding", e)
-    
-    # Get the cosine similarity for the sentences
-    try:
-        i = 0
-        o = len(input_sentences)
-        c = o + len(output_sentences) + 1
-        end = len(all_sentences) - 1
-        while i < o:
-            scores["input_output"]["sentences"][0].append(sentence_embeddings1[i] @ sentence_embeddings2[i + o])
-            scores["input_output"]["sentences"][1].append(sentence_embeddings2[i] @ sentence_embeddings2[i + o])
-            i += 1
-        i = 0
-        while i < o and i + o < end:
-            scores["input_correct"]["sentences"][0].append(sentence_embeddings1[i] @ sentence_embeddings2[i + o])
-            scores["input_correct"]["sentences"][1].append(sentence_embeddings2[i] @ sentence_embeddings2[i + o])
-            i += 1
-        while o < c and o + c < end:
-            scores["output_correct"]["sentences"][0].append(sentence_embeddings1[o] @ sentence_embeddings2[o + c])
-            scores["output_correct"]["sentences"][1].append(sentence_embeddings2[o] @ sentence_embeddings2[o + c])
-            o += 1
+        sentences_embeddings1 = model1.encode(
+            input_sentences + output_sentences + correct_sentences,
+            normalize_embeddings=True
+        )
+
+        sentences_embeddings2 = model2.encode(
+            input_sentences + output_sentences + correct_sentences,
+            normalize_embeddings=True
+        )
+
+        input_embeddings1 = sentences_embeddings1[:len(input_sentences)]
+        output_embeddings1 = sentences_embeddings1[len(input_sentences):len(input_sentences) + len(output_sentences)]
+        correct_embeddings1 = sentences_embeddings1[len(input_sentences) + len(output_sentences):]
+
+        input_embeddings2 = sentences_embeddings2[:len(input_sentences)]
+        output_embeddings2 = sentences_embeddings2[len(input_sentences):len(input_sentences) + len(output_sentences)]
+        correct_embeddings2 = sentences_embeddings2[len(input_sentences) + len(output_sentences):]
+        
+        scores["input_output"]["sentences"] = (
+            [float(input_embeddings1[i] @ output_embeddings1[i]) for i in range(min(len(input_sentences), len(output_sentences)))],
+            [float(input_embeddings2[i] @ output_embeddings2[i]) for i in range(min(len(input_sentences), len(output_sentences)))]
+        )
+
+        scores["input_correct"]["sentences"] = (
+            [float(input_embeddings1[i] @ correct_embeddings1[i]) for i in range(min(len(input_sentences), len(correct_sentences)))],
+            [float(input_embeddings2[i] @ correct_embeddings2[i]) for i in range(min(len(input_sentences), len(correct_sentences)))]
+        )
     except Exception as e:
         print("get_semantic_similarity_embedding", e)
 
