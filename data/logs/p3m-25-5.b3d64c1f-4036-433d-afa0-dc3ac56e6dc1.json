@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": 25,
+        "name": "phi3",
+        "size": "14b",
+        "options": null,
+        "family": "phi",
+        "short_name": "p3m"
+    },
+    "prompt": {
+        "id": 5,
+        "text": "Sie sind ein Schreibassistenzsystem für medizinische Berichte, die auf Deutsch geschrieben sind, Sie sollten korrigierte Versionen der Berichte bereitstellen Sie sollten nur mit dem korrigierten Bericht antworten. Sie geben keine Erklärungen ab.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "german"
+        ]
+    },
+    "unique_id": "p3m-25-5.b3d64c1f-4036-433d-afa0-dc3ac56e6dc1",
+    "log": {}
+}

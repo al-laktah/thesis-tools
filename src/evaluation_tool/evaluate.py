@@ -73,13 +73,7 @@ def get_difference_metrics(
                     session, ris_id
                 ).befund
             else:
-                ris = Ris.get_by_id(session, ris_id)
-                if ris.revision_1 is not None:
-                    input_report = ris.revision_1
-                elif ris.revision_2 is not None:
-                    input_report = ris.revision_2
-                else:
-                    continue
+                input_report = Ris.get_by_id(session, ris_id).revision_2
 
             output_report = response["raw"]["response"]
 
