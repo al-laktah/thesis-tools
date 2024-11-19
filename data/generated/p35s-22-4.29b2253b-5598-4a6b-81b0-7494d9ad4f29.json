@@ -1,7 +1,22 @@
 {
-    "model": "phi3.5:3.8b_Default",
-    "prompt": "prompt 4: You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
-    "unique_id": "29b2253b-5598-4a6b-81b0-7494d9ad4f29",
+    "model": {
+        "id": 22,
+        "name": "phi3.5",
+        "size": "27b",
+        "options": "3.8b",
+        "family": "phi",
+        "short_name": "p35s"
+    },
+    "prompt": {
+        "id": 4,
+        "text": "You are a writing assistant system for medical reports written in German that can provide corrected versions of the reports You will only respond with the corrected report. Do not provide explanations.",
+        "tags": [
+            "role",
+            "no-explanation",
+            "english"
+        ]
+    },
+    "unique_id": "p35s-22-4.29b2253b-5598-4a6b-81b0-7494d9ad4f29",
     "responses": [
         {
             "ris_id": 1,
