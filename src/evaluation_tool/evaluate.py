@@ -128,15 +128,17 @@ def language_tool_grammar_check(lang_tool: ltp.LanguageTool, output_report):
     lang_tool.enabled_categories = {"GRAMMAR"}
 
     grammar = []
+    count = 0
 
     try:
         matches = lang_tool.check(output_report)
+        count = len(matches)
         for match in matches:
             grammar.append(match.__dict__)
     except ltp.utils.LanguageToolError:
         grammar.append("LT Error")
 
-    return grammar, len(matches)
+    return grammar, count
 
 def language_tool_other_check(lang_tool: ltp.LanguageTool, output_report):
     """function to check the output report using language tool"""
