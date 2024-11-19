@@ -172,42 +172,30 @@ def get_language_tool_metrics(
             "grammar": 0,
             "other": 0,
         },
-        "typos": {
-            "count": 0,
-        },
-        "grammar": {
-            "count": 0,
-        },
-        "other": {
-            "count": 0,
-        },
+        "typos": {},
+        "grammar": {},
+        "other": {},
     }
 
     for response in responses:
         ris_id = response["ris_id"]
         output_report = response["raw"]["response"]
-        try:
-            typos, typos_count, whitelist_count = language_tool_spelling_check(lang_tool, output_report, directories[0])
-            language_tool_metrics["counts"]["typos"] += typos_count
-            language_tool_metrics["counts"]["whitelist"] += whitelist_count
-            language_tool_metrics["typos"].update({ris_id: typos})
-        except Exception as e:
-            print("get_language_tool_metrics", e)
-            continue
-        try:
-            grammar, grammar_count = language_tool_grammar_check(lang_tool, output_report)
-            language_tool_metrics["counts"]["grammar"] += grammar_count
-            language_tool_metrics["grammar"].update({ris_id: grammar})
-        except Exception as e:
-            print("get_language_tool_metrics", e)
-            continue
-        try:
-            other, other_count = language_tool_other_check(lang_tool, output_report)
-            language_tool_metrics["counts"]["other"] += other_count
-            language_tool_metrics["other"].update({ris_id: other})
-        except Exception as e:
-            print("get_language_tool_metrics", e)
-            continue
+
+        typos, typos_count, whitelist_count = language_tool_spelling_check(lang_tool, output_report, directories["vocab"])
+        language_tool_metrics["counts"]["typos"] += typos_count
+        language_tool_metrics["counts"]["whitelist"] += whitelist_count
+        language_tool_metrics["typos"].update({ris_id: typos})
+
+        grammar, grammar_count = language_tool_grammar_check(lang_tool, output_report)
+        language_tool_metrics["counts"]["grammar"] += grammar_count
+        language_tool_metrics["grammar"].update({ris_id: grammar})
+
+        #other, other_count = language_tool_other_check(lang_tool, output_report)
+        #language_tool_metrics["counts"]["other"] += other_count
+        #language_tool_metrics["other"].update({ris_id: other})
+
+
+
     return language_tool_metrics
 
 # Semantic Metrics

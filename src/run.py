@@ -42,6 +42,7 @@ def main():
     session = create_db_session(os.path.join(directories["data"], "DB.db"))
     model1 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
     model2 = SentenceTransformer('sentence-transformers/paraphrase-multilingual-mpnet-base-v2')
+    lang_tool = ltp.LanguageTool("de-De", remote_server="http://localhost:8010")
     #nltk.download("all")
 
     args = parse_arguments()
@@ -56,23 +57,13 @@ def main():
                 session,
             )
         case "evaluate":
-            if args.server:
-                server = args.server
-            else:
-                server = "http://localhost:8010"
-
-            if 3 in args.options:
-                lang_tool = ltp.LanguageTool("de-De", remote_server=server)
-            else:
-                lang_tool = None
-
             evaluate_from_unique_ids(
                 args.uids,
                 directories,
                 session,
-                lang_tool,
-                model1,
-                model2,
+                lang_tool=lang_tool,
+                model1=model1,
+                model2=model2,
                 options=args.options,
                 update=args.update,
             )
@@ -82,6 +73,7 @@ def main():
             print("Unknown command")
 
     session.close()
+    lang_tool.close()
     sys.exit(0)
 
 
